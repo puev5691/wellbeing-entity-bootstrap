@@ -1,0 +1,44 @@
+Soft cleanup report
+Package: /storage/emulated/0/Documents/Blagopoluchie/00_INBOX/my-structure/chats-gpt-name/revision-of-the-project-structure
+
+MOVED: /storage/emulated/0/Documents/Blagopoluchie/00_INBOX/my-structure/chats-gpt-name/revision-of-the-project-structure/2168-1004-2026-soft-clean-current-chat-package.sh -> /storage/emulated/0/Documents/Blagopoluchie/00_INBOX/my-structure/chats-gpt-name/revision-of-the-project-structure/_SERVICE/
+MOVED: /storage/emulated/0/Documents/Blagopoluchie/00_INBOX/my-structure/chats-gpt-name/revision-of-the-project-structure/2178-1004-2026-create-literary-draft-about-rise-of-archivist.sh -> /storage/emulated/0/Documents/Blagopoluchie/00_INBOX/my-structure/chats-gpt-name/revision-of-the-project-structure/_SERVICE/
+
+Remaining root files:
+/storage/emulated/0/Documents/Blagopoluchie/00_INBOX/my-structure/chats-gpt-name/revision-of-the-project-structure/.wb-copy-map.tsv
+/storage/emulated/0/Documents/Blagopoluchie/00_INBOX/my-structure/chats-gpt-name/revision-of-the-project-structure/0915-0904-2026-session-summary-before-next-stage.md
+/storage/emulated/0/Documents/Blagopoluchie/00_INBOX/my-structure/chats-gpt-name/revision-of-the-project-structure/0920-0409-2026-Scene-One.md
+/storage/emulated/0/Documents/Blagopoluchie/00_INBOX/my-structure/chats-gpt-name/revision-of-the-project-structure/0940-0409-2026-Scene-two.md
+/storage/emulated/0/Documents/Blagopoluchie/00_INBOX/my-structure/chats-gpt-name/revision-of-the-project-structure/1110-0904-2026-first-real-mvp-success-log-project-archivist.md
+/storage/emulated/0/Documents/Blagopoluchie/00_INBOX/my-structure/chats-gpt-name/revision-of-the-project-structure/1138-0904-2026-github-publish-log-project-archivist.md
+/storage/emulated/0/Documents/Blagopoluchie/00_INBOX/my-structure/chats-gpt-name/revision-of-the-project-structure/1258-0904-2026-synopsis-archivist-story.md
+/storage/emulated/0/Documents/Blagopoluchie/00_INBOX/my-structure/chats-gpt-name/revision-of-the-project-structure/1312-0904-2026-scene-plan-archivist-story.md
+/storage/emulated/0/Documents/Blagopoluchie/00_INBOX/my-structure/chats-gpt-name/revision-of-the-project-structure/1336-0904-2026-scene-cards-archivist-story.md
+/storage/emulated/0/Documents/Blagopoluchie/00_INBOX/my-structure/chats-gpt-name/revision-of-the-project-structure/1358-0904-2026-scene-two-archivist-story.md
+/storage/emulated/0/Documents/Blagopoluchie/00_INBOX/my-structure/chats-gpt-name/revision-of-the-project-structure/1418-0904-2026-scene-three-archivist-story.md
+/storage/emulated/0/Documents/Blagopoluchie/00_INBOX/my-structure/chats-gpt-name/revision-of-the-project-structure/1438-0904-2026-literary-branch-progress-log.md
+/storage/emulated/0/Documents/Blagopoluchie/00_INBOX/my-structure/chats-gpt-name/revision-of-the-project-structure/1442-0904-2026-return-to-engineering-log-project-archivist.md
+/storage/emulated/0/Documents/Blagopoluchie/00_INBOX/my-structure/chats-gpt-name/revision-of-the-project-structure/1456-0904-2026-next-engineering-cycle-plan-project-archivist.md
+/storage/emulated/0/Documents/Blagopoluchie/00_INBOX/my-structure/chats-gpt-name/revision-of-the-project-structure/1508-0904-2026-copy-map-cycle-success-log-project-archivist.md
+/storage/emulated/0/Documents/Blagopoluchie/00_INBOX/my-structure/chats-gpt-name/revision-of-the-project-structure/1532-0904-2026-draft-copy-map-and-classification-cycle-log-project-archivist.md
+/storage/emulated/0/Documents/Blagopoluchie/00_INBOX/my-structure/chats-gpt-name/revision-of-the-project-structure/1558-0904-2026-copy-map-coverage-cycle-log-project-archivist.md
+/storage/emulated/0/Documents/Blagopoluchie/00_INBOX/my-structure/chats-gpt-name/revision-of-the-project-structure/1758-0904-2026-copy-map-candidate-cycle-log-project-archivist.md
+/storage/emulated/0/Documents/Blagopoluchie/00_INBOX/my-structure/chats-gpt-name/revision-of-the-project-structure/1808-0904-2026-copy-map-append-patch-cycle-log-project-archivist.md
+/storage/emulated/0/Documents/Blagopoluchie/00_INBOX/my-structure/chats-gpt-name/revision-of-the-project-structure/1907-0409-2026-Scene-Three.md
+/storage/emulated/0/Documents/Blagopoluchie/00_INBOX/my-structure/chats-gpt-name/revision-of-the-project-structure/1938-0904-2026-noise-filtering-cycle-log-project-archivist.md
+/storage/emulated/0/Documents/Blagopoluchie/00_INBOX/my-structure/chats-gpt-name/revision-of-the-project-structure/2018-0904-2026-status-model-cycle-plan-project-archivist.md
+/storage/emulated/0/Documents/Blagopoluchie/00_INBOX/my-structure/chats-gpt-name/revision-of-the-project-structure/2038-0804-2026-technical-specification-project-archivist.md
+/storage/emulated/0/Documents/Blagopoluchie/00_INBOX/my-structure/chats-gpt-name/revision-of-the-project-structure/2038-0904-2026-status-report-sober-cycle-log-project-archivist.md
+/storage/emulated/0/Documents/Blagopoluchie/00_INBOX/my-structure/chats-gpt-name/revision-of-the-project-structure/2052-0804-2026-entity-model-project-archivist.md
+/storage/emulated/0/Documents/Blagopoluchie/00_INBOX/my-structure/chats-gpt-name/revision-of-the-project-structure/2058-0904-2026-context-manifest-cycle-plan-project-archivist.md
+/storage/emulated/0/Documents/Blagopoluchie/00_INBOX/my-structure/chats-gpt-name/revision-of-the-project-structure/2068-0904-2026-context-manifest-preview.md
+/storage/emulated/0/Documents/Blagopoluchie/00_INBOX/my-structure/chats-gpt-name/revision-of-the-project-structure/2106-0804-2026-mvp-plan-project-archivist.md
+/storage/emulated/0/Documents/Blagopoluchie/00_INBOX/my-structure/chats-gpt-name/revision-of-the-project-structure/2118-0804-2026-code-structure-project-archivist.md
+/storage/emulated/0/Documents/Blagopoluchie/00_INBOX/my-structure/chats-gpt-name/revision-of-the-project-structure/2118-0904-2026-archivist-workspace-canon-and-config-idea.md
+/storage/emulated/0/Documents/Blagopoluchie/00_INBOX/my-structure/chats-gpt-name/revision-of-the-project-structure/2128-0904-2026-first-repository-cycle-plan-project-archivist.md
+/storage/emulated/0/Documents/Blagopoluchie/00_INBOX/my-structure/chats-gpt-name/revision-of-the-project-structure/2129-0804-2026-sqlite-schema-mvp-project-archivist.md
+/storage/emulated/0/Documents/Blagopoluchie/00_INBOX/my-structure/chats-gpt-name/revision-of-the-project-structure/2143-0804-2026-python-code-draft-project-archivist.md
+/storage/emulated/0/Documents/Blagopoluchie/00_INBOX/my-structure/chats-gpt-name/revision-of-the-project-structure/2148-1004-2026-repo-manifest-cycle-plan-project-archivist.md
+/storage/emulated/0/Documents/Blagopoluchie/00_INBOX/my-structure/chats-gpt-name/revision-of-the-project-structure/2168-1004-2026-soft-clean-report.txt
+/storage/emulated/0/Documents/Blagopoluchie/00_INBOX/my-structure/chats-gpt-name/revision-of-the-project-structure/2178-1004-2026-literary-draft-rise-of-archivist.md
+/storage/emulated/0/Documents/Blagopoluchie/00_INBOX/my-structure/chats-gpt-name/revision-of-the-project-structure/README-chat-folder.md

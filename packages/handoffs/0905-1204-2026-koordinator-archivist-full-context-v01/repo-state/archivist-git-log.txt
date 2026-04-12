@@ -1,0 +1,16 @@
+fc6df07 Add bootstrap package summary bridge
+2a68c20 Normalize path roots and source tracing
+03d70db Extract local service layer from CLI
+b7b9755 Normalize service query JSON contract
+388a7ed Add local JSON service entry for archivist queries
+52aa9f2 Sync entity summary with operational state
+fcfa730 Add recent artifacts query command
+312789a Add query-layer commands for active and confirmed entity state
+3daf8f3 Add entity and step registries and update current archivist state
+ca9452c add package status report and improve status classification
+fae208b add copy map candidate and append patch workflow
+20a4c18 add copy map candidate building and document current workflow
+cd4dbe4 translate repository docs to russian and document current workflow
+e83c805 add draft copy map generation and package file classification
+0d69eaf add copy map parsing and CLI support
+25d3025 init working MVP archivist with real chat package indexing

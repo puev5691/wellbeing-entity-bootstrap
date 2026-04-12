@@ -1,0 +1,67 @@
+Да, всё штатно. Значит, можем цивилизованно переселяться.
+
+Для инициации в новом чате делай так:
+
+1. Создай новый чат с понятным названием вроде
+КООРДИНАТОР: Recovery Archivist after bootstrap-service-query failure
+
+
+2. Загрузи туда в первую очередь файл:
+/storage/emulated/0/Documents/Blagopoluchie/00_INBOX/my-structure/chats-gpt-name/revision-of-the-project-structure/1188-1204-2026-handoff-to-new-chat-archivist-and-bootstrap.md
+
+
+3. Желательно сразу приложить ещё и текущее состояние проблемных файлов, чтобы не гадать по звёздам:
+
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/cli.py
+
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/service_layer.py
+
+
+
+4. Если хочешь совсем без потерь, добавь в новый чат ещё и свежий вывод:
+
+git -C /storage/emulated/0/Documents/repos/wellbeing-archivist status --short
+
+git -C /storage/emulated/0/Documents/repos/wellbeing-archivist log --oneline -n 8
+
+
+
+5. Первым сообщением в новом чате отправь вот этот текст.
+
+
+
+Работаем по handoff.
+
+Сначала:
+
+1. прочитай загруженный handoff-файл как основной контекст;
+2. диагностируй текущее локальное состояние репозитория wellbeing-archivist;
+3. не предлагай новые расширения, пока не будет восстановлена чистая опорная точка;
+4. при необходимости предложи безопасный recovery до последнего устойчивого published state;
+5. после диагностики и recovery аккуратно доделываем bootstrap service-query для query_type:
+   - bootstrap-packages
+   - bootstrap-package-summary
+
+Приоритет:
+recovery и чистое продолжение линии Архивариуса, без расползания в новые концептуальные ветки.Чтобы новая “Сущность” стартовала правильно, смысл инициации должен быть таким:
+
+роль: Координатор продолжает работу по recovery и развитию Архивариуса;
+
+источник истины: handoff-файл;
+
+первый приоритет: восстановление рабочего состояния wellbeing-archivist;
+
+запрет на старте: не расползаться в новые контуры, пока не починен bootstrap service-query.
+
+
+И ещё важная мелочь, которая почему-то всегда оказывается важной:
+в новом чате лучше сразу не просить писать большие heredoc-блоки, а сначала добиться от него:
+
+диагностики,
+
+точного плана recovery,
+
+и только потом одного маленького исправляющего скрипта.
+
+
+Иначе снова начнётся праздник незакрытых EOF, а у нас их и так уже было достаточно для одной человеческой жизни.

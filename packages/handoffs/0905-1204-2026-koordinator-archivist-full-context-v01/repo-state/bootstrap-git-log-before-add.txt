@@ -1,0 +1,5 @@
+3770158 Add investigator initiation package v0.1
+24f0ecf Add editor initiation package v0.1
+ee962be Add archivist initiation package v0.1
+cd03ee9 Add coordinator initiation package v0.1
+927a23a Create bootstrap repository skeleton for entities

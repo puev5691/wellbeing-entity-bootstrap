@@ -1,0 +1,213 @@
+#!/data/data/com.termux/files/usr/bin/bash
+set -euo pipefail
+
+DOC_DIR="/storage/emulated/0/Documents/Blagopoluchie/00_INBOX/my-structure/chats-gpt-name/revision-of-the-project-structure"
+mkdir -p "$DOC_DIR"
+
+cat > "$DOC_DIR/0328-1104-2026-cycle-1-success-log-entities-registry.md" <<'MD_EOF'
+# Журнал успешного завершения Цикла 1: реестр Сущностей Архивариуса-Трезвенника
+
+Дата: 2026-04-11
+Статус: journal_entry
+Контур: revision-of-the-project-structure
+Назначение: зафиксировать успешное завершение первого инженерного цикла развития Архивариуса-Трезвенника, связанного с созданием реестра Сущностей
+
+artifact_type: journal
+entity_scope: revision-of-the-project-structure
+phase: engineering
+repo_target: /storage/emulated/0/Documents/repos/wellbeing-archivist
+evidence_level: not_applicable
+handoff_to: not_applicable
+related_docs:
+- 0268-1104-2026-cycle-1-entities-registry-plan.md
+- 0278-1104-2026-task-for-archivist-cycle-1-entities-registry.md
+- 0218-1104-2026-technical-task-archivist-trezvennik-v02.md
+
+## 1. Что было целью цикла
+
+Целью Цикла 1 было превратить Архивариуса из инструмента поиска и инвентаризации файлов в систему, способную хотя бы на минимальном уровне различать и учитывать живые Сущности проекта.
+
+## 2. Что реализовано
+
+В рамках цикла реализовано:
+
+- подключён модуль `entities_registry.py`;
+- добавлена таблица `entities`;
+- добавлены CLI-команды:
+  - `register-entity`
+  - `list-entities`
+  - `show-entity-state`
+
+## 3. Что подтверждено практической проверкой
+
+Практически подтверждено:
+
+- зарегистрирована Сущность `Координатор`;
+- зарегистрирована Сущность `Следопыт`;
+- зарегистрирована Сущность `Редактор`;
+- список Сущностей выводится из реестра;
+- состояние отдельной Сущности выводится по `callsign`.
+
+## 4. Почему это важно
+
+Это первый реально работающий слой нервной системы дерева Сущностей.
+
+До этого Сущности существовали:
+- в чатах;
+- в документах;
+- в голове оператора;
+- в регламентах и пакетах.
+
+Теперь они существуют ещё и как различимые объекты в рабочем инструменте Архивариуса.
+
+## 5. Ограничение текущего результата
+
+На этом шаге Архивариус ещё не умеет:
+
+- вести шаги;
+- вести артефакты как подтверждённые результаты шагов;
+- блокировать переход между фазами;
+- собирать handoff по шагам и результатам.
+
+То есть достигнут не полный диспетчерский слой, а только его первый, но критически важный контур.
+
+## 6. Итог
+
+Цикл 1 завершён успешно.
+
+Архивариус-Трезвенник теперь умеет различать и хранить Сущности проекта Благополучие как объекты системы, а не только как смысловые фигуры в документах и чатах.
+MD_EOF
+
+cat > "$DOC_DIR/0338-1104-2026-cycle-2-plan-step-registry-and-phase-barrier.md" <<'MD_EOF'
+# План инженерного Цикла 2: реестр шагов и фазовый барьер
+
+Дата: 2026-04-11
+Статус: working
+Контур: revision-of-the-project-structure
+Назначение: зафиксировать второй инженерный цикл развития Архивариуса-Трезвенника, связанный с шагами, их состояниями и фазовым барьером
+
+artifact_type: plan
+entity_scope: revision-of-the-project-structure
+phase: engineering
+repo_target: /storage/emulated/0/Documents/repos/wellbeing-archivist
+evidence_level: not_applicable
+handoff_to: not_applicable
+related_docs:
+- 0328-1104-2026-cycle-1-success-log-entities-registry.md
+- 0218-1104-2026-technical-task-archivist-trezvennik-v02.md
+- 0228-1104-2026-mvp-definition-archivist-trezvennik-v02.md
+- 0238-1104-2026-roadmap-next-cycles-archivist-trezvennik.md
+
+## Цель цикла
+
+Создать минимальный реестр шагов и ввести фазовый барьер между состояниями работы, чтобы Архивариус различал:
+
+- скрипт выдан;
+- скрипт исполнен;
+- артефакт подтверждён.
+
+## Что должно появиться после цикла
+
+- таблица `steps`;
+- CLI-команда создания шага;
+- CLI-команда перевода шага в `script_executed`;
+- CLI-команда перевода шага в `artifact_confirmed`;
+- CLI-команда просмотра шагов по Сущности;
+- запрет логического перехода к следующему шагу без подтверждения предыдущего.
+
+## Обязательные состояния шага
+
+- `script_issued`
+- `script_executed`
+- `artifact_confirmed`
+
+## На каком примере проверяется цикл
+
+Проверка должна идти на реальном маршруте Редактора.
+
+Минимальный пример:
+- шаг создания файла `0120-1104-2026-media-contour-minimum-stabilization-plan.md`
+- перевод шага в `script_issued`
+- перевод в `script_executed`
+- перевод в `artifact_confirmed`
+
+## Критерий завершения цикла
+
+Цикл считается завершённым, если Архивариус может провести хотя бы один реальный шаг дочерней Сущности через все три состояния и не позволить логически считать его завершённым раньше подтверждения.
+MD_EOF
+
+cat > "$DOC_DIR/0348-1104-2026-task-for-archivist-cycle-2-step-registry.md" <<'MD_EOF'
+# Задача для Архивариуса-Трезвенника: Цикл 2, реестр шагов и фазовый барьер
+
+Дата: 2026-04-11
+Статус: working
+Контур: revision-of-the-project-structure
+Назначение: зафиксировать точную инженерную задачу второго цикла развития Архивариуса-Трезвенника
+
+artifact_type: task
+entity_scope: revision-of-the-project-structure
+phase: engineering
+repo_target: /storage/emulated/0/Documents/repos/wellbeing-archivist
+evidence_level: not_applicable
+handoff_to: not_applicable
+related_docs:
+- 0338-1104-2026-cycle-2-plan-step-registry-and-phase-barrier.md
+- 0218-1104-2026-technical-task-archivist-trezvennik-v02.md
+- 0178-1104-2026-phase-confirmation-protocol.md
+
+## Задача
+
+Реализовать минимальный реестр шагов и фазовый барьер в репозитории Архивариуса.
+
+## Требуется
+
+### 1. Схема базы
+Добавить таблицу `steps` с минимальными полями:
+- id
+- entity_id
+- title
+- phase
+- operation_type
+- target_path
+- state
+- issued_at
+- executed_at
+- confirmed_at
+- success_evidence
+- notes
+
+### 2. CLI
+Добавить команды:
+- `issue-step`
+- `mark-step-executed`
+- `confirm-step-artifact`
+- `list-steps`
+
+### 3. Правило фазового барьера
+Следующий шаг по одной Сущности не должен считаться допустимым, если предыдущий активный шаг не доведён до `artifact_confirmed`.
+
+### 4. Первичная проверка
+Проверить цикл на Редакторе через реальный шаг создания файла плана стабилизации медиаконтура.
+
+## Ограничения
+
+- не реализовывать пока реестр артефактов как отдельную таблицу;
+- не переходить к handoff;
+- не городить графический интерфейс;
+- не автоматизировать чаты;
+- не ломать уже работающий реестр Сущностей.
+
+## Критерий успеха
+
+После цикла Архивариус должен уметь:
+- выдать шаг;
+- отметить его исполненным;
+- подтвердить результат;
+- показать список шагов по Сущности;
+- различать незавершённый шаг и подтверждённый результат.
+MD_EOF
+
+echo "Created:"
+echo "$DOC_DIR/0328-1104-2026-cycle-1-success-log-entities-registry.md"
+echo "$DOC_DIR/0338-1104-2026-cycle-2-plan-step-registry-and-phase-barrier.md"
+echo "$DOC_DIR/0348-1104-2026-task-for-archivist-cycle-2-step-registry.md"

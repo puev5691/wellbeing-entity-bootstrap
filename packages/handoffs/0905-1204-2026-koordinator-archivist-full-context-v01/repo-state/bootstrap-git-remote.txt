@@ -1,0 +1,2 @@
+origin	https://github.com/puev5691/wellbeing-entity-bootstrap.git (fetch)
+origin	https://github.com/puev5691/wellbeing-entity-bootstrap.git (push)

@@ -1,0 +1,842 @@
+# Архивариус-Трезвенник: снимок репозитория для цикла 1
+Дата: 2026-04-11 13:22:13 +0300
+Репозиторий: /storage/emulated/0/Documents/repos/wellbeing-archivist
+
+===== TOP LEVEL =====
+.git
+.gitignore
+CHANGELOG.md
+README.md
+archivist.py
+config
+data
+pyproject.toml
+requirements.txt
+scripts
+src
+
+===== SRC/ARCHIVIST FILES =====
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/__init__.py
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/__pycache__/__init__.cpython-313.pyc
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/__pycache__/chat_packages.cpython-313.pyc
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/__pycache__/classify_files.cpython-313.pyc
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/__pycache__/cli.cpython-313.pyc
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/__pycache__/config.cpython-313.pyc
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/__pycache__/constants.cpython-313.pyc
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/__pycache__/context_manifest.cpython-313.pyc
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/__pycache__/copy_map.cpython-313.pyc
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/__pycache__/copy_map_append_patch.cpython-313.pyc
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/__pycache__/copy_map_candidate.cpython-313.pyc
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/__pycache__/copy_map_coverage.cpython-313.pyc
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/__pycache__/copy_map_recommendations.cpython-313.pyc
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/__pycache__/db.cpython-313.pyc
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/__pycache__/draft_copy_map.cpython-313.pyc
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/__pycache__/indexer.cpython-313.pyc
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/__pycache__/logging_setup.cpython-313.pyc
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/__pycache__/models.cpython-313.pyc
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/__pycache__/package_status_report.cpython-313.pyc
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/__pycache__/repo_manifest.cpython-313.pyc
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/__pycache__/repo_profile.cpython-313.pyc
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/__pycache__/repo_start_context.cpython-313.pyc
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/__pycache__/scanner.cpython-313.pyc
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/__pycache__/text_extract.cpython-313.pyc
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/__pycache__/utils.cpython-313.pyc
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/chat_packages.py
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/classify_files.py
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/cli.py
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/config.py
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/constants.py
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/context_manifest.py
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/copy_map.py
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/copy_map_append_patch.py
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/copy_map_candidate.py
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/copy_map_coverage.py
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/copy_map_recommendations.py
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/db.py
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/draft_copy_map.py
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/indexer.py
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/logging_setup.py
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/models.py
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/package_status_report.py
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/repo_manifest.py
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/repo_profile.py
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/repo_start_context.py
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/scanner.py
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/text_extract.py
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/utils.py
+
+===== PYTHON FILES (MAXDEPTH 4) =====
+/storage/emulated/0/Documents/repos/wellbeing-archivist/archivist.py
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/__init__.py
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/chat_packages.py
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/classify_files.py
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/cli.py
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/config.py
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/constants.py
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/context_manifest.py
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/copy_map.py
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/copy_map_append_patch.py
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/copy_map_candidate.py
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/copy_map_coverage.py
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/copy_map_recommendations.py
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/db.py
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/draft_copy_map.py
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/indexer.py
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/logging_setup.py
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/models.py
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/package_status_report.py
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/repo_manifest.py
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/repo_profile.py
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/repo_start_context.py
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/scanner.py
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/text_extract.py
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/utils.py
+
+===== CLI / ARGPARSE HITS =====
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/cli.py:2:import argparse
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/cli.py:23:def build_parser() -> argparse.ArgumentParser:
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/cli.py:24:    parser = argparse.ArgumentParser(
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/cli.py:35:    subparsers = parser.add_subparsers(dest="command", required=True)
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/cli.py:37:    subparsers.add_parser("init-db", help="Create SQLite database and schema")
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/cli.py:38:    subparsers.add_parser("stats", help="Show basic database statistics")
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/cli.py:39:    subparsers.add_parser("index", help="Run full indexing")
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/cli.py:40:    subparsers.add_parser("reindex", help="Run full reindexing")
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/cli.py:42:    search_name = subparsers.add_parser("search-name", help="Search files by name")
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/cli.py:46:    search_text = subparsers.add_parser("search-text", help="Search files by text")
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/cli.py:50:    show_file = subparsers.add_parser("show-file", help="Show file card by ID")
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/cli.py:53:    show_chat_package = subparsers.add_parser(
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/cli.py:59:    show_copy_map = subparsers.add_parser(
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/cli.py:65:    generate_copy_map_draft = subparsers.add_parser(
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/cli.py:76:    classify_package = subparsers.add_parser(
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/cli.py:82:    package_status = subparsers.add_parser(
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/cli.py:88:    build_context_manifest_cmd = subparsers.add_parser(
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/cli.py:94:    build_repo_manifest_cmd = subparsers.add_parser(
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/cli.py:105:    build_repo_profile_cmd = subparsers.add_parser(
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/cli.py:116:    build_repo_start_context_cmd = subparsers.add_parser(
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/cli.py:127:    check_copy_map_coverage = subparsers.add_parser(
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/cli.py:133:    recommend_copy_map = subparsers.add_parser(
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/cli.py:139:    build_copy_map_candidate_cmd = subparsers.add_parser(
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/cli.py:150:    build_copy_map_append_patch_cmd = subparsers.add_parser(
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/cli.py:164:def main() -> int:
+
+===== SQLITE / DB / SCHEMA HITS =====
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/draft_copy_map.py:41:    if any(token in lower_name for token in ("technical-specification", "entity-model", "mvp-plan", "code-structure", "sqlite-schema", "python-code-draft")):
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/cli.py:37:    subparsers.add_parser("init-db", help="Create SQLite database and schema")
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/cli.py:168:    if args.command == "init-db":
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/cli.py:169:        return cmd_init_db(args)
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/cli.py:218:def cmd_init_db(args) -> int:
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/cli.py:220:    db.init_schema()
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/cli.py:221:    db.set_setting("schema_version", "1")
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/cli.py:240:    db.init_schema()
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/cli.py:253:    db.init_schema()
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/classify_files.py:93:    if any(token in lower_name for token in ("technical-specification", "entity-model", "mvp-plan", "sqlite-schema", "python-code-draft", "code-structure")):
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/classify_files.py:108:    if any(token in header for token in ("техническое задание", "модель сущностей", "sqlite-схема", "sqlite schema", "code structure", "структура проекта кода")):
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/db.py:3:import sqlite3
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/db.py:14:SCHEMA_SQL = """
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/db.py:15:CREATE TABLE IF NOT EXISTS files (
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/db.py:37:CREATE TABLE IF NOT EXISTS chat_packages (
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/db.py:49:CREATE TABLE IF NOT EXISTS settings (
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/db.py:54:CREATE TABLE IF NOT EXISTS index_runs (
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/db.py:100:    def connect(self) -> sqlite3.Connection:
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/db.py:102:        conn = sqlite3.connect(self.database_path)
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/db.py:103:        conn.row_factory = sqlite3.Row
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/db.py:106:    def init_schema(self) -> None:
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/db.py:107:        with self.connect() as conn:
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/db.py:108:            conn.executescript(SCHEMA_SQL)
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/db.py:112:        with self.connect() as conn:
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/db.py:124:        with self.connect() as conn:
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/db.py:132:        with self.connect() as conn:
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/db.py:192:        with self.connect() as conn:
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/db.py:231:        with self.connect() as conn:
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/db.py:254:        with self.connect() as conn:
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/db.py:284:        with self.connect() as conn:
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/db.py:299:        with self.connect() as conn:
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/db.py:314:        with self.connect() as conn:
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/db.py:322:        with self.connect() as conn:
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/db.py:330:        with self.connect() as conn:
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/db.py:361:    def _row_to_search_result(row: sqlite3.Row) -> SearchResult:
+
+===== ENTITY / ARTIFACT / STEP / HANDOFF HITS =====
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/draft_copy_map.py:39:        return "09_ADMIN/chat_entity_bootstrap"
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/draft_copy_map.py:41:    if any(token in lower_name for token in ("technical-specification", "entity-model", "mvp-plan", "code-structure", "sqlite-schema", "python-code-draft")):
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/draft_copy_map.py:42:        return "09_ADMIN/chat_entity_bootstrap"
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/cli.py:90:        help="Build context manifest for a new entity or handoff",
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/cli.py:96:        help="Build repository manifest for code-oriented entity",
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/cli.py:107:        help="Build repository profile for code-oriented entity",
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/cli.py:118:        help="Build startup reading context for code-oriented entity",
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/context_manifest.py:82:    lines.append("Назначение: помочь выбрать минимально полезный набор файлов для передачи новой Сущности, дочернему чату или handoff-пакету.")
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/copy_map_recommendations.py:37:                suggested_target = "09_ADMIN/chat_entity_bootstrap"
+/storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/classify_files.py:93:    if any(token in lower_name for token in ("technical-specification", "entity-model", "mvp-plan", "sqlite-schema", "python-code-draft", "code-structure")):
+
+===== archivist.py (HEAD 220) =====
+from src.archivist.cli import main
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
+
+===== src/archivist/cli.py (HEAD 320) =====
+from __future__ import annotations
+import argparse
+from pathlib import Path
+
+from .classify_files import classify_package_files
+from .config import load_config
+from .context_manifest import build_context_manifest, render_context_manifest
+from .copy_map import parse_copy_map
+from .copy_map_append_patch import build_copy_map_append_patch, render_append_patch
+from .copy_map_candidate import build_copy_map_candidate, render_copy_map_candidate
+from .copy_map_coverage import build_copy_map_coverage_report
+from .copy_map_recommendations import build_copy_map_recommendations, render_copy_map_recommendations
+from .db import Database
+from .draft_copy_map import collect_draft_copy_map_entries, render_draft_copy_map
+from .indexer import Indexer
+from .logging_setup import setup_logging
+from .package_status_report import build_package_status_report
+from .repo_manifest import build_repo_manifest, render_repo_manifest, default_repo_manifest_output_path
+from .repo_profile import build_repo_profile, render_repo_profile, default_repo_profile_output_path
+from .repo_start_context import build_repo_start_context, render_repo_start_context, default_repo_start_context_output_path
+
+
+def build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(
+        prog="archivist",
+        description="MVP CLI for wellbeing project archivist",
+    )
+    parser.add_argument(
+        "--config",
+        dest="config_path",
+        default=None,
+        help="Path to JSON config file",
+    )
+
+    subparsers = parser.add_subparsers(dest="command", required=True)
+
+    subparsers.add_parser("init-db", help="Create SQLite database and schema")
+    subparsers.add_parser("stats", help="Show basic database statistics")
+    subparsers.add_parser("index", help="Run full indexing")
+    subparsers.add_parser("reindex", help="Run full reindexing")
+
+    search_name = subparsers.add_parser("search-name", help="Search files by name")
+    search_name.add_argument("query", help="Search query")
+    search_name.add_argument("--limit", type=int, default=50)
+
+    search_text = subparsers.add_parser("search-text", help="Search files by text")
+    search_text.add_argument("query", help="Search query")
+    search_text.add_argument("--limit", type=int, default=50)
+
+    show_file = subparsers.add_parser("show-file", help="Show file card by ID")
+    show_file.add_argument("file_id", type=int)
+
+    show_chat_package = subparsers.add_parser(
+        "show-chat-package",
+        help="Show chat package card by ID",
+    )
+    show_chat_package.add_argument("package_id", type=int)
+
+    show_copy_map = subparsers.add_parser(
+        "show-copy-map",
+        help="Show parsed .wb-copy-map.tsv for a chat package by package ID",
+    )
+    show_copy_map.add_argument("package_id", type=int)
+
+    generate_copy_map_draft = subparsers.add_parser(
+        "generate-copy-map-draft",
+        help="Generate draft .wb-copy-map for a chat package by package ID",
+    )
+    generate_copy_map_draft.add_argument("package_id", type=int)
+    generate_copy_map_draft.add_argument(
+        "--write",
+        action="store_true",
+        help="Write draft to .wb-copy-map.generated.tsv inside the package",
+    )
+
+    classify_package = subparsers.add_parser(
+        "classify-package-files",
+        help="Classify files inside a chat package by package ID",
+    )
+    classify_package.add_argument("package_id", type=int)
+
+    package_status = subparsers.add_parser(
+        "package-status-report",
+        help="Show report by file statuses for a chat package",
+    )
+    package_status.add_argument("package_id", type=int)
+
+    build_context_manifest_cmd = subparsers.add_parser(
+        "build-context-manifest",
+        help="Build context manifest for a new entity or handoff",
+    )
+    build_context_manifest_cmd.add_argument("package_id", type=int)
+
+    build_repo_manifest_cmd = subparsers.add_parser(
+        "build-repo-manifest",
+        help="Build repository manifest for code-oriented entity",
+    )
+    build_repo_manifest_cmd.add_argument("repo_path", help="Path to repository directory")
+    build_repo_manifest_cmd.add_argument(
+        "--write",
+        action="store_true",
+        help="Write repository manifest into _ARCHIVIST/repo_manifests",
+    )
+
+    build_repo_profile_cmd = subparsers.add_parser(
+        "build-repo-profile",
+        help="Build repository profile for code-oriented entity",
+    )
+    build_repo_profile_cmd.add_argument("repo_path", help="Path to repository directory")
+    build_repo_profile_cmd.add_argument(
+        "--write",
+        action="store_true",
+        help="Write repository profile into _ARCHIVIST/repo_reports",
+    )
+
+    build_repo_start_context_cmd = subparsers.add_parser(
+        "build-repo-start-context",
+        help="Build startup reading context for code-oriented entity",
+    )
+    build_repo_start_context_cmd.add_argument("repo_path", help="Path to repository directory")
+    build_repo_start_context_cmd.add_argument(
+        "--write",
+        action="store_true",
+        help="Write startup context into _ARCHIVIST/repo_reports",
+    )
+
+    check_copy_map_coverage = subparsers.add_parser(
+        "check-copy-map-coverage",
+        help="Check how well .wb-copy-map.tsv covers the files of a chat package",
+    )
+    check_copy_map_coverage.add_argument("package_id", type=int)
+
+    recommend_copy_map = subparsers.add_parser(
+        "recommend-copy-map-additions",
+        help="Recommend new lines to add into .wb-copy-map.tsv for uncovered files",
+    )
+    recommend_copy_map.add_argument("package_id", type=int)
+
+    build_copy_map_candidate_cmd = subparsers.add_parser(
+        "build-copy-map-candidate",
+        help="Build merged candidate copy map from existing map and recommendations",
+    )
+    build_copy_map_candidate_cmd.add_argument("package_id", type=int)
+    build_copy_map_candidate_cmd.add_argument(
+        "--write",
+        action="store_true",
+        help="Write merged candidate to .wb-copy-map.candidate.tsv inside the package",
+    )
+
+    build_copy_map_append_patch_cmd = subparsers.add_parser(
+        "build-copy-map-append-patch",
+        help="Build append-ready patch from recommendations with non-empty targets",
+    )
+    build_copy_map_append_patch_cmd.add_argument("package_id", type=int)
+    build_copy_map_append_patch_cmd.add_argument(
+        "--write",
+        action="store_true",
+        help="Write append-ready patch to .wb-copy-map.append.tsv inside the package",
+    )
+
+    return parser
+
+
+def main() -> int:
+    parser = build_parser()
+    args = parser.parse_args()
+
+    if args.command == "init-db":
+        return cmd_init_db(args)
+    if args.command == "stats":
+        return cmd_stats(args)
+    if args.command == "index":
+        return cmd_index(args)
+    if args.command == "reindex":
+        return cmd_reindex(args)
+    if args.command == "search-name":
+        return cmd_search_name(args)
+    if args.command == "search-text":
+        return cmd_search_text(args)
+    if args.command == "show-file":
+        return cmd_show_file(args)
+    if args.command == "show-chat-package":
+        return cmd_show_chat_package(args)
+    if args.command == "show-copy-map":
+        return cmd_show_copy_map(args)
+    if args.command == "generate-copy-map-draft":
+        return cmd_generate_copy_map_draft(args)
+    if args.command == "classify-package-files":
+        return cmd_classify_package_files(args)
+    if args.command == "package-status-report":
+        return cmd_package_status_report(args)
+    if args.command == "build-context-manifest":
+        return cmd_build_context_manifest(args)
+    if args.command == "build-repo-manifest":
+        return cmd_build_repo_manifest(args)
+    if args.command == "build-repo-profile":
+        return cmd_build_repo_profile(args)
+    if args.command == "build-repo-start-context":
+        return cmd_build_repo_start_context(args)
+    if args.command == "check-copy-map-coverage":
+        return cmd_check_copy_map_coverage(args)
+    if args.command == "recommend-copy-map-additions":
+        return cmd_recommend_copy_map_additions(args)
+    if args.command == "build-copy-map-candidate":
+        return cmd_build_copy_map_candidate(args)
+    if args.command == "build-copy-map-append-patch":
+        return cmd_build_copy_map_append_patch(args)
+
+    parser.error(f"Unknown command: {args.command}")
+    return 2
+
+
+def _db_from_args(args) -> Database:
+    config = load_config(args.config_path)
+    return Database(config.database_path)
+
+
+def cmd_init_db(args) -> int:
+    db = _db_from_args(args)
+    db.init_schema()
+    db.set_setting("schema_version", "1")
+    print(f"Database initialized: {Path(db.database_path)}")
+    return 0
+
+
+def cmd_stats(args) -> int:
+    db = _db_from_args(args)
+    stats = db.get_stats()
+    print("Archivist database stats")
+    print(f"  total_files: {stats.total_files}")
+    print(f"  text_files: {stats.text_files}")
+    print(f"  chat_packages: {stats.chat_packages}")
+    print(f"  last_index_finished_at: {stats.last_index_finished_at}")
+    return 0
+
+
+def cmd_index(args) -> int:
+    config = load_config(args.config_path)
+    db = Database(config.database_path)
+    db.init_schema()
+    logger = setup_logging(config.log_level)
+    indexer = Indexer(config=config, db=db, logger=logger)
+    summary = indexer.run_full_index()
+    print("Index completed")
+    for key, value in summary.items():
+        print(f"  {key}: {value}")
+    return 0
+
+
+def cmd_reindex(args) -> int:
+    config = load_config(args.config_path)
+    db = Database(config.database_path)
+    db.init_schema()
+    logger = setup_logging(config.log_level)
+    indexer = Indexer(config=config, db=db, logger=logger)
+    summary = indexer.run_reindex()
+    print("Reindex completed")
+    for key, value in summary.items():
+        print(f"  {key}: {value}")
+    return 0
+
+
+def cmd_search_name(args) -> int:
+    db = _db_from_args(args)
+    results = db.search_files_by_name(args.query, limit=args.limit)
+    if not results:
+        print("No files found.")
+        return 0
+
+    for item in results:
+        print(f"[{item.file_id}] {item.name}")
+        print(f"  path: {item.full_path}")
+        print(f"  contour: {item.project_contour}")
+        print(f"  chat_package: {item.chat_package_path}")
+    return 0
+
+
+def cmd_search_text(args) -> int:
+    db = _db_from_args(args)
+    results = db.search_files_by_text(args.query, limit=args.limit)
+    if not results:
+        print("No files found.")
+        return 0
+
+    for item in results:
+        print(f"[{item.file_id}] {item.name}")
+        print(f"  path: {item.full_path}")
+        print(f"  contour: {item.project_contour}")
+        print(f"  chat_package: {item.chat_package_path}")
+        print(f"  snippet: {item.snippet}")
+    return 0
+
+
+def cmd_show_file(args) -> int:
+    db = _db_from_args(args)
+    data = db.get_file_by_id(args.file_id)
+    if data is None:
+        print("File not found.")
+        return 1
+
+    for key, value in data.items():
+        print(f"{key}: {value}")
+    return 0
+
+
+def cmd_show_chat_package(args) -> int:
+    db = _db_from_args(args)
+    data = db.get_chat_package_by_id(args.package_id)
+    if data is None:
+        print("Chat package not found.")
+        return 1
+
+    for key, value in data.items():
+        print(f"{key}: {value}")
+    return 0
+
+
+def cmd_show_copy_map(args) -> int:
+    db = _db_from_args(args)
+    package = db.get_chat_package_by_id(args.package_id)
+
+===== FILE CHECK: /storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/db.py =====
+from __future__ import annotations
+
+import sqlite3
+from pathlib import Path
+from typing import Any
+
+from .constants import (
+    INDEX_RUN_STATUS_COMPLETED,
+    INDEX_RUN_STATUS_RUNNING,
+)
+from .models import AppStats, ChatPackageRecord, FileRecord, SearchResult
+
+
+SCHEMA_SQL = """
+CREATE TABLE IF NOT EXISTS files (
+    id INTEGER PRIMARY KEY,
+    full_path TEXT NOT NULL UNIQUE,
+    relative_path TEXT,
+    name TEXT NOT NULL,
+    extension TEXT,
+    size_bytes INTEGER,
+    modified_at TEXT,
+    indexed_at TEXT NOT NULL,
+    hash_sha256 TEXT,
+    text_excerpt TEXT,
+    full_text TEXT,
+    text_available INTEGER NOT NULL DEFAULT 0,
+    project_contour TEXT,
+    chat_package_path TEXT,
+    is_chat_readme INTEGER NOT NULL DEFAULT 0,
+    is_copy_map INTEGER NOT NULL DEFAULT 0,
+    is_chat_card INTEGER NOT NULL DEFAULT 0,
+    scan_state TEXT NOT NULL DEFAULT 'ok',
+    error_note TEXT
+);
+
+CREATE TABLE IF NOT EXISTS chat_packages (
+    id INTEGER PRIMARY KEY,
+    package_path TEXT NOT NULL UNIQUE,
+    package_name TEXT NOT NULL,
+    readme_file_path TEXT,
+    copy_map_file_path TEXT,
+    chat_card_file_path TEXT,
+    last_indexed_at TEXT NOT NULL,
+    file_count INTEGER NOT NULL DEFAULT 0,
+    note TEXT
+);
+
+CREATE TABLE IF NOT EXISTS settings (
+    key TEXT PRIMARY KEY,
+    value TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS index_runs (
+    id INTEGER PRIMARY KEY,
+    started_at TEXT NOT NULL,
+    finished_at TEXT,
+    status TEXT NOT NULL,
+    files_seen INTEGER NOT NULL DEFAULT 0,
+    files_indexed INTEGER NOT NULL DEFAULT 0,
+    files_updated INTEGER NOT NULL DEFAULT 0,
+    files_failed INTEGER NOT NULL DEFAULT 0,
+    chat_packages_found INTEGER NOT NULL DEFAULT 0,
+    note TEXT
+);
+
+CREATE INDEX IF NOT EXISTS idx_files_name
+    ON files(name);
+
+CREATE INDEX IF NOT EXISTS idx_files_extension
+    ON files(extension);
+
+CREATE INDEX IF NOT EXISTS idx_files_project_contour
+    ON files(project_contour);
+
+CREATE INDEX IF NOT EXISTS idx_files_chat_package_path
+    ON files(chat_package_path);
+
+CREATE INDEX IF NOT EXISTS idx_files_modified_at
+    ON files(modified_at);
+
+CREATE INDEX IF NOT EXISTS idx_files_hash_sha256
+    ON files(hash_sha256);
+
+CREATE INDEX IF NOT EXISTS idx_chat_packages_name
+    ON chat_packages(package_name);
+
+CREATE INDEX IF NOT EXISTS idx_index_runs_started_at
+    ON index_runs(started_at);
+
+CREATE INDEX IF NOT EXISTS idx_index_runs_status
+    ON index_runs(status);
+"""
+
+
+class Database:
+    def __init__(self, database_path: str) -> None:
+        self.database_path = database_path
+
+    def connect(self) -> sqlite3.Connection:
+        Path(self.database_path).parent.mkdir(parents=True, exist_ok=True)
+        conn = sqlite3.connect(self.database_path)
+        conn.row_factory = sqlite3.Row
+        return conn
+
+    def init_schema(self) -> None:
+        with self.connect() as conn:
+            conn.executescript(SCHEMA_SQL)
+            conn.commit()
+
+    def set_setting(self, key: str, value: str) -> None:
+        with self.connect() as conn:
+            conn.execute(
+                """
+                INSERT INTO settings(key, value)
+                VALUES(?, ?)
+                ON CONFLICT(key) DO UPDATE SET value = excluded.value
+                """,
+                (key, value),
+            )
+            conn.commit()
+
+    def get_setting(self, key: str) -> str | None:
+        with self.connect() as conn:
+            row = conn.execute(
+                "SELECT value FROM settings WHERE key = ?",
+                (key,),
+            ).fetchone()
+            return None if row is None else str(row["value"])
+
+    def upsert_file(self, record: FileRecord) -> int:
+        with self.connect() as conn:
+            conn.execute(
+                """
+                INSERT INTO files (
+                    full_path, relative_path, name, extension, size_bytes,
+                    modified_at, indexed_at, hash_sha256, text_excerpt, full_text,
+                    text_available, project_contour, chat_package_path,
+                    is_chat_readme, is_copy_map, is_chat_card, scan_state, error_note
+                )
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                ON CONFLICT(full_path) DO UPDATE SET
+                    relative_path = excluded.relative_path,
+                    name = excluded.name,
+                    extension = excluded.extension,
+                    size_bytes = excluded.size_bytes,
+                    modified_at = excluded.modified_at,
+                    indexed_at = excluded.indexed_at,
+                    hash_sha256 = excluded.hash_sha256,
+                    text_excerpt = excluded.text_excerpt,
+                    full_text = excluded.full_text,
+                    text_available = excluded.text_available,
+                    project_contour = excluded.project_contour,
+                    chat_package_path = excluded.chat_package_path,
+                    is_chat_readme = excluded.is_chat_readme,
+                    is_copy_map = excluded.is_copy_map,
+                    is_chat_card = excluded.is_chat_card,
+                    scan_state = excluded.scan_state,
+                    error_note = excluded.error_note
+                """,
+                (
+                    record.full_path,
+                    record.relative_path,
+                    record.name,
+                    record.extension,
+                    record.size_bytes,
+                    record.modified_at,
+                    record.indexed_at,
+                    record.hash_sha256,
+                    record.text_excerpt,
+                    record.full_text,
+                    int(record.text_available),
+                    record.project_contour,
+                    record.chat_package_path,
+                    int(record.is_chat_readme),
+                    int(record.is_copy_map),
+                    int(record.is_chat_card),
+                    record.scan_state,
+                    record.error_note,
+                ),
+            )
+            row = conn.execute(
+                "SELECT id FROM files WHERE full_path = ?",
+                (record.full_path,),
+            ).fetchone()
+            conn.commit()
+            if row is None:
+                raise RuntimeError("Failed to fetch file id after upsert")
+            return int(row["id"])
+
+    def upsert_chat_package(self, record: ChatPackageRecord) -> int:
+        with self.connect() as conn:
+            conn.execute(
+                """
+                INSERT INTO chat_packages (
+                    package_path, package_name, readme_file_path,
+                    copy_map_file_path, chat_card_file_path,
+                    last_indexed_at, file_count, note
+                )
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                ON CONFLICT(package_path) DO UPDATE SET
+                    package_name = excluded.package_name,
+                    readme_file_path = excluded.readme_file_path,
+                    copy_map_file_path = excluded.copy_map_file_path,
+                    chat_card_file_path = excluded.chat_card_file_path,
+                    last_indexed_at = excluded.last_indexed_at,
+                    file_count = excluded.file_count,
+                    note = excluded.note
+                """,
+                (
+                    record.package_path,
+                    record.package_name,
+                    record.readme_file_path,
+                    record.copy_map_file_path,
+                    record.chat_card_file_path,
+                    record.last_indexed_at,
+                    record.file_count,
+                    record.note,
+                ),
+            )
+            row = conn.execute(
+                "SELECT id FROM chat_packages WHERE package_path = ?",
+                (record.package_path,),
+            ).fetchone()
+            conn.commit()
+            if row is None:
+                raise RuntimeError("Failed to fetch chat package id after upsert")
+            return int(row["id"])
+
+    def start_index_run(self, started_at: str) -> int:
+        with self.connect() as conn:
+            cur = conn.execute(
+                """
+                INSERT INTO index_runs(started_at, status)
+                VALUES(?, ?)
+                """,
+                (started_at, INDEX_RUN_STATUS_RUNNING),
+            )
+            conn.commit()
+            return int(cur.lastrowid)
+
+    def finish_index_run(
+        self,
+        run_id: int,
+        finished_at: str,
+        status: str = INDEX_RUN_STATUS_COMPLETED,
+        files_seen: int = 0,
+        files_indexed: int = 0,
+        files_updated: int = 0,
+        files_failed: int = 0,
+        chat_packages_found: int = 0,
+        note: str | None = None,
+    ) -> None:
+        with self.connect() as conn:
+            conn.execute(
+                """
+                UPDATE index_runs
+                SET finished_at = ?,
+                    status = ?,
+                    files_seen = ?,
+
+===== FILE CHECK: /storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/database.py =====
+[missing]
+
+===== FILE CHECK: /storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/schema.py =====
+[missing]
+
+===== FILE CHECK: /storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/init_db.py =====
+[missing]
+
+===== FILE CHECK: /storage/emulated/0/Documents/repos/wellbeing-archivist/src/archivist/models.py =====
+from __future__ import annotations
+
+from dataclasses import dataclass
+from typing import Optional
+
+
+@dataclass(slots=True)
+class FileRecord:
+    full_path: str
+    relative_path: str
+    name: str
+    extension: str
+    size_bytes: int
+    modified_at: str
+    indexed_at: str
+    hash_sha256: Optional[str] = None
+    text_excerpt: Optional[str] = None
+    full_text: Optional[str] = None
+    text_available: bool = False
+    project_contour: Optional[str] = None
+    chat_package_path: Optional[str] = None
+    is_chat_readme: bool = False
+    is_copy_map: bool = False
+    is_chat_card: bool = False
+    scan_state: str = "ok"
+    error_note: Optional[str] = None
+
+
+@dataclass(slots=True)
+class ChatPackageRecord:
+    package_path: str
+    package_name: str
+    readme_file_path: Optional[str] = None
+    copy_map_file_path: Optional[str] = None
+    chat_card_file_path: Optional[str] = None
+    last_indexed_at: str = ""
+    file_count: int = 0
+    note: Optional[str] = None
+
+
+@dataclass(slots=True)
+class IndexRunRecord:
+    started_at: str
+    finished_at: Optional[str] = None
+    status: str = "running"
+    files_seen: int = 0
+    files_indexed: int = 0
+    files_updated: int = 0
+    files_failed: int = 0
+    chat_packages_found: int = 0
+    note: Optional[str] = None
+
+
+@dataclass(slots=True)
+class SearchResult:
+    file_id: int
+    name: str
+    full_path: str
+    project_contour: Optional[str] = None
+    chat_package_path: Optional[str] = None
+    snippet: Optional[str] = None
+    score: Optional[float] = None
+
+
+@dataclass(slots=True)
+class AppStats:
+    total_files: int
+    text_files: int
+    chat_packages: int
+    last_index_finished_at: Optional[str] = None
+
