@@ -1,15 +1,20 @@
-# Манифест recovery-пакета текущего чата
+# Legacy pointer: старый манифест безличного recovery-пакета
 
-## Состав
+Этот файл сохранён только как указатель для старых ссылок.
 
-- `snapshot.md` — текущее подтверждённое рабочее состояние чата и следующий безопасный шаг.
+Каталог `packages/handoffs/current-chat-recovery/` признан неудачным: из пути было непонятно, состояние какой Сущности он фиксирует и к какой дате относится.
 
-## Внешние обязательные материалы
+Актуальный recovery-пакет КООРДИНАТОРА находится здесь:
 
-- `../../../policies/entity-state-preservation-and-recovery-canon.md`
-- `../../core/arhivarius-v01/README-initiation-package.md`
-- `../0905-1204-2026-koordinator-archivist-full-context-v01/README-context-package.md`
+`entities/koo/recovery/2026-09-05/`
 
-## Ограничение
+Актуальная инициация КООРДИНАТОРА:
 
-Актуальный новый файл инициации АРХИВАРИУСА подготовлен в текущем чате, но на момент создания этого манифеста ещё не записан в репозиторий. До его публикации recovery-пакет текущего чата следует считать неполным для непосредственной инициации нового АРХИВАРИУСА.
+`entities/koo/initiation/KOO__initiation-current__KOO.md`
+
+Не использовать этот манифест как текущий.
+
+---
+status: legacy_pointer
+entity: KOO
+replaced_by: entities/koo/recovery/2026-09-05/MANIFEST.md
