@@ -1,16 +1,16 @@
-# Реестр апгрейда Сущностей под recovery v1.2 — v0.4
+# Реестр апгрейда Сущностей под recovery v1.2 — v0.5
 
 ## Смысл и граница задачи
 
 Это текущая проверяемая карта апгрейда **только для проекта «ШТАБ БЛАГОПОЛУЧИЯ»**.
 
-ОПЕРАТОР отдельно уточнил:
+ОПЕРАТОР уточнил:
 
-- **ШКОЛА БЛАГОПОЛУЧИЯ** — другой проект; в текущую recovery-кампанию не входит;
-- **ВОЛОНТЁР** — утилитарный чат для случайных, простых и учебных вопросов; отдельные initiation, snapshot и recovery для него не нужны;
-- **ШТАБИСТ** — будущая внутренняя административно-организационная Сущность по типу КАНЦЕЛЯРА, но её проектирование и recovery отложены.
+- **ШКОЛА БЛАГОПОЛУЧИЯ** — другой проект;
+- **ВОЛОНТЁР** — утилитарный чат без initiation/snapshot/recovery;
+- **ШТАБИСТ** — будущая внутренняя административно-организационная Сущность; проектирование и recovery отложены.
 
-Поэтому наличие имени или кода в старом role/routing-материале само по себе не означает включение в текущую очередь миграции.
+В текущую очередь входят только Сущности, необходимость которых для работы ШТАБА уже однозначна.
 
 ## Машина состояний
 
@@ -32,8 +32,8 @@
 |---|---|---|---|---|---|
 | KOO | КООРДИНАТОР | входит | `puev5691/wellbeing-entity-bootstrap/entities/koo/` | `upgraded` | событийное обновление |
 | KAN | КАНЦЕЛЯР | входит | `puev5691/wellbeing-archivist/docs/entities/kancelyariya/recovery-current/` | `upgraded` | событийное обновление |
-| ARH | АРХИВАРИУС | входит | `puev5691/wellbeing-entity-bootstrap/entities/arh/recovery/current/` | `upgraded` | новый экземпляр прошёл cold-start `initiation_verified`; внешний current-каталог повторно проверен КООРДИНАТОРОМ |
-| RED | РЕДАКТОР | входит | current recovery не подтверждён; есть `packages/core/redaktor-v01/` | `bootstrap_only` | следующий профильный цикл: assessment current state и recovery v1.2 |
+| ARH | АРХИВАРИУС | входит | `puev5691/wellbeing-entity-bootstrap/entities/arh/recovery/current/` | `upgraded` | cold-start `initiation_verified` |
+| RED | РЕДАКТОР | входит | `puev5691/wellbeing-entity-bootstrap/entities/red/recovery/current/` | `externally_verified` | current-пакет независимо проверен КООРДИНАТОРОМ; следующий шаг — cold-start нового RED |
 | SIS | СИСАДМИН | входит | не подтверждён | `role_confirmed_recovery_not_confirmed` | искать фактический current recovery/состояние |
 | WEB | ВЕБМАСТЕР | входит | не подтверждён | `role_confirmed_recovery_not_confirmed` | искать фактический current recovery/состояние |
 | KOD | КОДЕР | входит | не подтверждён | `role_confirmed_recovery_not_confirmed` | искать фактический current recovery/состояние |
@@ -45,11 +45,11 @@
 | SHK | ШКОЛА БЛАГОПОЛУЧИЯ | другой проект | не рассматривается | `out_of_scope_other_project` | исключена |
 | VOL | ВОЛОНТЁР | утилитарный чат | не требуется | `utility_chat_no_recovery` | initiation/snapshot/recovery не создавать |
 
-## АРХИВАРИУС: закрытие цикла
+## АРХИВАРИУС
 
-Cold-start нового экземпляра ARH завершён успешно.
+Цикл закрыт.
 
-Проверенный locator:
+Проверенный current locator:
 
     store: github
     repository: puev5691/wellbeing-entity-bootstrap
@@ -58,33 +58,49 @@ Cold-start нового экземпляра ARH завершён успешно
     manifest: ARH__recovery-manifest__ARH.md
     checksums: sha256sums.txt
 
-Cold-start report зафиксировал:
+Cold-start нового экземпляра завершён со статусом `initiation_verified`.
 
-- `initiation_verified`;
-- проверенный immutable commit `d55d111914d3c5efb2526f7ce507d9748c67e82b`;
-- четыре ожидаемых файла;
-- совпадение SHA-256 трёх содержательных файлов.
+## РЕДАКТОР: внешняя проверка выполнена
 
-КООРДИНАТОР независимо проверил current-каталог GitHub: четыре файла существуют с заявленными размерами, а опубликованный `sha256sums.txt` содержит те же три SHA-256.
+Assessment RED завершён. Старый `packages/core/redaktor-v01/` использован только как provenance.
 
-Старые bootstrap и snapshot v01/v02 остаются provenance/evidence.
+Проверенный current locator:
+
+    store: github
+    repository: puev5691/wellbeing-entity-bootstrap
+    path: entities/red/recovery/current
+    ref: main
+    manifest: RED__recovery-manifest__RED.md
+    checksums: sha256sums.txt
+
+КООРДИНАТОР независимо проверил current-каталог:
+
+- присутствуют ровно четыре ожидаемых файла;
+- blob identifiers совпадают с отчётом RED;
+- immutable commit assessment: `7b79f118664648c63b60fa5af84f17936d83e57b`;
+- `sha256sums.txt` на этом commit содержит заявленные SHA-256 трёх содержательных файлов;
+- manifest на immutable commit содержит тот же locator, состав и требование cold-start-проверки.
+
+Текущий статус RED: `externally_verified`.
+
+`upgraded` будет присвоен только после нового чистого экземпляра RED со статусом `initiation_verified`.
 
 ## Очередь
 
-1. **РЕДАКТОР** — следующий recovery-cycle.
-2. Остальные однозначно нужные рабочие Сущности ШТАБА — по фактической активности и риску потери состояния.
-3. Рекомендация ARH о GitHub как первичном внешнем файловом поле — отдельная архитектурная pending-тема, не канон.
+1. **РЕДАКТОР** — cold-start.
+2. После успешного RED — следующая однозначно нужная рабочая Сущность ШТАБА по активности и риску потери состояния.
+3. Рекомендация ARH о GitHub как первичном внешнем файловом поле — отдельная pending-архитектурная тема, не канон.
 
 ## Следующий шаг
 
-> assessment актуального состояния РЕДАКТОРА и подготовка recovery v1.2 на основе подтверждённого current-чата и существующего bootstrap v0.1.
+> создать новый чистый экземпляр РЕДАКТОРА и проверить cold-start по current recovery v1.2 без использования памяти прежнего чата как источника истины.
 
 ---
 
 document_type: entity-recovery-registry
-version: v0.4
+version: v0.5
 entity: KOO
 project_scope: ШТАБ БЛАГОПОЛУЧИЯ
 status: current_registry
-supersedes: v0.3
+supersedes: v0.4
 project_time: generated_without_trusted_project_time
