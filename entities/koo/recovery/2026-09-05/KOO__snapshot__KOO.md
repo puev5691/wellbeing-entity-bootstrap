@@ -1,93 +1,133 @@
 # Snapshot КООРДИНАТОРА
 
+## Текущий статус
+
+Этот snapshot подготовлен перед clean re-init КООРДИНАТОРА после зафиксированных ОПЕРАТОРОМ признаков поведенческого рассинхрона.
+
+Полное подробное preservation текущего экземпляра:
+
+`../../preservation/pre-reconfiguration/KOO__pre-reconfiguration-snapshot__KOO.md`
+
 ## Recovery-кампания
 
-- KOO — `upgraded`;
 - KAN — `upgraded`;
 - ARH — `upgraded`;
 - RED — `upgraded`;
 - SIS — `upgraded`;
-- WEB — `upgraded`, дальнейший аудит `deferred_nonurgent`;
-- SHT — `externally_verified`, старый экземпляр сохранён как provenance, следующий шаг clean cold-start;
+- WEB — `upgraded`;
+- SHT — `upgraded`;
 - KOD — assessment получен, independent verification pending;
 - SHD — после KOD;
 - KON — не поднимать автоматически;
 - SHK — другой проект;
-- VOL — утилитарный чат без recovery.
+- VOL — utility chat без recovery.
+
+KOO:
+
+`reinit_prepared_pending_cold_start`
+
+После успешного cold-start нового экземпляра вернуть KOO статус `upgraded`.
+
+## SHT
+
+Старый SHT был сохранён до перенастройки.
+
+Новая current роль: внутренняя организационно-процессная Сущность.
+
+Новый SHT прошёл:
+
+`initiation_verified`
+
+Фактический commit:
+
+`5ce6f32af8e8dbd599f41cc23831a33891af1727`
+
+KOO независимо сверил current recovery на этом commit.
+
+Следовательно:
+
+`SHT = upgraded`
+
+Организационная задача ещё не подтверждена как выполненная.
 
 ## Общая среда Сущностей
 
-КАНЦЕЛЯР подготовил смысловой фундамент v0.1 со статусом `candidate_for_coordination`.
+Current development-state:
 
-Следующий слой — организационная модель ШТАБИСТА.
+`../../developments/KOO__shared-entity-environment__KOO.md`
 
-## SHT: перенастройка без потери старого состояния
+Смысловой слой:
 
-ОПЕРАТОР заметил, что перед заменой доступного старого чата SHT требуется snapshot. КООРДИНАТОР остановил ранее подготовленный cold-start и выполнил preservation-цикл.
+- KAN semantic foundation v0.1;
+- статус `candidate_for_coordination`;
+- не approved-канон.
 
-Старый SHT подготовил:
+Организационный слой:
 
-`SHT__pre-reconfiguration-snapshot__KOO.md`
+- SHT `upgraded`;
+- задача подготовлена;
+- ожидаемый результат `SHT__entity-environment-organizational-model-v01-candidate__KOO.md`;
+- фактическое выполнение пока не подтверждено.
 
-Внешнее сохранение:
+Технический слой:
 
-`entities/sht/preservation/pre-reconfiguration/SHT__pre-reconfiguration-snapshot__KOO.md`
+`not_started`
 
-Publication commit:
+## Файловое поле
 
-`41be23ce9b75451d71d60570910655c0aa0c101f`
+Практический GitHub-locator handoff КОДЕРА признан полезным архитектурным сигналом.
 
-SHA-256:
+Однако изменение действующего routing canon не утверждено.
 
-`07c8b79dccdd46526ba3df9e4d9ebc456f112d7ac1ed921a819d8b1b53658d02`
+`locator_as_route_completion = needs_decision`
 
-Snapshot старого экземпляра трактуется как `pre-reconfiguration evidence / legacy provenance`.
+## KOD
 
-## Классификация старого SHT
+ОПЕРАТОР подтвердил:
 
-Не переносится как current:
+`КОДЕР = бывший СЛЕДОПЫТ`
 
-- представительско-переговорная ролевая оболочка;
-- старые briefing-пакеты;
-- неподтверждённые concept-package маршруты;
-- draft файлового канона;
-- любые старые задачи без новой проверки.
+Legacy `sledopyt-v01` — provenance KOD.
 
-Сохраняется как полезный provenance:
+KOD assessment сообщает current recovery `entities/kod/recovery/current`.
 
-- различение стадий результата;
-- тема рабочей/архивной/долговременной фиксации;
-- вклад в СКРИЖАЛИ;
-- материалы понятийной модели БЛАГОПОЛУЧИЯ;
-- принцип отделения понятийного ядра от исследовательских гипотез.
+Independent verification KOO ещё не выполнен.
 
-## Current role SHT
+## WEB
 
-По решению ОПЕРАТОРА SHT — внутренняя организационно-процессная Сущность.
+WEB `upgraded`.
 
-Current role и recovery не являются ретроспективным «исправлением» старой роли.
+Audit технологической цепочки публикации:
 
-## Recovery SHT после preservation
+`deferred_nonurgent`
 
-Current locator:
+Воспоминание о deployment daemon:
 
-`puev5691/wellbeing-entity-bootstrap/entities/sht/recovery/current`
+`operator_recollection / lead_to_verify`
 
-Final independently checked commit:
+КОДЕР доказательств демона в проверенном GitHub-контуре не нашёл; current status `unknown`.
 
-`b9db33e74bd1aaf81818ed22f05a1d9362ebe709`
+## Emergency initiation
 
-Подтверждены пять файлов, blob identifiers и внешний checksum-набор.
+Проверена на WEB.
 
-Preservation locator включён в current snapshot/manifest как provenance; старые unfinished routes не активированы.
+Candidate procedure:
 
-Статус SHT: `externally_verified`.
+`standards/chat-entity-operations/candidates/emergency-entity-initiation-v01-candidate.md`
+
+Status:
+
+`tested_candidate_for_operator_review`
+
+Не approved-канон.
 
 ## Следующий безопасный шаг
 
-Передать новому чистому SHT обновлённый cold-start файл, указывающий commit `b9db33e74bd1aaf81818ed22f05a1d9362ebe709`.
-
-После `initiation_verified` отдельно передать semantic candidate KAN и organizational task KOO.
+1. Новый чистый KOO читает пять approved Project Sources.
+2. Проверяет внешний KOO recovery и SHA-256.
+3. Возвращает `initiation_verified`.
+4. Восстанавливает priority board и development-state.
+5. Продолжает только ближайший подтверждённый шаг: организационный слой общей среды Сущностей.
 
 ---
 
