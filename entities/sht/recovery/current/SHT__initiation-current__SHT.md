@@ -47,12 +47,14 @@
 
 ## Вход текущей задачи
 
-После успешной инициации прочитать:
+Входные артефакты текущей задачи не входят в recovery и передаются отдельным адресным пакетом после успешной инициации:
 
-- `entities/kan/reports/KAN__entity-environment-semantic-foundation-v01-candidate__KOO.md`;
-- `entities/sht/tasks/KOO__organizational-model-task__SHT.md`.
+- `KAN__entity-environment-semantic-foundation-v01-candidate__KOO.md`;
+- `KOO__organizational-model-task__SHT.md`.
 
 Первый файл имеет статус `candidate_for_coordination`.
+
+Отсутствие этих task-входов не является ошибкой recovery. До их фактического получения профильное исполнение не начинать.
 
 ## Safe next step
 
