@@ -1,12 +1,14 @@
 # Snapshot КООРДИНАТОРА
 
 ## Recovery-кампания
+
 - KOO — `upgraded`;
 - KAN — `upgraded`;
 - ARH — `upgraded`;
 - RED — `upgraded`;
-- SIS — `externally_verified`, следующий шаг cold-start;
-- WEB / KOD / SHD — current recovery пока не подтверждён;
+- SIS — `upgraded`;
+- WEB — следующий активный цикл;
+- KOD / SHD — current recovery пока не подтверждён;
 - KON — не поднимать автоматически;
 - SHT — `deferred_role_design`;
 - SHK — другой проект;
@@ -14,20 +16,35 @@
 
 ## СИСАДМИН
 
-Проверенный current locator:
-`puev5691/wellbeing-entity-bootstrap/entities/sis/recovery/current`
+Новый экземпляр SIS прошёл cold-start по current recovery v1.2 со статусом `initiation_verified`.
 
-Immutable commit:
-`df530d5344e9fa6967c0545e67c5203501355670`
+Во время проверки `main` указывал на commit:
 
-Подтверждены четыре recovery-файла, их blob identifiers и checksum-набор.
+`ff08e550441d4a011a9963cdcf90f78a33c4f439`
 
-Пакет не содержит secrets. Manifest запрещает автоматически восстанавливать private keys, пароли, токены, production-конфиги и runtime-state. Snapshot не объявляет сохранённые инфраструктурные факты live-state и требует свежей проверки перед production-действиями.
+Подтверждены четыре recovery-файла, их blob identifiers и checksum-набор. Новый SIS отдельно подтвердил:
 
-Статус SIS: `externally_verified`.
+- snapshot используется как historical/current evidence прежних проверок, а не live-state;
+- invalid test `erefia -> burzh` не используется как сетевой факт;
+- live-инфраструктура требует свежей проверки перед действием;
+- secrets в recovery не обнаружены;
+- production во время cold-start не изменялся.
+
+КООРДИНАТОР независимо проверил каталог SIS и checksum-файл на указанном commit. Blob identifiers совпали с отчётом нового SIS и с ранее проверенным recovery candidate.
+
+Статус SIS: `upgraded`.
+
+## Следующий цикл
+
+ВЕБМАСТЕР.
+
+Current approved-роль: сайт, HTML/CSS/JS, навигация, публикационные страницы, Проводник как web-интерфейс. Не утверждает DNS, HTTPS, безопасность VDS и policy.
+
+Current recovery WEB в проверенных внешних источниках не подтверждён. Первый шаг — assessment текущего чата и реальных внешних/локально указанных recovery-материалов. Не восстанавливать состояние по памяти других чатов.
 
 ## Следующий безопасный шаг
-Создать новый чистый чат SIS и выполнить cold-start только по действующим базовым источникам и внешнему current recovery. Старый assessment-отчёт новому SIS не передавать.
+
+Передать текущему чату ВЕБМАСТЕРА одну assessment-задачу recovery v1.2. Только после проверки фактических материалов готовить current recovery либо возвращать blocker.
 
 ---
 entity: KOO
