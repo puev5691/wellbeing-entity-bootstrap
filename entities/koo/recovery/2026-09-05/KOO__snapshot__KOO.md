@@ -7,46 +7,50 @@
 - ARH — `upgraded`;
 - RED — `upgraded`;
 - SIS — `upgraded`;
-- WEB — следующий активный цикл;
+- WEB — `externally_verified`, следующий шаг cold-start;
 - KOD / SHD — current recovery пока не подтверждён;
 - KON — не поднимать автоматически;
 - SHT — `deferred_role_design`;
 - SHK — другой проект;
 - VOL — утилитарный чат без recovery.
 
-## СИСАДМИН
+## Новое решение по неработоспособным старым чатам
 
-Новый экземпляр SIS прошёл cold-start по current recovery v1.2 со статусом `initiation_verified`.
+ОПЕРАТОР подтвердил, что старый чат WEB неработоспособен с тем же типом симптомов, что ранее старый чат ARH.
 
-Во время проверки `main` указывал на commit:
+Для WEB штатный self-assessment заменён аварийным bootstrap-recovery:
 
-`ff08e550441d4a011a9963cdcf90f78a33c4f439`
+- старый чат не используется как источник истины;
+- КООРДИНАТОР собирает только минимальное ядро из approved-источников, своей проверяемой управляющей карты и явных решений ОПЕРАТОРА;
+- неизвестное не реконструируется;
+- пакет внешне публикуется и проверяется;
+- новый чат обязан пройти cold-start;
+- после cold-start новый WEB сам выполняет read-only аудит реального веб-контура и обновляет snapshot.
 
-Подтверждены четыре recovery-файла, их blob identifiers и checksum-набор. Новый SIS отдельно подтвердил:
+Это пока рабочий эксперимент, не approved-канон.
 
-- snapshot используется как historical/current evidence прежних проверок, а не live-state;
-- invalid test `erefia -> burzh` не используется как сетевой факт;
-- live-инфраструктура требует свежей проверки перед действием;
-- secrets в recovery не обнаружены;
-- production во время cold-start не изменялся.
+## WEB recovery
 
-КООРДИНАТОР независимо проверил каталог SIS и checksum-файл на указанном commit. Blob identifiers совпали с отчётом нового SIS и с ранее проверенным recovery candidate.
+До создания пакета `entities/web/recovery/current` в выбранном GitHub-контуре отсутствовал.
 
-Статус SIS: `upgraded`.
+Создан current recovery candidate:
 
-## Следующий цикл
+`puev5691/wellbeing-entity-bootstrap/entities/web/recovery/current/`
 
-ВЕБМАСТЕР.
+Immutable package commit:
 
-Current approved-роль: сайт, HTML/CSS/JS, навигация, публикационные страницы, Проводник как web-интерфейс. Не утверждает DNS, HTTPS, безопасность VDS и policy.
+`fb1c08457a8ee0962a9191752b7a642217e4c7d5`
 
-Current recovery WEB в проверенных внешних источниках не подтверждён. Первый шаг — assessment текущего чата и реальных внешних/локально указанных recovery-материалов. Не восстанавливать состояние по памяти других чатов.
+Подтверждены четыре файла, blob identifiers и внешний checksum-набор.
+
+Статус WEB: `externally_verified`.
 
 ## Следующий безопасный шаг
 
-Передать текущему чату ВЕБМАСТЕРА одну assessment-задачу recovery v1.2. Только после проверки фактических материалов готовить current recovery либо возвращать blocker.
+Создать новый чистый чат WEB и передать ему только cold-start задачу. Старый assessment-файл и пересказ старого WEB-чата не передавать.
 
 ---
+
 entity: KOO
 artifact_role: recovery_snapshot
 status: current_snapshot
