@@ -19,12 +19,14 @@
 - `SHT__recovery-manifest__SHT.md`
 - `sha256sums.txt`
 
-## Обязательные внешние входы текущей задачи
+## Входные артефакты текущей задачи
 
-- `entities/kan/reports/KAN__entity-environment-semantic-foundation-v01-candidate__KOO.md`
-- `entities/sht/tasks/KOO__organizational-model-task__SHT.md`
+Текущая организационная задача передаётся после cold-start отдельным адресным пакетом:
 
-Они не являются частью recovery-памяти SHT, но являются входными артефактами текущей задачи.
+- `KAN__entity-environment-semantic-foundation-v01-candidate__KOO.md`
+- `KOO__organizational-model-task__SHT.md`
+
+Они не являются частью recovery-памяти SHT и не требуются для подтверждения `initiation_verified`.
 
 ## Порядок проверки
 
@@ -34,8 +36,9 @@
 4. пересчитать/сверить SHA-256 четырёх содержательных recovery-файлов;
 5. зафиксировать commit/blob identifiers;
 6. только затем принять роль и snapshot;
-7. проверить доступность двух входных артефактов;
-8. вернуть статус инициации.
+7. вернуть статус инициации.
+
+Входные task-артефакты проверяются уже после успешной инициации, перед профильным исполнением.
 
 ## Границы recovery
 
