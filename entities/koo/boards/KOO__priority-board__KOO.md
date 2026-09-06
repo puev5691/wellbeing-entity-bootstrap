@@ -1,43 +1,49 @@
 # Текущая доска КООРДИНАТОРА
 
-Кратко: старый доступный ШТАБИСТ сохранён как pre-reconfiguration provenance. Его старая ролевая оболочка и незавершённые маршруты не активированы. Current recovery новой организационно-процессной роли обновлён и внешне проверен. Следующий барьер — clean cold-start SHT.
+Кратко: текущий экземпляр KOO отправляется на clean re-init из-за признаков рассинхронизации состояния. Перед заменой состояние сохраняется и recovery обновляется.
 
 ## Активно
 
-| Приоритет | Задача | Результат |
+| Приоритет | Задача | Проверяемый результат |
 |---|---|---|
-| 1 | Cold-start нового ШТАБИСТА по обновлённому recovery | `initiation_verified`; preservation старого SHT виден как provenance, но не как current state |
+| 1 | Clean cold-start нового КООРДИНАТОРА | `initiation_verified` по обновлённому внешнему recovery; новый экземпляр видит SHT=`upgraded` и active development общей среды |
 
-## После cold-start SHT
+## Сразу после KOO cold-start
 
-Передать:
-
-- `KAN__entity-environment-semantic-foundation-v01-candidate__KOO.md`;
-- `KOO__organizational-model-task__SHT.md`.
-
-Ожидаемый результат:
-
-`SHT__entity-environment-organizational-model-v01-candidate__KOO.md`
-
-## Ближайшие задачи
-
-| Приоритет | Задача | Условие |
+| Приоритет | Задача | Проверяемый результат |
 |---|---|---|
-| 2 | Организационная модель общей среды Сущностей | после `initiation_verified` SHT |
-| 3 | Независимая проверка KOD recovery и cold-start | после организационного цикла SHT либо отдельным решением |
-| 4 | ШАРДОВИК | после KOD |
-| 5 | Post-init аудит WEB | `deferred_nonurgent`; при практической публикационной задаче |
-| 6 | Нормативная гармонизация роли SHT | после стабилизации роли; через KAN |
-| 7 | Решение по emergency-initiation v0.1 | отдельное решение ОПЕРАТОРА |
+| 2 | Продолжить организационный слой общей среды Сущностей | SHT получает semantic candidate KAN + organizational task KOO; возвращает `SHT__entity-environment-organizational-model-v01-candidate__KOO.md` |
+| 3 | Независимо проверить recovery КОДЕРА и провести cold-start | verified current recovery KOD + `initiation_verified` либо blocker |
+| 4 | ШАРДОВИК | recovery-cycle после KOD |
+
+## Deferred / отдельные решения
+
+- WEB post-init audit — `deferred_nonurgent`;
+- emergency-initiation v0.1 — отдельное решение о нормативном статусе;
+- изменение routing canon для доставки через external canonical locator — `needs_decision`;
+- GitHub как окончательное файловое поле — отдельный архитектурный цикл;
+- пилот графового слоя Obsidian — после стабилизации основной recovery-волны.
 
 ## Done
 
-KOO, KAN, ARH, RED, SIS и WEB имеют `upgraded`.
+`upgraded`:
 
-SHT:
-- current recovery `externally_verified`;
-- pre-reconfiguration snapshot externally preserved;
-- final pre-cold-start commit `b9db33e74bd1aaf81818ed22f05a1d9362ebe709`.
+- KAN;
+- ARH;
+- RED;
+- SIS;
+- WEB;
+- SHT.
+
+SHT cold-start:
+
+`initiation_verified`
+
+Independent KOO verification commit:
+
+`5ce6f32af8e8dbd599f41cc23831a33891af1727`
+
+KOO текущего экземпляра: preservation + recovery update в работе; новый экземпляр ещё не принят.
 
 ---
 
