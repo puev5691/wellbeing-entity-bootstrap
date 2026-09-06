@@ -1,4 +1,4 @@
-054a0928fa917d27aa139806043b4a1762e230b300a77685b1f0d08ec26d769e  KOO__snapshot__KOO.md
+61b7b1e743f8f423b63ee4f5c785810897b3a32c2cd6c40020f79859699f8149  KOO__snapshot__KOO.md
 9bce46e337aed9c707b1cc458dbc26f74347602df38975c6176b8675f76e7282  MANIFEST.md
 985854bcb7cd9c73e1980c2412e5975345a148c86f863bdf9371fc1fb713938c  ../../initiation/KOO__initiation-current__KOO.md
-c50e9645a6fed08f83dbc822dabe417643303282835ed234b439156a8fed42e3  ../../boards/KOO__priority-board__KOO.md
+3c08ac1596a86eed30f4a6752efabd33fd91bd4f7e78d399104f25018bff5b59  ../../boards/KOO__priority-board__KOO.md
