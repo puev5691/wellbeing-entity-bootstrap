@@ -7,50 +7,52 @@
 - ARH — `upgraded`;
 - RED — `upgraded`;
 - SIS — `upgraded`;
-- WEB — `externally_verified`, следующий шаг cold-start;
+- WEB — `upgraded` после аварийного clean cold-start;
 - KOD / SHD — current recovery пока не подтверждён;
 - KON — не поднимать автоматически;
 - SHT — `deferred_role_design`;
 - SHK — другой проект;
 - VOL — утилитарный чат без recovery.
 
-## Новое решение по неработоспособным старым чатам
+## WEB
 
-ОПЕРАТОР подтвердил, что старый чат WEB неработоспособен с тем же типом симптомов, что ранее старый чат ARH.
+Старый WEB-чат не смог участвовать в штатном recovery. По решению ОПЕРАТОРА КООРДИНАТОР применил аварийный bootstrap-recovery без использования старого чата как источника истины.
 
-Для WEB штатный self-assessment заменён аварийным bootstrap-recovery:
+Внешний locator:
+`puev5691/wellbeing-entity-bootstrap/entities/web/recovery/current`
 
-- старый чат не используется как источник истины;
-- КООРДИНАТОР собирает только минимальное ядро из approved-источников, своей проверяемой управляющей карты и явных решений ОПЕРАТОРА;
-- неизвестное не реконструируется;
-- пакет внешне публикуется и проверяется;
-- новый чат обязан пройти cold-start;
-- после cold-start новый WEB сам выполняет read-only аудит реального веб-контура и обновляет snapshot.
+Пакет был независимо проверен до cold-start. Новый чистый WEB затем самостоятельно проверил recovery при commit:
 
-Это пока рабочий эксперимент, не approved-канон.
+`1e2c8092b17adb11a02fb91c908ce60e0464a6dd`
 
-## WEB recovery
+Результат:
 
-До создания пакета `entities/web/recovery/current` в выбранном GitHub-контуре отсутствовал.
+- `initiation_verified`;
+- четыре ожидаемых файла;
+- SHA-256 совпали;
+- blob identifiers совпали с ранее проверенным recovery;
+- старый чат не использовался как current state;
+- production не менялся;
+- неизвестное состояние веб-контура осталось `unknown / legacy`.
 
-Создан current recovery candidate:
+Статус WEB: `upgraded`.
 
-`puev5691/wellbeing-entity-bootstrap/entities/web/recovery/current/`
+## Технологический результат
 
-Immutable package commit:
+Аварийная инициация без работоспособного предшественника экспериментально подтверждена.
 
-`fb1c08457a8ee0962a9191752b7a642217e4c7d5`
+Смысл процедуры: не восстанавливать потерянную память догадками, а создать минимальное проверяемое ядро, пройти внешнюю верификацию и cold-start, затем нарастить current state через read-only аудит реальности.
 
-Подтверждены четыре файла, blob identifiers и внешний checksum-набор.
+Кандидат процедуры:
+`standards/chat-entity-operations/candidates/emergency-entity-initiation-v01-candidate.md`
 
-Статус WEB: `externally_verified`.
+Статус: `tested_candidate_for_operator_review`; не approved-канон.
 
 ## Следующий безопасный шаг
 
-Создать новый чистый чат WEB и передать ему только cold-start задачу. Старый assessment-файл и пересказ старого WEB-чата не передавать.
+Новый WEB выполняет read-only аудит внешнего веб-контура и формирует evidence-backed обновление собственного snapshot. Production не менять.
 
 ---
-
 entity: KOO
 artifact_role: recovery_snapshot
 status: current_snapshot
