@@ -1,14 +1,14 @@
 # Текущая доска КООРДИНАТОРА
 
-Кратко: ШТАБИСТ получил новую актуальную организационно-процессную роль и внешне проверенный current recovery. Следующий барьер — clean cold-start SHT.
+Кратко: старый доступный ШТАБИСТ сохранён как pre-reconfiguration provenance. Его старая ролевая оболочка и незавершённые маршруты не активированы. Current recovery новой организационно-процессной роли обновлён и внешне проверен. Следующий барьер — clean cold-start SHT.
 
 ## Активно
 
 | Приоритет | Задача | Результат |
 |---|---|---|
-| 1 | Cold-start нового ШТАБИСТА | `initiation_verified` по `entities/sht/recovery/current`; новая роль подтверждена без реконструкции старого SHT |
+| 1 | Cold-start нового ШТАБИСТА по обновлённому recovery | `initiation_verified`; preservation старого SHT виден как provenance, но не как current state |
 
-## Сразу после cold-start SHT
+## После cold-start SHT
 
 Передать:
 
@@ -34,7 +34,10 @@
 
 KOO, KAN, ARH, RED, SIS и WEB имеют `upgraded`.
 
-SHT current recovery: `externally_verified`, immutable precheck commit `aa717ccb19ea9e07327d2da1359eb0bfea2b6332`.
+SHT:
+- current recovery `externally_verified`;
+- pre-reconfiguration snapshot externally preserved;
+- final pre-cold-start commit `b9db33e74bd1aaf81818ed22f05a1d9362ebe709`.
 
 ---
 
