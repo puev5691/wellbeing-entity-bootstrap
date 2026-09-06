@@ -1,28 +1,41 @@
 # Текущая доска КООРДИНАТОРА
 
-Кратко: current recovery СИСАДМИНА опубликован и независимо проверен. Следующий барьер — cold-start нового SIS.
+Кратко: recovery-миграция СИСАДМИНА завершена успешным cold-start. Следующий активный профильный цикл — ВЕБМАСТЕР.
 
 ## Активно
+
 | Приоритет | Задача | Результат |
 |---|---|---|
-| 1 | Cold-start СИСАДМИНА по current recovery v1.2 | новый чистый SIS самостоятельно проверяет locator, состав, SHA-256 и immutable Git identifiers; ожидаемый итог `initiation_verified` |
+| 1 | Assessment и миграция ВЕБМАСТЕРА на current recovery v1.2 | подтверждённый current state; существующий recovery либо current initiation + snapshot + manifest + checksums + locator; затем cold-start `initiation_verified` |
 
 ## Ближайшие задачи
+
 | Приоритет | Задача | Условие |
 |---|---|---|
-| 2 | Следующая однозначно нужная рабочая Сущность ШТАБА | после SIS |
+| 2 | КОДЕР или ШАРДОВИК | после WEB; выбрать по фактически обнаруженному состоянию и риску потери |
 | 3 | Пилот графового слоя Obsidian | после основной recovery-волны |
 | 4 | Архитектурное решение по GitHub как первичному внешнему файловому полю | отдельный цикл |
 | 5 | Сравнить варианты понятия «Мера» | после подтверждённого второго варианта |
 
 ## Done
+
 | Результат | Подтверждение |
 |---|---|
 | KOO | `upgraded` |
 | KAN | `upgraded` |
 | ARH | `upgraded` |
 | RED | `upgraded` |
-| SIS external recovery | `externally_verified`; commit `df530d5344e9fa6967c0545e67c5203501355670` |
+| SIS | `upgraded`; cold-start `initiation_verified`; `secrets_detected: no`; `production_changes: none` |
+
+## Граница кампании
+
+- только проект «ШТАБ БЛАГОПОЛУЧИЯ»;
+- ШКОЛА — другой проект;
+- ВОЛОНТЁР — без recovery;
+- ШТАБИСТ — `deferred_role_design`;
+- КОНСУЛЬТАНТ не поднимать автоматически;
+- ПРОВОДНИК не включать автоматически в chat-recovery;
+- Следопыт — legacy до отдельного решения.
 
 ---
 entity: KOO
