@@ -1,43 +1,32 @@
 # Текущая доска КООРДИНАТОРА
 
-Кратко: старый WEB-чат признан ОПЕРАТОРОМ неработоспособным. Штатный self-assessment пропущен. КООРДИНАТОР создал и внешне проверил минимальный аварийный bootstrap-recovery WEB. Следующий барьер — cold-start нового чистого ВЕБМАСТЕРА.
+Кратко: аварийная инициация ВЕБМАСТЕРА успешно прошла cold-start. WEB имеет статус `upgraded`. Проверенная технология аварийной инициации оформлена отдельным кандидатом, но ещё не является каноном.
 
 ## Активно
 
 | Приоритет | Задача | Результат |
 |---|---|---|
-| 1 | Cold-start нового ВЕБМАСТЕРА по emergency bootstrap-recovery v1.2 | новый WEB самостоятельно проверяет locator, состав, SHA-256 и Git identifiers; принимает неизвестное как неизвестное; ожидаемый итог `initiation_verified` |
-
-## После cold-start WEB
-
-Первой профильной задачей нового WEB будет отдельный **read-only аудит внешнего веб-контура**:
-
-- фактический сайт;
-- доступные репозитории;
-- страницы/навигация;
-- Проводник;
-- публикационный слой;
-- current / legacy / unknown.
-
-Production в этом аудите не менять.
+| 1 | Read-only аудит внешнего веб-контура новым WEB | карта `current / legacy / unknown / pending`, проверенные locator и новый evidence-backed snapshot; production не менять |
 
 ## Ближайшие задачи
 
 | Приоритет | Задача | Условие |
 |---|---|---|
-| 2 | КОДЕР или ШАРДОВИК | после успешного WEB; выбрать по внешнему состоянию и риску потери |
-| 3 | Проверить и оформить общую emergency-initiation процедуру | только если эксперимент WEB завершится `initiation_verified` |
+| 2 | КОДЕР или ШАРДОВИК | следующий recovery-cycle после отдельного решения по риску потери состояния |
+| 3 | Решение по кандидату emergency-initiation v0.1 | отдельное решение ОПЕРАТОРА; при утверждении согласовать с recovery v1.2 |
 | 4 | Пилот графового слоя Obsidian | после основной recovery-волны |
-| 5 | Архитектурное решение по GitHub как первичному внешнему файловому полю | отдельный цикл |
+| 5 | GitHub как первичное внешнее файловое поле | отдельный архитектурный цикл |
 
 ## Done
 
-KOO, KAN, ARH, RED и SIS имеют статус `upgraded`.
+KOO, KAN, ARH, RED, SIS и WEB имеют статус `upgraded`.
 
-WEB current recovery: `externally_verified`, immutable package commit `fb1c08457a8ee0962a9191752b7a642217e4c7d5`.
+WEB cold-start: `initiation_verified`; старый WEB не использован как current state; production не изменён.
+
+Проверенный кандидат процедуры:
+`standards/chat-entity-operations/candidates/emergency-entity-initiation-v01-candidate.md`.
 
 ---
-
 entity: KOO
 artifact_role: current_priority_board
 status: current
