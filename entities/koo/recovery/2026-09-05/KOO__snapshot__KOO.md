@@ -2,72 +2,64 @@
 
 ## Назначение
 
-Фиксирует подтверждённое состояние КООРДИНАТОРА после первого цикла апгрейда Сущностей под recovery v1.2 и уточнения ОПЕРАТОРОМ состава текущей recovery-кампании.
+Фиксирует состояние после успешного cold-start АРХИВАРИУСА по recovery v1.2.
 
-Сущность: KOO / КООРДИНАТОР  
-Каталог recovery: `entities/koo/recovery/2026-09-05/`  
-Репозиторий: `puev5691/wellbeing-entity-bootstrap`
-
-## Подтверждённое состояние
-
-Гармонизация источников v2 завершена. ОПЕРАТОР утвердил A+B+C, Project Sources и Project Instructions заменены и проверены. КООРДИНАТОР и КАНЦЕЛЯР приведены к recovery v1.2.
-
-ОПЕРАТОР согласовал конвейер апгрейда Сущностей: единый реестр locator/статусов, затем отдельная миграция одной Сущности за цикл, публикация, внешняя проверка и cold-start.
-
-## Граница текущей recovery-кампании
-
-ОПЕРАТОР уточнил:
-
-- текущая задача касается **только проекта «ШТАБ БЛАГОПОЛУЧИЯ»**;
-- сейчас поднимаются только Сущности, которые однозначно должны работать в ШТАБЕ;
-- **ШКОЛА БЛАГОПОЛУЧИЯ** — другой проект и в текущий recovery-upgrade не входит;
-- **ВОЛОНТЁР** — утилитарный чат для случайных, простых и учебных вопросов; отдельные initiation, snapshot и recovery для него не нужны;
-- **ШТАБИСТ** задуман для внутреннего административно-организационного контура по типу КАНЦЕЛЯРА, но пока не проектируется и не мигрируется. Вернуться к нему после подъёма основных рабочих Сущностей.
-
-Текущий реестр:
-
-`entities/koo/boards/KOO__entity-recovery-registry__KOO.md`
-
-Версия: `v0.3`.
-
-## Ключевые результаты реестра v0.3
+## Recovery-кампания
 
 - KOO — `upgraded`;
 - KAN — `upgraded`;
-- ARH — `legacy_recovery_assessed`;
-- RED — `bootstrap_only`;
-- SIS / WEB / KOD / SHD / KON — recovery в аудите не подтверждён;
+- ARH — `upgraded`;
+- RED — следующий активный цикл;
+- SIS / WEB / KOD / SHD / KON — current recovery пока не подтверждён;
 - SHT — `deferred_role_design`;
-- SHK — `out_of_scope_other_project`;
-- VOL — `utility_chat_no_recovery`;
-- ПРОВОДНИК БЛАГОПОЛУЧИЯ не включается автоматически в chat-recovery;
-- legacy-профиль «Следопыт» требует отдельного разбора.
+- SHK — другой проект;
+- VOL — утилитарный чат без recovery.
 
-`not_confirmed` не означает доказанное отсутствие локальных или ещё не опубликованных файлов.
+## АРХИВАРИУС
 
-## Текущий главный приоритет
+Новый экземпляр ARH инициирован без использования памяти прежнего чата как источника истины.
 
-> assessment и миграция АРХИВАРИУСА на recovery v1.2.
+Cold-start подтверждён:
 
-Критерий результата:
+- `initiation_verified`;
+- locator `puev5691/wellbeing-entity-bootstrap/entities/arh/recovery/current`;
+- проверенный commit `d55d111914d3c5efb2526f7ce507d9748c67e82b`;
+- четыре ожидаемых файла;
+- совпадение SHA-256 трёх содержательных файлов.
 
+КООРДИНАТОР независимо проверил current-каталог и опубликованный checksum-файл.
+
+Статус ARH в реестре: `upgraded`.
+
+## Следующий цикл
+
+РЕДАКТОР.
+
+Существующий bootstrap v0.1 использовать только как исходный материал. Он не является доказательством current state.
+
+Требуемый результат:
+
+- assessment текущего состояния;
 - current initiation;
 - current snapshot;
 - recovery-manifest;
 - `sha256sums.txt`;
-- внешний locator;
-- повторная проверка внешней копии;
-- cold-start с итогом `initiation_verified`.
+- locator;
+- внешняя проверка;
+- cold-start `initiation_verified`.
 
-## Следующий безопасный шаг
+## Архитектурная рекомендация ARH
 
-Не проектировать ШТАБИСТА и не расширять кампанию на соседние проекты/утилитарные чаты. Начать отдельный профильный цикл ARH, затем двигаться по очереди однозначно нужных рабочих Сущностей ШТАБА.
+Рекомендация «GitHub как первичный внешний файловый и recovery-контур, файловый сервер как второй слой для тяжёлых данных» получена.
+
+Статус: `pending_architectural_review`.
+
+Она не является каноном и не меняет текущий recovery-cycle RED.
 
 ---
 
-entity: KOO  
-artifact_role: recovery_snapshot  
-work_subject: entity-recovery-upgrade; obsidian-graph-pilot; pending-measure; parked-research  
-status: current_snapshot  
-project_scope: ШТАБ БЛАГОПОЛУЧИЯ  
+entity: KOO
+artifact_role: recovery_snapshot
+status: current_snapshot
+project_scope: ШТАБ БЛАГОПОЛУЧИЯ
 project_time: generated_without_trusted_project_time
