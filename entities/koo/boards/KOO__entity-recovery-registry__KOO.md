@@ -1,4 +1,4 @@
-# Реестр апгрейда Сущностей под recovery v1.2 — v0.10
+# Реестр апгрейда Сущностей под recovery v1.2 — v0.11
 
 ## Смысл
 
@@ -15,53 +15,69 @@
 | ARH | АРХИВАРИУС | `entities/arh/recovery/current/` | `upgraded` | событийное обновление |
 | RED | РЕДАКТОР | `entities/red/recovery/current/` | `upgraded` | событийное обновление |
 | SIS | СИСАДМИН | `entities/sis/recovery/current/` | `upgraded` | событийное обновление |
-| WEB | ВЕБМАСТЕР | `entities/web/recovery/current/` | `upgraded` | первый профильный шаг — read-only аудит внешнего веб-контура |
-| KOD | КОДЕР | не подтверждён | `role_confirmed_recovery_not_confirmed` | после WEB-аудита либо параллельно отдельным циклом выбрать по риску потери |
-| SHD | ШАРДОВИК | не подтверждён | `role_confirmed_recovery_not_confirmed` | после WEB-аудита либо параллельно отдельным циклом выбрать по риску потери |
+| WEB | ВЕБМАСТЕР | `entities/web/recovery/current/` | `upgraded` | post-init аудит веб-контура отложен как `deferred_nonurgent` |
+| KOD | КОДЕР | current recovery не подтверждён | `role_confirmed_recovery_not_confirmed` | следующий recovery-cycle; использовать `packages/core/sledopyt-v01/` только как provenance предшественника |
+| SHD | ШАРДОВИК | не подтверждён | `role_confirmed_recovery_not_confirmed` | после KOD определить очередность |
 | KON | КОНСУЛЬТАНТ | не подтверждён | `role_confirmed_recovery_not_confirmed` | не поднимать автоматически |
 | SHT | ШТАБИСТ | не требуется сейчас | `deferred_role_design` | вернуться позже |
 | SHK | ШКОЛА БЛАГОПОЛУЧИЯ | другой проект | `out_of_scope_other_project` | исключена |
 | VOL | ВОЛОНТЁР | recovery не требуется | `utility_chat_no_recovery` | не создавать |
 
-## WEB: аварийный цикл закрыт
+## WEB: состояние после аварийной инициации
 
-Старый WEB-чат признан ОПЕРАТОРОМ неработоспособным. Штатный self-assessment не использовался.
+WEB остаётся `upgraded`.
 
-КООРДИНАТОР создал минимальный аварийный recovery из approved-источников и подтверждённой роли WEB, внешне опубликовал и проверил его.
+ОПЕРАТОР решил не запускать сейчас post-init read-only аудит веб-контура: срочной публикационной задачи нет, а технологическая цепочка WEB требует отдельного восстановления.
 
-Новый чистый WEB прошёл cold-start со статусом `initiation_verified`.
+Будущий предмет аудита:
 
-Cold-start зафиксировал commit:
+- локальная рабочая копия сайта;
+- создание страницы и стилей;
+- встраивание в локальный код сайта;
+- механизм доставки на площадки burzh и erefia;
+- взаимодействие WEB с техническим демоном;
+- фактические current / legacy / unknown компоненты.
 
-`1e2c8092b17adb11a02fb91c908ce60e0464a6dd`
+Воспоминание ОПЕРАТОРА о цепочке не считается доказанным current-state и должно использоваться как `lead_to_verify`.
 
-На этом commit подтверждены те же четыре recovery-файла и те же blob identifiers, что при предыдущей независимой проверке пакета. Старый чат не использовался как current state, production не менялся.
+Статус post-init аудита WEB: `deferred_nonurgent`.
 
-Статус WEB: `upgraded`.
+## Следопыт и КОДЕР
 
-`upgraded` означает работоспособность и проверяемость механизма инициации/recovery. Это не означает восстановление потерянной истории старого WEB.
+ОПЕРАТОР явно уточнил:
 
-## Проверенная технология аварийной инициации
+> КОДЕР — это бывший СЛЕДОПЫТ.
 
-Эксперимент WEB подтвердил рабочую схему:
+Следовательно, legacy bootstrap:
 
-> минимальное подтверждённое ядро → внешняя публикация → независимая проверка → clean cold-start → `initiation_verified` → read-only аудит реальности.
+`packages/core/sledopyt-v01/`
 
-Процедура оформлена отдельным кандидатом:
+переклассифицирован из `legacy_unmapped` в provenance предшественника KOD.
 
-`standards/chat-entity-operations/candidates/emergency-entity-initiation-v01-candidate.md`
+Он не является current recovery КОДЕРА и не переносится как current state автоматически.
 
-Статус: `tested_candidate_for_operator_review`, не approved-канон.
+Старый пакет подтверждён внешне и описывает контур `teraorigin_research`, дисциплину evidence, различение кода/лога/гипотезы и построение инженерных карт.
+
+## Lead по технологической цепочке WEB
+
+ОПЕРАТОР помнит, что бывший СЛЕДОПЫТ / нынешний КОДЕР создавал специальный демон, который участвовал в копировании локально подготовленного сайта на две площадки — burzh и erefia.
+
+Статус этого сведения:
+
+`operator_recollection / lead_to_verify`
+
+Не считать подтверждённой текущей архитектурой до поиска кода, конфигурации, unit-файлов, журналов или иных внешних доказательств.
 
 ## Следующий шаг
 
-> новый WEB выполняет отдельный read-only аудит фактического внешнего веб-контура и по результатам обновляет свой snapshot проверенными данными; production не менять.
+> провести assessment текущего КОДЕРА, найти существующие KOD/recovery материалы, использовать `sledopyt-v01` как provenance и отдельно проверить след демона, связанного с публикационной цепочкой WEB.
 
 ---
+
 document_type: entity-recovery-registry
-version: v0.10
+version: v0.11
 entity: KOO
 project_scope: ШТАБ БЛАГОПОЛУЧИЯ
 status: current_registry
-supersedes: v0.9
+supersedes: v0.10
 project_time: generated_without_trusted_project_time
