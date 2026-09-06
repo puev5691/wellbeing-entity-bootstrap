@@ -1,6 +1,6 @@
-961fa46eee47528ffbc352891475f0ddee4624b5d8b4991ce9930a97d97c63c6  KOO__snapshot__KOO.md
+fe5d20329a6294f93b0d5a94256f64c974b06789ea968bd3ed2d63d71d9a8dbf  KOO__snapshot__KOO.md
 16aab82908be27a63a81a651cd45692c297472e382a66b5e3339988b4e7662e1  MANIFEST.md
 985854bcb7cd9c73e1980c2412e5975345a148c86f863bdf9371fc1fb713938c  ../../initiation/KOO__initiation-current__KOO.md
-8cf2f9e435ee5c83c4080b750de9bb2dd611e39e6d2cbb390254f471dd7fa556  ../../boards/KOO__priority-board__KOO.md
-d81c1eab1cd01a5852595d28c7d869902209d5f72dcae54915145c33eae43d48  ../../boards/KOO__entity-recovery-registry__KOO.md
+afb23c5112548b793fbab5f40a3a823cad0a6572a7e9ba4ecb4fbee44ef79596  ../../boards/KOO__priority-board__KOO.md
+88d73ad1d686ea247e3b50e97938850fdb5cb780e4b1f7425ed51489a1753aea  ../../boards/KOO__entity-recovery-registry__KOO.md
 d44a62c5254fe8c36ec55b2f0e99cfb55faa437c977b2929d85d3abe7fa66ef6  ../../boards/KOO__parked-research__KOO.md
