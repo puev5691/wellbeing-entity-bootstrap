@@ -13,11 +13,12 @@
     manifest: MANIFEST.md
     checksums: sha256sums.txt
 
-## Состав
+## Проверяемый состав
 
 - `KOO__snapshot__KOO.md` — текущее состояние КООРДИНАТОРА;
 - `../../initiation/KOO__initiation-current__KOO.md` — актуальная инициация;
 - `../../boards/KOO__priority-board__KOO.md` — текущая доска ближайших работ;
+- `../../boards/KOO__entity-recovery-registry__KOO.md` — текущий реестр recovery-апгрейда;
 - `../../boards/KOO__parked-research__KOO.md` — parked research;
 - `sha256sums.txt` — контрольные суммы проверяемого recovery-состава.
 
@@ -50,4 +51,5 @@ artifact_role: recovery_manifest
 storage: GitHub  
 status: current  
 recovery_canon: v1.2 approved  
+project_scope: ШТАБ БЛАГОПОЛУЧИЯ  
 project_time: generated_without_trusted_project_time
