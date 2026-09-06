@@ -1,4 +1,4 @@
-# Реестр апгрейда Сущностей под recovery v1.2 — v0.8
+# Реестр апгрейда Сущностей под recovery v1.2 — v0.9
 
 ## Смысл и граница задачи
 
@@ -14,8 +14,8 @@
 | KAN | КАНЦЕЛЯР | `puev5691/wellbeing-archivist/docs/entities/kancelyariya/recovery-current/` | `upgraded` | событийное обновление |
 | ARH | АРХИВАРИУС | `puev5691/wellbeing-entity-bootstrap/entities/arh/recovery/current/` | `upgraded` | событийное обновление |
 | RED | РЕДАКТОР | `puev5691/wellbeing-entity-bootstrap/entities/red/recovery/current/` | `upgraded` | событийное обновление |
-| SIS | СИСАДМИН | `puev5691/wellbeing-entity-bootstrap/entities/sis/recovery/current/` | `upgraded` | cold-start `initiation_verified`; production не менялся |
-| WEB | ВЕБМАСТЕР | не подтверждён | `role_confirmed_recovery_not_confirmed` | следующий профильный цикл: assessment current state и recovery v1.2 |
+| SIS | СИСАДМИН | `puev5691/wellbeing-entity-bootstrap/entities/sis/recovery/current/` | `upgraded` | событийное обновление |
+| WEB | ВЕБМАСТЕР | `puev5691/wellbeing-entity-bootstrap/entities/web/recovery/current/` | `externally_verified` | cold-start нового чистого WEB по аварийному bootstrap-recovery |
 | KOD | КОДЕР | не подтверждён | `role_confirmed_recovery_not_confirmed` | после WEB определить очередность |
 | SHD | ШАРДОВИК | не подтверждён | `role_confirmed_recovery_not_confirmed` | после WEB определить очередность |
 | KON | КОНСУЛЬТАНТ | не подтверждён | `role_confirmed_recovery_not_confirmed` | не поднимать автоматически |
@@ -25,63 +25,59 @@
 | SHK | ШКОЛА БЛАГОПОЛУЧИЯ | другой проект | `out_of_scope_other_project` | исключена |
 | VOL | ВОЛОНТЁР | не требуется | `utility_chat_no_recovery` | recovery не создавать |
 
-## СИСАДМИН: цикл закрыт
+## ВЕБМАСТЕР: аварийная технология
 
-Новый экземпляр SIS прошёл cold-start со статусом:
+ОПЕРАТОР сообщил, что старый WEB-чат неработоспособен и не может выполнить штатный self-assessment.
 
-`initiation_verified`
+Поэтому для WEB применён аварийный bootstrap-recovery:
+
+1. не использовать старый чат как источник истины;
+2. взять только approved role/source и явное решение ОПЕРАТОРА;
+3. проверить отсутствие конфликтующего current recovery в выбранном внешнем контуре;
+4. КООРДИНАТОР создаёт минимальный initiation + snapshot + manifest + checksums;
+5. минимальный snapshot прямо фиксирует неизвестное и не реконструирует старые хвосты;
+6. пакет публикуется и независимо проверяется;
+7. новый чистый WEB проходит cold-start;
+8. только после `initiation_verified` новый WEB делает read-only аудит внешнего веб-контура и обновляет snapshot уже собственными проверенными данными.
+
+Этот режим является проверяемым рабочим экспериментом, а не новым approved-каноном. После успешного WEB cold-start его можно отдельно оформить как общую процедуру аварийной инициации.
+
+## Внешняя проверка WEB
 
 Проверенный locator:
 
     store: github
     repository: puev5691/wellbeing-entity-bootstrap
-    path: entities/sis/recovery/current
+    path: entities/web/recovery/current
     ref: main
-    manifest: SIS__recovery-manifest__SIS.md
+    manifest: WEB__recovery-manifest__WEB.md
     checksums: sha256sums.txt
 
-Во время cold-start `main` указывал на commit:
+Immutable package commit:
 
-`ff08e550441d4a011a9963cdcf90f78a33c4f439`
+`fb1c08457a8ee0962a9191752b7a642217e4c7d5`
 
-Новый SIS подтвердил:
+На нём подтверждены ровно четыре файла и blob identifiers:
 
-- четыре ожидаемых файла;
-- blob identifiers:
-  - initiation `1f7d082a890ec78756f08ffe58b56f9f04e6dd75`;
-  - snapshot `22cf1c217a734e007ec7bb0318f89f6b2d5ca61c`;
-  - manifest `b602d7e4925a68cb3f28924c4735fafcab33d585`;
-  - checksums `4013a613ebd45235a9b0f40431444d95af094360`;
-- совпадение трёх SHA-256;
-- `secrets_detected: no`;
-- `production_changes: none`;
-- snapshot трактуется только как evidence прежних проверок, а не live-state.
+- initiation `1f81c77b50fcf40a8f5a6ca5c8c2b5b927ff1a38`;
+- snapshot `14fd417f8c3ee9ee4b4682a0d57e5705cc393796`;
+- manifest `edb15bcb5b92463007217e192c0106ed65fbda5b`;
+- checksums `73c8105f136e83ea55ef646a58acc51af5830863`.
 
-КООРДИНАТОР независимо прочитал каталог SIS и checksum-файл на commit `ff08e550441d4a011a9963cdcf90f78a33c4f439`. Состав и blob identifiers совпали с cold-start отчётом. Recovery-файлы SIS на этом commit идентичны ранее независимо проверенному пакету.
+Внешний `sha256sums.txt` совпадает с предпубликационными SHA-256 трёх содержательных файлов.
 
-Статус SIS: `upgraded`.
+Статус WEB: `externally_verified`.
 
-## Следующий цикл: ВЕБМАСТЕР
+## Следующий шаг
 
-Current approved-роль WEB: сайт, HTML/CSS/JS, навигация, публикационные страницы, Проводник как web-интерфейс. WEB не утверждает DNS, HTTPS, безопасность VDS и policy.
-
-В проверенных внешних источниках current recovery WEB пока не подтверждён. Это не доказывает отсутствие локальных либо иных внешних материалов.
-
-Первый шаг WEB — assessment собственного current state и существующих initiation/snapshot/recovery материалов; только затем current recovery v1.2 либо конкретный blocker.
-
-## Очередь
-
-1. **ВЕБМАСТЕР** — следующий recovery-cycle.
-2. После WEB — КОДЕР или ШАРДОВИК по фактически обнаруженному состоянию и риску потери.
-3. Пилот Obsidian — после стабилизации основной recovery-волны.
-4. GitHub как первичное внешнее файловое поле — `pending_architectural_review`.
-5. «Мера» — pending до подтверждённого второго варианта.
+> создать новый чистый чат ВЕБМАСТЕРА и провести cold-start только по approved Project Sources и внешнему аварийному recovery. Старый WEB-чат и старые задачи не передавать.
 
 ---
+
 document_type: entity-recovery-registry
-version: v0.8
+version: v0.9
 entity: KOO
 project_scope: ШТАБ БЛАГОПОЛУЧИЯ
 status: current_registry
-supersedes: v0.7
+supersedes: v0.8
 project_time: generated_without_trusted_project_time
