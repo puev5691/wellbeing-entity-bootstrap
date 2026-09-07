@@ -12,13 +12,13 @@
 
 Сначала читаются пять действующих approved Project Sources:
 
-- `project-instructions-core-v2_1-approved.md`;
-- `entity-roles-short-v2_1-approved.md`;
-- `file-work-canon-universal-v2_3-approved.md`;
-- `entity-state-preservation-and-recovery-canon-v1_3-approved.md`;
-- `source-loading-policy-v2-approved.md`.
+- `project-instructions-core-v2_1-approved.md` — `8a86945c28e361b5adf7ecc96326a1591a193118ce7be258a9c0a21ddd2ace26`;
+- `entity-roles-short-v2_2-approved.md` — `c8103b1c2dc6c3f4b489f118e9bcf4053add6bea384427f23dad5dddced2ae3d`;
+- `file-work-canon-universal-v2_3-approved.md` — `5ec75e480c0b78a72bb2faa702a21064b32bd3b919b225b1ae25a30dd0a700e5`;
+- `entity-state-preservation-and-recovery-canon-v1_4-approved.md` — `984871a22aab1910fc4ab3217c16488eac1e472734bdfd1948fd57c213566fda`;
+- `source-loading-policy-v2-approved.md` — `2661a3a266547a5e0f6b70c3dab8a02add2bb788b4a90b1136b7e9445b2d6061`.
 
-Затем проверяется внешний recovery, current boards, development-state и значимые external artifact references. `unknown` не заменяется удобной реконструкцией.
+Затем проверяется внешний recovery, current boards, development-state и значимые external artifact references. `unknown` не заменяется реконструкцией по памяти.
 
 ## Внешний recovery locator
 
@@ -33,15 +33,7 @@
 
 ## Current state
 
-Изолированный этап общей среды Сущностей завершён.
-
-KOD isolated external sandbox ОСС v0.6 независимо проверена и принята KOO.
-
-Проверяемая внешняя KOD recovery после preservation-cycle:
-
-    repository: puev5691/wellbeing-entity-bootstrap
-    path: entities/kod/recovery/current
-    immutable_commit: feed2913424d852f2d05a8125d92a3c991e3418f
+Изолированный этап общей среды Сущностей завершён. KOD isolated external sandbox ОСС v0.6 независимо проверена и принята KOO.
 
 Accepted executable artifact:
 
@@ -51,43 +43,42 @@ SHA-256:
 
 `2f5f5066ad650ef5747c58c7c4ea6ec66893128f4c3a70e8184017562858434f`
 
-Статус этапа:
+Статус:
 
 - `isolated_sandbox_acceptance: accepted`;
 - `real_host_sandbox_deployment: allowed_after_host_preflight`;
 - `production_allowed: no`.
 
-## Ближайший рабочий цикл
+ОПЕРАТОР утвердил новые active Project Sources roles v2.2 и recovery-canon v1.4. Замена в Project Sources подтверждена ОПЕРАТОРОМ и проверена по фактически загруженным файлам и SHA-256.
 
-Следующая профильная работа начинается не с deployment, а с real-host preflight.
+Preservation/recovery governance cycle закрыт нормативно. Следующий организационный шаг — передать АРХИВАРИУСУ штатную задачу на принятие эксплуатации preservation/recovery-контура и source-change checkpoint.
 
-До изменений на реальном host должны быть подтверждены: host identity, OS/version, доступ, допустимые systemd/firewall/TLS changes, storage root и внешний HTTPS endpoint. Конкретный сервер по памяти не назначается.
+После этого технический приоритет возвращается к real-host preflight ОСС.
 
 ## Первый шаг нового экземпляра
 
-1. Прочитать пять approved Project Sources.
+1. Прочитать пять active approved Project Sources в версиях выше.
 2. Открыть KOO recovery locator.
 3. Проверить manifest, состав и SHA-256.
-4. Зафиксировать фактически прочитанный commit.
-5. Прочитать snapshot, priority board, recovery registry и development-state.
-6. Проверить KOD recovery commit `feed2913424d852f2d05a8125d92a3c991e3418f` и accepted sandbox artifact reference.
+4. Зафиксировать фактически прочитанный immutable commit.
+5. Прочитать snapshot, priority board, recovery registry, task ARH и development-state.
+6. Проверить accepted KOD sandbox artifact/version.
 7. Вернуть `initiation_verified`, `initiation_loaded_external_unverified` либо `initiation_failed`.
-8. Только после `initiation_verified` продолжить real-host preflight.
+8. Если task ARH ещё не закрыта, продолжить именно её адресную доставку/приём; иначе перейти к real-host preflight.
 
 ## Ограничения
 
-- не считать memory других чатов source of truth;
+- не считать память других чатов source of truth;
 - не менять production;
-- не объявлять locator delivery завершённой без требуемого receipt;
 - не назначать host или полномочия по догадке;
-- не открывать новый functional revision isolated sandbox без нового проверяемого blocker;
-- не подменять KOD при профильной реализации deployment.
+- не подменять АРХИВАРИУСА в регулярной эксплуатации recovery;
+- не становиться автором чужого self-snapshot;
+- не открывать новый functional revision isolated sandbox без нового проверяемого blocker.
 
 ---
 entity: KOO
 artifact_role: current_initiation
 status: current
-recovery_canon: v1.3 approved
+recovery_canon: v1.4 approved
 project_scope: ШТАБ БЛАГОПОЛУЧИЯ
 project_time: generated_without_trusted_project_time
-responsibility_boundary: KOO координирует приоритеты, зависимости и проверку, но не заменяет ОПЕРАТОРА и профильные Сущности
