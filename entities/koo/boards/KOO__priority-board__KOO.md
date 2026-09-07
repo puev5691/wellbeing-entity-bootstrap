@@ -4,10 +4,22 @@
 
 | Приоритет | Задача | Проверяемый результат |
 |---|---|---|
-| 1 | Preservation checkpoint KOO + KOD перед real-host stage | внешние recovery опубликованы, immutable commits/readback подтверждены |
+| 1 | Нормативно закрепить ответственность АРХИВАРИУСА за preservation/recovery | KAN возвращает согласованные successor-candidates + conflict review; затем отдельный approval ОПЕРАТОРА |
 | 2 | Real-host preflight ОСС | подтверждены host identity, OS/version, доступ, systemd/firewall/TLS policy, storage root и HTTPS endpoint |
 | 3 | Подготовить KOD deployment task после preflight | один исполнимый deployment package/task без изменения production вне подтверждённой границы |
 | 4 | Развернуть sandbox на выбранном host и независимо проверить | service/file field доступны в разрешённом контуре; deployment tests и readback подтверждены |
+
+## Решение ОПЕРАТОРА по preservation/recovery
+
+ОПЕРАТОР утвердил модель, в которой:
+
+- self-snapshot создаёт сама Сущность/current-writer;
+- АРХИВАРИУС владеет процессом сохранности, проверки, внешней фиксации, реестра и восстановимости recovery;
+- ШТАБИСТ проектирует и ревизует организационный процесс, но не является штатным архиватором;
+- КООРДИНАТОР инициирует внеплановые checkpoints и держит приоритеты;
+- СИСАДМИН отвечает за техническую backup/storage-инфраструктуру, не получая из capability дополнительных полномочий.
+
+Постоянная нормативная интеграция решения направляется КАНЦЕЛЯРУ отдельной задачей. До approval successor-файлов active Project Sources не заменяются.
 
 ## Завершённый этап общей среды
 
@@ -16,6 +28,8 @@
 - single-node external sandbox design v0.1 — принят как основа реализации;
 - isolated external sandbox v0.6 — принята после independent review;
 - accepted sandbox SHA-256: `2f5f5066ad650ef5747c58c7c4ea6ec66893128f4c3a70e8184017562858434f`;
+- preservation checkpoint KOO + KOD перед real-host stage — завершён и externally verified;
+- KOD self-preservation post-acceptance — проверен и согласован с external current-state;
 - production: не изменён.
 
 ## Deferred / не запускать автоматически
@@ -28,7 +42,7 @@
 
 ## Фазовый барьер
 
-Следующий технический шаг не открывается до подтверждённого real-host preflight. Наличие принятого sandbox package само по себе не назначает host и не разрешает production deployment.
+Real-host preflight остаётся следующим техническим этапом, но перед его запуском закрывается короткий нормативный цикл preservation/recovery. Наличие принятого sandbox package само по себе не назначает host и не разрешает production deployment.
 
 ---
 entity: KOO
