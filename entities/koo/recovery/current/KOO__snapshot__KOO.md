@@ -2,18 +2,20 @@
 
 ## Смысл
 
-Snapshot создан перед переходом от принятой isolated external sandbox ОСС к real-host stage. Цель — не потерять проверенную версию KOO/KOD state и не восстанавливать её из длинной цепочки чатов.
+Snapshot фиксирует состояние после принятия isolated external sandbox ОСС v0.6, завершения preservation checkpoint KOO/KOD и нового решения ОПЕРАТОРА о распределении ответственности за preservation/recovery.
+
+Перед real-host stage открыт короткий нормативный цикл: решение должно быть гармонизировано КАНЦЕЛЯРОМ с действующими approved Project Sources и отдельно утверждено ОПЕРАТОРОМ в successor-редакциях.
 
 ## Current KOO
 
 - Entity: KOO / КООРДИНАТОР;
 - current instance: действующий рабочий экземпляр;
 - recovery schema: v1.3;
-- current-writer: этот checkpoint не выполняет handoff/failover; известное состояние сохраняется до отдельного подтверждённого изменения;
+- current-writer: этот snapshot не выполняет handoff/failover;
 - active development: общая среда Сущностей;
 - production changes: no.
 
-## Главный завершённый результат
+## Главный завершённый технический результат
 
 Isolated external sandbox KOD v0.6 принята.
 
@@ -28,19 +30,31 @@ Artifact reference:
     normative_status: accepted_for_real_host_preflight
     purpose: baseline следующего host-stage
 
-Acceptance evidence находится в том же KOD recovery:
+Acceptance evidence:
 
-`artifacts/KOO_entity-env-sandbox-v06-review_KOD.md`
+`entities/kod/recovery/current/artifacts/KOO_entity-env-sandbox-v06-review_KOD.md`
 
-## Проверенный KOD state
+## Preservation checkpoint
 
-- KOD = `upgraded`;
-- recovery v1.3 externally published;
-- current recovery immutable commit: `feed2913424d852f2d05a8125d92a3c991e3418f`;
-- isolated sandbox accepted v0.6;
-- real-host deployment разрешён только после preflight;
-- production не разрешён;
-- TERA/Stage 04 остаются parked/unknown согласно KOD recovery.
+- KOO self-snapshot/recovery checkpoint — опубликован и проверен;
+- KOD external recovery checkpoint — опубликован и проверен;
+- KOD post-acceptance self-preservation — отдельно сформирован самим текущим KOD и независимо проверен KOO;
+- KOD self-state согласован с подтверждённым external current-state;
+- writer handoff/failover не выполнялись.
+
+## Новое решение ОПЕРАТОРА
+
+ОПЕРАТОР утвердил следующую модель ответственности:
+
+- self-snapshot создаёт сама Сущность/current-writer;
+- АРХИВАРИУС является владельцем процесса сохранности и проверяемого recovery: инициирование предусмотренных циклов, проверка, provenance/version, внешняя публикация/readback, recovery registry и контроль восстановимости;
+- АРХИВАРИУС не авторизован переписывать чужой self-state и не подменяет current-writer;
+- ШТАБИСТ отвечает за проектирование и ревизию организационного процесса preservation/recovery;
+- КООРДИНАТОР держит приоритеты и может инициировать внеплановый checkpoint;
+- СИСАДМИН отвечает за техническую backup/storage-инфраструктуру в пределах отдельной технической задачи;
+- ОПЕРАТОР сохраняет нормативное и high-impact решение.
+
+Постоянная интеграция решения в active Project Sources ещё не выполнена. КАНЦЕЛЯРУ подготовлена адресная задача на минимальные successor-candidates. До отдельного approval ОПЕРАТОРА действующие approved Project Sources сохраняются без изменения.
 
 ## Действующие Project Sources
 
@@ -56,16 +70,9 @@ Acceptance evidence находится в том же KOD recovery:
 
 Следующий безопасный шаг:
 
-> получить и проверить фактические вводные конкретного host для ОСС; только после этого выдать KOD отдельную deployment task.
+> передать КАНЦЕЛЯРУ `KOO_preservation-governance_KAN.md`, получить минимальный successor-пакет и conflict review, затем вынести candidate-редакции на отдельный approval ОПЕРАТОРА.
 
-Required preflight data:
-
-- host identity;
-- OS/version;
-- operator access;
-- systemd/firewall/TLS permissions/boundary;
-- storage root;
-- external HTTPS endpoint/name.
+После закрытия этого короткого нормативного цикла возвращаемся к real-host preflight ОСС.
 
 ## Deferred
 
@@ -73,11 +80,11 @@ Required preflight data:
 - SHD recovery — отдельный цикл;
 - WEB post-init audit — deferred;
 - KON — не инициировать автоматически;
-- прочие parked исследования не активировать только из-за наличия старого файла.
+- parked TERA/Stage 04 KOD — не активировать без новой задачи/evidence.
 
 ## Восстановимость
 
-Новый KOO должен быть способен по этому snapshot + current boards + development-state + KOD immutable recovery commit понять, что isolated stage завершён и что следующий шаг — именно host preflight, а не новая ревизия sandbox и не deployment на случайно выбранный сервер.
+Новый KOO должен увидеть, что технический isolated-stage завершён, но перед host preflight открыт отдельный approved-by-OPR нормативный цикл по preservation/recovery. Он не должен считать старую формулировку «host preflight — немедленный следующий шаг» актуальной и не должен самостоятельно изменять approved Project Sources.
 
 ---
 entity: KOO
