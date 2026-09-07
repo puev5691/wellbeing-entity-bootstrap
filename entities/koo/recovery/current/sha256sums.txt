@@ -1,6 +1,7 @@
-062096200432aca0610e5863d09872cb2607076ea9ff87a90d622d03bfad44c0  KOO__snapshot__KOO.md
-28dd2f3ac5df17bfa347fbcdcfe936f7200f3eac41bf43b95719e31439691fe2  MANIFEST.md
+6a5789428eb3814109704d4ec836105ab374ae7db383226cc8b436fd66173ce5  KOO__snapshot__KOO.md
+079bbd4ca5fe383eb08215b6d65351a937f5244708631b4202c9fd72841416a0  MANIFEST.md
 73b7fd914850998f2942a55aaf8bccb9ed77fab91b75dfa68ab93da3c7f43932  ../../initiation/KOO__initiation-current__KOO.md
-87319914925f8bd82c1f903ddb0b0d581c4518fb09ab5244a4d4a85a3725b1c9  ../../boards/KOO__priority-board__KOO.md
+694db2f135319b8116a9e63b46f49da293c7d6d16220f69311af8ab10315f8a7  ../../boards/KOO__priority-board__KOO.md
 b19f3846db1265845b80b35b62a49ad9619e7e2e40418bad91a75f25bca5332e  ../../boards/KOO__entity-recovery-registry__KOO.md
+b79f70d3bf26d717cece28735fa9886e3ec61aa081e9eff795e78664e2c4c03a  ../../boards/KOO_preservation-governance_KAN.md
 60b6df4247586db7ddff89d971d2c7e18391da5961adf280ee43fb4357293973  ../../developments/KOO__shared-entity-environment__KOO.md
