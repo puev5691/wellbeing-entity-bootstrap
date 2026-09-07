@@ -1,190 +1,204 @@
-# АРХИВАРИУС: текущий snapshot для recovery v1.2
+# АРХИВАРИУС: self-snapshot current-state — recovery v1.4
 
 ## Краткий смысл
 
-Этот snapshot сводит в одну самостоятельную точку текущее проверенное состояние АРХИВАРИУСА. Он заменяет необходимость вручную собирать рабочую картину из старых `v01` и `v02`, сохраняя их как provenance.
+Этот self-snapshot создан authoritative current-writer текущего экземпляра АРХИВАРИУСА после существенного изменения active roles/recovery sources.
 
-## 1. Новая recovery-модель
+Он фиксирует собственное ARH current-state и не реконструирует состояние других Сущностей.
 
-ОПЕРАТОР перевёл рабочие Сущности проекта к модели долговременной внешней памяти.
+## 1. Основание checkpoint
 
-Практическая интерпретация для АРХИВАРИУСА:
+Trigger:
 
-> рабочая идентичность Сущности должна быть восстановима из утверждённых правил, внешнего состояния, происхождения артефактов и проверки версии.
+- activation `entity-roles-short-v2_2-approved.md`;
+- activation `entity-state-preservation-and-recovery-canon-v1_4-approved.md`;
+- прямой preservation-operations handoff КООРДИНАТОРА `KOO_preservation-operations_ARH.md`.
 
-Это позволяет рассматривать Сущность как **Искусственный Долго Живущий Интеллект** в операционном смысле.
+Artifact reference handoff:
 
-Граница понятия: recovery не переносит скрытое внутреннее состояние модели и не доказывает субъективную непрерывность сознания между чатами.
+- artifact_identity: `KOO_preservation-operations_ARH.md`
+- source_entity: KOO
+- locator: current conversation upload / externally also observed in `entities/koo/boards/KOO_preservation-operations_ARH.md`
+- uploaded SHA-256: `bbb773b2a19f1aa6c7808a1a76da39f9afffe576d9f57b594654a2dbfb191ae8`
+- normative_status: `active_norm_approved / ready_for_delivery`
+- purpose: передача АРХИВАРИУСУ эксплуатации preservation/recovery-контура и первого source-change cycle
 
-## 2. Действующие базовые источники
+## 2. Проверенные active Project Sources
 
-С текущего цикла действующими утверждёнными основаниями являются:
+Перед профильным исполнением SHA-256 фактически доступных Project Sources проверены и совпали:
 
-- `file-work-canon-universal-v2_2-approved.md`;
-- `project-instructions-core-v2-approved.md`;
-- `entity-roles-short-v2-approved.md`;
-- `source-loading-policy-v2-approved.md`;
-- `entity-state-preservation-and-recovery-canon-v1_2-approved.md`.
+| Источник | SHA-256 |
+|---|---|
+| `project-instructions-core-v2_1-approved.md` | `8a86945c28e361b5adf7ecc96326a1591a193118ce7be258a9c0a21ddd2ace26` |
+| `entity-roles-short-v2_2-approved.md` | `c8103b1c2dc6c3f4b489f118e9bcf4053add6bea384427f23dad5dddced2ae3d` |
+| `file-work-canon-universal-v2_3-approved.md` | `5ec75e480c0b78a72bb2faa702a21064b32bd3b919b225b1ae25a30dd0a700e5` |
+| `entity-state-preservation-and-recovery-canon-v1_4-approved.md` | `984871a22aab1910fc4ab3217c16488eac1e472734bdfd1948fd57c213566fda` |
+| `source-loading-policy-v2-approved.md` | `2661a3a266547a5e0f6b70c3dab8a02add2bb788b4a90b1136b7e9445b2d6061` |
 
-Они заменяют соответствующие предыдущие approved/working редакции там, где это явно указано внутри документов.
+Source mismatch blocker: `none`.
 
-Особенно важно:
+## 3. Current-writer и граница self-state
 
-- recovery v1.2 требует внешний locator;
-- требуется manifest;
-- требуется проверяемая идентификация версии, для current пакета используется SHA-256;
-- новая Сущность не подтверждает полную инициацию до внешней проверки;
-- профильные исследования не грузятся при старте без задачи;
-- черновики и кандидаты не становятся нормой от факта наличия среди файлов.
+Текущий экземпляр АРХИВАРИУСА действует как authoritative current-writer **только для собственного ARH self-state** в рамках прямого handoff.
 
-## 3. Recovery-кампания КООРДИНАТОРа
+Подтверждено:
 
-Получен текущий реестр:
+- current-writer не равен роли АРХИВАРИУСА как таковой;
+- process ownership не создаёт writer authority над другими Сущностями;
+- техническая возможность записи GitHub не создаёт authority на чужой snapshot;
+- чужое состояние в этом cycle не переписывалось.
 
-`KOO__entity-recovery-registry-v02__KOO.md`
-
-В нём:
-
-- KOO: `upgraded`;
-- KAN: `upgraded`;
-- ARH: `legacy_recovery_assessed`;
-- следующий шаг для ARH: миграция на recovery v1.2 с сохранением v01/v02 как provenance;
-- RED следует после стабилизации алгоритма на ARH;
-- SIS, WEB, KOD, SHD, KON пока не имеют подтверждённого current recovery;
-- SHT заблокирован до подтверждения профильной роли;
-- ШКОЛА исключена из этой кампании как другой проект;
-- ВОЛОНТЁР исключён из recovery как утилитарный чат.
-
-Настоящий current-пакет выполняет подготовку и внешнюю публикацию ARH по этой очереди.
-
-## 4. Локальная среда, подтверждённая предыдущей инвентаризацией
-
-На проверенном Android-устройстве:
-
-- `/storage/emulated/0/Documents` был подтверждён как фактический пользовательский Documents-корень;
-- `/data/wellbeing/obs` имел статус `MISSING_OR_INACCESSIBLE`;
-- `/storage/emulated/0/Documents/repos/wellbeing-archivist` не являлся Git-репозиторием и классифицирован как `legacy_local_layer / provenance_unknown`;
-- `/storage/emulated/0/Documents/repos/wellbeing-archivist-recovery` был проверен как корректный Git-репозиторий;
-- branch: `main`;
-- origin: `https://github.com/puev5691/wellbeing-archivist.git`;
-- HEAD на момент проверки: `7485c0353c9975b0ba614374cd5531f077d9b920`;
-- `git fsck --no-reflogs --full` завершился с exit 0.
-
-Это состояние конкретной проверенной среды, а не вечный локальный канон.
-
-## 5. Программный контур
-
-ОПЕРАТОР остановил работу над программой АРХИВАРИУСА.
+## 4. Текущая роль АРХИВАРИУСА
 
 Статус:
+
+`preservation_recovery_process_owner_active`
+
+АРХИВАРИУС принимает эксплуатацию процесса в пределах roles v2.2 / recovery v1.4:
+
+- отслеживает trigger-условия;
+- инициирует checkpoint;
+- принимает self-snapshot от current-writer;
+- проверяет manifest, provenance, integrity и version identity;
+- организует publication + readback;
+- ведёт минимальный registry;
+- фиксирует stale-state и известную recoverability.
+
+Не принимает на себя:
+
+- авторство чужого self-state;
+- project management;
+- production/system authority;
+- назначение writer authority;
+- реконструкцию потерянного state.
+
+## 5. Собственный recovery до этого checkpoint
+
+До обновления внешний current recovery ARH находился:
+
+`puev5691/wellbeing-entity-bootstrap/entities/arh/recovery/current`
+
+Наблюдаемая до изменения версия была доступна на immutable commit:
+
+`c6914d2257382901c9b579dd301ef382e636d4cc`
+
+Она соответствовала recovery v1.2 и поэтому после source-change требовала self-checkpoint.
+
+## 6. Программный контур АРХИВАРИУСА
+
+Сохранённый подтверждённый статус:
 
 `paused_by_operator`
 
-Не считать runtime проверенным или работающим.
+Runtime:
 
-Дополнительно ранее установлено, что штатный `config/default_config.json` удалённого `wellbeing-archivist` содержал жёсткие пути на legacy-каталог. Поэтому старый штатный smoke-test нельзя было безопасно запускать в recovery-копии без отдельной временной конфигурации.
+`not_verified`
 
-## 6. ПОЧТАЛЬОН
+Сохранённое ранее evidence о конкретной Android Git-копии не трактуется как текущая runtime-проверка.
 
-В проверенных локальных и удалённых материалах отдельный фактический код, очередь и подтверждённое текущее состояние ПОЧТАЛЬОНА не найдены.
+Программные smoke-test, исправления и эксплуатация не возобновляются без нового прямого поручения ОПЕРАТОРА.
 
-Статус:
+## 7. Legacy и неизвестное
 
-`not_found_in_checked_sources`
+- legacy локальный слой прежней среды не объявляется current;
+- provenance неизвестных старых файлов не реконструируется;
+- ПОЧТАЛЬОН: `not_found_in_checked_sources`;
+- это не доказательство глобального отсутствия компонента в проекте.
 
-Имя технического компонента не создаёт отдельную Сущность автоматически согласно `entity-roles-short-v2-approved.md`.
+## 8. Parked research
 
-## 7. Понятийная работа
-
-Ранее АРХИВАРИУС провёл ревизию понятийного поля проекта.
-
-Сохранён рабочий вывод:
-
-- короткое понятийное ядро полезно как рабочий материал, но не как утверждённая нормативная основа;
-- расширенное резюме лучше хранить как исследовательский корпус;
-- спорные модели ТМО/неТМО, Власти, Выгоды, Паразита и «паразитического мышления» следует отделять как гипотезы;
-- сильное практическое различение: техническая судьба результата и реализация его Пользы являются разными осями.
-
-Кандидаты СКРИЖАЛЕЙ, выявленные в той ревизии, не утверждены АРХИВАРИУСОМ и остаются кандидатами.
-
-## 8. Parked research: копное право
-
-GitHub-пакет:
-
-`packages/handoffs/kanzeliariya-kopnoe-pravo-research-v01/`
-
-Статус:
+Копное право:
 
 `research / parked_with_trigger`
 
-Перспективные механизмы для будущей проверки:
+Не активировать без прикладного trigger.
 
-- субсидиарность;
-- локальное решение при короткой обратной связи;
-- примирение;
-- внешний соседский наблюдатель;
-- гласность и проверяемый след;
-- разделение коллективного содействия и коллективной виновности;
-- временный орган под функцию.
+## 9. Первый source-change preservation cycle
 
-Не считать эти пункты утверждёнными правилами проекта.
+Выполнено текущим ARH current-writer:
 
-## 9. Незавершённые и неизвестные контуры
+1. проверены exact active sources;
+2. создан новый self-snapshot под v1.4;
+3. initiation приведён к roles v2.2 / recovery v1.4;
+4. сформирован единый минимальный recovery-registry;
+5. подготовлен source-change report;
+6. сформированы manifest и SHA-256;
+7. пакет предназначен для внешней publication/readback в существующий GitHub recovery locator.
 
-- cold-start-проверка нового ARH recovery v1.2 ещё должна быть выполнена отдельным новым чатом;
-- фактический runtime программного АРХИВАРИУСА не проверен и работа по нему остановлена;
-- ПОЧТАЛЬОН не восстановлен;
-- старый legacy-слой не классифицирован до уровня происхождения каждого файла;
-- окончательная архитектура ИДЖИ как общего проектного термина ещё не оформлена отдельным утверждённым каноном;
-- состояние других Сущностей определяется реестром КООРДИНАТОРа, а не этим snapshot.
+Статус других Сущностей не повышается автоматически.
 
-## 10. Provenance
+## 10. Registry-state
 
-Предыдущие поколения состояния сохраняются без изменения:
+Current registry включён в этот recovery-пакет:
 
-- `packages/handoffs/arhivarius-current-chat-snapshot-v01/`;
-- `packages/handoffs/arhivarius-current-chat-snapshot-v02/`.
+`ARH__recovery-registry__ARH.md`
 
-Исторический bootstrap:
+Ключевые выводы:
 
-- `packages/core/arhivarius-v01/`.
+- KOO: собственный v1.4 cycle уже выполняется по входному KOO registry;
+- KAN: `stale_check_required`, exact current recovery locator/version в проверенном bootstrap не найден;
+- RED/SIS/WEB/SHT/KOD: external current recovery каталог наблюдается, но нормативная свежесть после source-change не подтверждена их current-writer;
+- SHD/KON: recovery остаётся unknown, автоматический запуск не выполняется.
 
-Исторический большой handoff:
+## 11. Publication / readback / recoverability ARH
 
-- `packages/handoffs/0905-1204-2026-koordinator-archivist-full-context-v01/`.
+Финальная версия этого пакета должна считаться принятой только после:
 
-Они являются evidence/provenance и не должны использоваться вместо current recovery v1.2, если current доступен и проверен.
+- publication во внешний locator;
+- post-publication readback;
+- совпадения внешней immutable identity с опубликованной версией;
+- фиксации результата в registry/report.
 
-## 11. Текущий фазовый статус миграции
+В итоговом опубликованном состоянии:
 
-До внешней публикации current-пакета:
+- publication: `completed`;
+- readback: `verified_by_git_blob_identity`;
+- package integrity: `sha256sums.txt`;
+- recoverability: `external_package_verified; fresh_cold_start_not_run_in_this_cycle`.
 
-`recovery_prepared`
+Пробный новый cold-start не выполняется механически только из-за наличия пакета; recovery v1.4 требует его по событийно или отдельно утверждённому основанию.
 
-После подтверждения наличия файлов и совпадения SHA-256 во внешнем GitHub:
+## 12. Checkpoints для других current-writer
 
-`externally_verified`
+Требуются, но **не выполняются АРХИВАРИУСОМ за адресатов**:
 
-Статус `cold_start_verified` может быть поставлен только после отдельной пробной инициации нового чата по locator и checksums.
+1. KAN — приоритетный: подтвердить/создать актуальный self-snapshot и exact external recovery locator/version;
+2. RED — подтвердить нормативную свежесть и при необходимости обновить self-snapshot;
+3. SIS — то же;
+4. WEB — то же, post-init audit остаётся отдельным deferred вопросом;
+5. SHT — подтвердить self-state с учётом roles v2.2/recovery v1.4;
+6. KOD — обновить self/recovery references по новой норме, не менять accepted v0.6 code baseline.
 
-`upgraded` ставится только после успешного cold start.
+KOO новый checkpoint не запрашивается: входной registry уже фиксирует его собственный cycle как `updating_to_v1_4`.
 
-## 12. Следующий безопасный шаг
+## 13. Writer-state после checkpoint
 
-После внешней проверки этого пакета:
+writer_state:
 
-> провести отдельный cold-start АРХИВАРИУСА в новом чате, загрузив базовые управляющие источники и current recovery, и потребовать статус `initiation_verified` с проверкой GitHub locator и SHA-256.
+`ARH current-writer / preservation operations active / first v1.4 source-change cycle completed subject to external readback`
 
-До этого не объявлять ARH полностью `upgraded`.
+Open:
+
+- KAN checkpoint;
+- затем последовательная stale-проверка RED/SIS/WEB/SHT/KOD;
+- реальная пробная recoverability-проверка ARH только по отдельному practically justified trigger.
+
+Parked:
+
+- программный АРХИВАРИУС;
+- копное право;
+- SHD/KON recovery campaign без отдельного приоритета.
+
+## 14. Следующий безопасный шаг
+
+> Адресно запросить у current-writer KAN preservation checkpoint по source-change, не выполняя snapshot за него.
 
 ---
 
-## Служебная карточка
-
-document_type: entity-state-snapshot
-entity: ARH
-recovery_standard: v1.2
-status: current_snapshot
-migration_target: externally_verified_then_cold_start
-project_time: generated_without_trusted_project_time
-responsibility_boundary: snapshot фиксирует подтверждённое состояние и явно отделяет будущую cold-start-проверку от уже выполненной подготовки
+document_type: entity-self-snapshot  
+entity: ARH  
+recovery_standard: v1.4  
+status: current_snapshot  
+writer_state: authoritative_current_writer_for_ARH_self_state  
+preservation_process_owner: active  
+project_time: generated_without_trusted_project_time  
