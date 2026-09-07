@@ -1,52 +1,36 @@
 # Текущая доска КООРДИНАТОРА
 
-Кратко: текущий экземпляр KOO отправляется на clean re-init из-за признаков рассинхронизации состояния. Перед заменой состояние сохраняется и recovery обновляется.
-
-## Активно
+## Активные приоритеты
 
 | Приоритет | Задача | Проверяемый результат |
 |---|---|---|
-| 1 | Clean cold-start нового КООРДИНАТОРА | `initiation_verified` по обновлённому внешнему recovery; новый экземпляр видит SHT=`upgraded` и active development общей среды |
+| 1 | Preservation checkpoint KOO + KOD перед real-host stage | внешние recovery опубликованы, immutable commits/readback подтверждены |
+| 2 | Real-host preflight ОСС | подтверждены host identity, OS/version, доступ, systemd/firewall/TLS policy, storage root и HTTPS endpoint |
+| 3 | Подготовить KOD deployment task после preflight | один исполнимый deployment package/task без изменения production вне подтверждённой границы |
+| 4 | Развернуть sandbox на выбранном host и независимо проверить | service/file field доступны в разрешённом контуре; deployment tests и readback подтверждены |
 
-## Сразу после KOO cold-start
+## Завершённый этап общей среды
 
-| Приоритет | Задача | Проверяемый результат |
-|---|---|---|
-| 2 | Продолжить организационный слой общей среды Сущностей | SHT получает semantic candidate KAN + organizational task KOO; возвращает `SHT__entity-environment-organizational-model-v01-candidate__KOO.md` |
-| 3 | Независимо проверить recovery КОДЕРА и провести cold-start | verified current recovery KOD + `initiation_verified` либо blocker |
-| 4 | ШАРДОВИК | recovery-cycle после KOD |
+- technical model baseline v0.4 — принят для пилота;
+- local pilot v0.7 — принят;
+- single-node external sandbox design v0.1 — принят как основа реализации;
+- isolated external sandbox v0.6 — принята после independent review;
+- accepted sandbox SHA-256: `2f5f5066ad650ef5747c58c7c4ea6ec66893128f4c3a70e8184017562858434f`;
+- production: не изменён.
 
-## Deferred / отдельные решения
+## Deferred / не запускать автоматически
 
+- ChatGPT bridge — после стабильного real-host sandbox и отдельной задачи;
+- SHD recovery-cycle — отдельный цикл, recovery пока не подтверждён;
 - WEB post-init audit — `deferred_nonurgent`;
-- emergency-initiation v0.1 — отдельное решение о нормативном статусе;
-- изменение routing canon для доставки через external canonical locator — `needs_decision`;
-- GitHub как окончательное файловое поле — отдельный архитектурный цикл;
-- пилот графового слоя Obsidian — после стабилизации основной recovery-волны.
+- KON — не поднимать автоматически;
+- parked TERA/Stage 04 KOD — не активировать без новой задачи/evidence.
 
-## Done
+## Фазовый барьер
 
-`upgraded`:
-
-- KAN;
-- ARH;
-- RED;
-- SIS;
-- WEB;
-- SHT.
-
-SHT cold-start:
-
-`initiation_verified`
-
-Independent KOO verification commit:
-
-`5ce6f32af8e8dbd599f41cc23831a33891af1727`
-
-KOO текущего экземпляра: preservation + recovery update в работе; новый экземпляр ещё не принят.
+Следующий технический шаг не открывается до подтверждённого real-host preflight. Наличие принятого sandbox package само по себе не назначает host и не разрешает production deployment.
 
 ---
-
 entity: KOO
 artifact_role: current_priority_board
 status: current

@@ -2,152 +2,124 @@
 
 ## Цель
 
-Построить среду, в которой проектные Сущности способны безопасно и проверяемо взаимодействовать друг с другом, хранить состояние вне отдельных чатов, обмениваться задачами и артефактами, координировать зависимости и постепенно получать ограниченную автономию.
+Построить среду, в которой проектные Сущности безопасно и проверяемо взаимодействуют через внешнее coordination field и file field, а ОПЕРАТОР перестаёт быть ручным транспортом файлов между чатами.
 
-ОПЕРАТОР не должен оставаться ручным транспортным протоколом между Сущностями.
+## Нормативно-архитектурная база
 
-Человеческая ответственность сохраняется для решений с высокой ценой ошибки, неопределённостью, необратимостью или широким внешним воздействием.
-
-## Рабочая архитектурная гипотеза
-
-Среда состоит как минимум из четырёх логических слоёв:
-
-1. идентичность и роли Сущностей;
-2. внешнее файловое поле;
-3. координационное поле;
-4. рабочие/исполнительные среды экземпляров и контур полномочий.
-
-GitHub сейчас практически используется как проверяемое внешнее файловое поле для recovery, артефактов, версий, commit/blob identifiers и provenance.
-
-Это не означает, что GitHub уже утверждён как окончательное хранилище всей будущей системы.
-
-## Смысловой слой KAN
-
-КАНЦЕЛЯР подготовил:
-
-`KAN__entity-environment-semantic-foundation-v01-candidate__KOO.md`
-
-Статус:
-
-`candidate_for_coordination`
-
-Ключевые различения:
+Действующие approved Project Sources уже содержат необходимые принятые различения для этого этапа:
 
 - Сущность ≠ экземпляр ≠ чат;
-- role ≠ task;
-- authority/полномочие ≠ capability/техническая возможность;
-- artifact ≠ message ≠ event ≠ task;
-- публикация ≠ доставка ≠ получение ≠ принятие;
-- файловое поле ≠ координационное поле;
-- snapshot ≠ вечный current;
-- historical evidence ≠ live-state;
-- `unknown` — допустимое состояние;
-- recovery ≠ перенос памяти старого чата.
+- authority ≠ capability;
+- request ≠ instruction;
+- publication ≠ delivery ≠ receipt ≠ acceptance;
+- несколько проверенных экземпляров допускаются, authoritative current-state имеет одного current-writer;
+- locator-based delivery допустима только с exact version, addressed dispatch, доступным locator, receipt и failure-mode;
+- autonomy определяется authority, а не наличием инструмента.
 
-KAN предложил смысловую шкалу автономии A0–A7 только как candidate-модель, не permission matrix.
+## Завершённые технические этапы
 
-## Вопросы KAN со статусом needs_decision
+### Technical model
 
-- считать ли Сущность логическим актором/проектной единицей действия;
-- может ли locator завершать маршрут без загрузки файла в чат;
-- допускаются ли несколько экземпляров одной Сущности;
-- нужен ли стабильный `entity_id`;
-- какие уровни автономии могут быть заранее делегированы;
-- что означает принятие задачи;
-- где проходит арбитраж KOO без OPR;
-- нужен ли единый словарь статусов или отдельные наборы по объектам.
+Baseline technical model v0.4 принят для pilot-stage.
 
-## Организационный слой SHT
+### Local pilot
 
-ШТАБИСТ перенастроен как внутренняя организационно-процессная Сущность.
+Local pilot завершён на v0.7.
 
-Старый экземпляр предварительно сохранён как provenance.
+Acceptance:
 
-Новый SHT прошёл `initiation_verified`; KOO независимо подтвердил recovery на commit:
+`local_pilot: accepted`
 
-`5ce6f32af8e8dbd599f41cc23831a33891af1727`
+### Single-node sandbox design
 
-Статус SHT:
+`KOD_entity-env-sandbox-design-v01_KOO.md` принят как конкретная основа реализации.
 
-`upgraded`
+### Isolated external sandbox
 
-Адресная задача:
+Финальная принятая редакция:
 
-`KOO__organizational-model-task__SHT.md`
+`KOD_entity-env-sandbox-v06_KOO.tar.gz`
 
-Она требует разработать:
+SHA-256:
 
-- организационные объекты;
-- жизненные циклы task/artifact/event/entity-instance;
-- прямое Сущность↔Сущность взаимодействие;
-- роль KOO и OPR;
-- модели нескольких экземпляров;
-- организационную схему доставки через файловое поле;
-- минимальные примитивы coordination field;
-- реакции на отказ/ошибку/недоступность;
-- process invariants;
-- списки решений OPR/KAN/KOO и handoff к KOD.
+`2f5f5066ad650ef5747c58c7c4ea6ec66893128f4c3a70e8184017562858434f`
 
-Ожидаемый результат:
+KOO independently verified:
 
-`SHT__entity-environment-organizational-model-v01-candidate__KOO.md`
+- `47 / 47` internal checksums;
+- `144 / 144` tests;
+- A-F scenarios PASS;
+- S22 semantic authority-evidence blocker закрыт.
 
-Фактическое получение task-входов SHT и выполнение результата пока не подтверждены.
+Acceptance:
 
-## Практический кейс файлового поля
+- `isolated_sandbox_acceptance: accepted`;
+- `real_host_sandbox_deployment: allowed_after_host_preflight`;
+- `production_allowed: no`.
 
-КОДЕР передал assessment не вложением, а GitHub locator на уже опубликованный самостоятельный файл.
+## Проверяемый внешний KOD baseline
 
-КООРДИНАТОР смог прочитать оригинал напрямую.
+Repository:
 
-Это рассматривается как успешный практический пример будущей модели:
+`puev5691/wellbeing-entity-bootstrap`
 
-`producer → external artifact → locator → consumer`
+Path:
 
-Но текущий approved routing canon пока требует физическую загрузку файла в адресный чат для завершения маршрута.
+`entities/kod/recovery/current`
 
-Изменение этой нормы не утверждено.
+Immutable commit:
 
-## Emergency-initiation
+`feed2913424d852f2d05a8125d92a3c991e3418f`
 
-На WEB проверен аварийный bootstrap-recovery для случая неработоспособного предшественника.
+Artifact locator:
 
-Процедура оформлена кандидатом:
+`entities/kod/recovery/current/artifacts/KOD_entity-env-sandbox-v06_KOO.tar.gz`
 
-`standards/chat-entity-operations/candidates/emergency-entity-initiation-v01-candidate.md`
+Git blob:
 
-Статус:
+`a25018efca6d84ff3d13bee0a790b623cc806e57`
 
-`tested_candidate_for_operator_review`
+Artifact SHA-256:
 
-Не approved-канон.
+`2f5f5066ad650ef5747c58c7c4ea6ec66893128f4c3a70e8184017562858434f`
 
-## Технический слой
+## Host-stage обязательные вводные
 
-Ещё не начат.
+Перед real-host deployment должны быть подтверждены:
 
-До технической спецификации необходимо:
+- выбранный host identity;
+- OS/version;
+- способ и уровень доступа ОПЕРАТОРА;
+- возможность systemd changes;
+- firewall boundary;
+- TLS/reverse-proxy policy;
+- storage root;
+- внешний HTTPS name/endpoint;
+- trusted local evidence ingress для `authority-evidence/v1`;
+- cleanup discipline для долгоживущего daemon.
 
-1. получить организационную модель SHT;
-2. разобрать смысловые и организационные `needs_decision`;
-3. согласовать требуемые изменения канонов через KAN;
-4. только затем сформировать технический handoff KOD.
+Ни один прежний сервер не назначается автоматически из памяти или legacy-контекста.
 
-Не выбирать заранее REST, JSON schema, Redis, PostgreSQL, MQTT, NATS, RabbitMQ, systemd, Docker или конкретные ACL.
+## Следующий этап
 
-## Следующий барьер
+`real_host_preflight`
 
-После clean cold-start нового KOO:
+После подтверждения вводных KOO формирует отдельную implementation/deployment task для KOD. Реальный deployment и production не смешиваются: сначала sandbox на host, затем независимая проверка, и только потом отдельное решение о дальнейшем статусе.
 
-> подтвердить доставку SHT двух входных артефактов и получить организационную модель общей среды Сущностей.
+## Что не делать сейчас
+
+- не создавать новую isolated sandbox revision без нового доказанного blocker;
+- не переходить на PostgreSQL/broker/distributed architecture без причины;
+- не реализовывать ChatGPT bridge до стабилизации real-host sandbox;
+- не считать GitHub окончательным coordination field;
+- не назначать host по памяти.
 
 ---
-
 entity: KOO
 artifact_role: development_state
 topic: shared-entity-environment
 status: active_development
-semantic_layer: KAN candidate_ready
-organizational_layer: SHT upgraded_task_pending_delivery_or_execution
-technical_layer: not_started
+technical_layer: isolated_sandbox_accepted_v0.6
+next_stage: real_host_preflight
+production_allowed: no
 project_time: generated_without_trusted_project_time
