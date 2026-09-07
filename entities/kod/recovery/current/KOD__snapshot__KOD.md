@@ -1,52 +1,100 @@
 # КОДЕР: current snapshot
 
-## Смысл текущего состояния
+## Смысл
 
-Recovery КОДЕРА приведён к схеме v1.3 после clean cold-start. Прежнее направление TERA сохранено без потери сведений, но снято с непосредственного current-next-step.
+Снимок фиксирует завершение изолированного этапа общей среды Сущностей перед переходом к работе на реальном host.
 
-Ближайшее профильное направление — техническая модель общей среды Сущностей. Оно только ожидает отдельной задачи КООРДИНАТОРА и в рамках recovery не исполняется.
+Главный достигнутый результат: isolated external sandbox ОСС v0.6 принята после независимой проверки KOO.
 
-## Статусы
+## Проверенный результат
 
-### active
+Artifact:
 
-- новый экземпляр KOD после успешной публикации и readback recovery v1.3;
-- ожидание отдельной профильной технической задачи KOO по общей среде Сущностей.
+`KOD_entity-env-sandbox-v06_KOO.tar.gz`
 
-### pending
+SHA-256:
 
-- конкретных исполнимых профильных действий без отдельной постановки KOO нет.
+`2f5f5066ad650ef5747c58c7c4ea6ec66893128f4c3a70e8184017562858434f`
 
-### parked
+Независимая проверка KOO подтвердила:
 
-- исследование исходников исторической TERA `0.992`;
-- связанные runtime-эксперименты и журналирование;
-- сравнительное исследование исторических реализаций TERA/TERA2;
-- дальнейшее установление поведения `0.992` без исторической материнской сети;
-- дальнейший genesis/solo анализ;
-- прежний Stage 04 как упомянутый исторический шаг, конкретный исполнимый артефакт которого не найден.
+- архив безопасен;
+- internal manifest: `47 / 47 OK`;
+- automated tests: `144 / 144 PASS`;
+- local pilot regression: `44 / 44 PASS`;
+- S17-S21: `15 / 15 PASS`;
+- S22: `5 / 5 PASS`;
+- scenarios A-F: PASS.
 
-### unknown
+Acceptance:
 
-- прежний конкретный исполнимый артефакт Stage 04: `not_found_unknown`; реконструкция по памяти запрещена;
-- специальный WEB deployment daemon: нового evidence о коде, unit-файле, конфигурации или точном locator нет;
-- иные current recovery КОДЕРА вне проверенного GitHub-контура, если они существуют.
+`isolated_sandbox_acceptance: accepted`
 
-### legacy
+`real_host_sandbox_deployment: allowed_after_host_preflight`
+
+`production_allowed: no`
+
+## Current / active
+
+- KOD — активная профильная Сущность;
+- принятый executable baseline — sandbox v0.6;
+- ближайшее направление — подготовка и выполнение real-host deployment только после отдельной задачи KOO и подтверждённого host preflight.
+
+## Active dependency
+
+Для следующего этапа требуется точная внешняя версия sandbox v0.6.
+
+Artifact reference:
+
+    artifact_identity: KOD_entity-env-sandbox-v06_KOO.tar.gz
+    source_entity: KOD
+    locator: entities/kod/recovery/current/artifacts/KOD_entity-env-sandbox-v06_KOO.tar.gz
+    version_identity: sha256:2f5f5066ad650ef5747c58c7c4ea6ec66893128f4c3a70e8184017562858434f
+    normative_status: accepted_for_real_host_preflight
+    purpose: executable baseline for external sandbox host deployment
+
+Acceptance reference:
+
+    artifact_identity: KOO_entity-env-sandbox-v06-review_KOD.md
+    source_entity: KOO
+    locator: entities/kod/recovery/current/artifacts/KOO_entity-env-sandbox-v06-review_KOD.md
+    version_identity: sha256:f80ceefd3009aac283768ab7fde18b918cb6f7a87345fc1166e8bb3f2f499d01
+    normative_status: accepted_review
+    purpose: independent acceptance and deployment boundary
+
+## Host-stage blockers / required inputs
+
+До deployment должны быть проверены, а не угаданы:
+
+- concrete host identity;
+- OS/version;
+- доступ ОПЕРАТОРА;
+- допустимость systemd/firewall/TLS changes;
+- storage root;
+- внешний HTTPS name/endpoint;
+- trusted local evidence ingress для `authority-evidence/v1`;
+- cleanup/close discipline daemon resources при длительной работе.
+
+## Parked / unknown / legacy
+
+Parked:
+
+- историческая TERA `0.992` и связанные runtime-эксперименты;
+- прежний Stage 04 как исторический хвост.
+
+Unknown:
+
+- конкретный исполнимый артефакт прежнего Stage 04;
+- иные recovery KOD вне проверенного внешнего контура.
+
+Legacy:
 
 - `packages/core/sledopyt-v01/`;
-- старый контур `teraorigin_research` как provenance;
-- старые абсолютные пути и задачи Следопыта без нового evidence.
+- старый `teraorigin_research` без нового evidence.
 
-## Сохранённые технические наблюдения TERA
+## Один безопасный следующий шаг
 
-Для `0.992` прежним проверяемым исследованием было зафиксировано: `LoadHistoryMode` переводит цикл в синхронизацию; `CAN_START` открывается после корректного обмена ping-временем с узлом; запуск miner process сам по себе не доказывает создание блоков. Локальный двухузловой эксперимент добился TCP-соединения и `CAN_START`, но подтверждённого построения новой цепочки не установил.
-
-Эти сведения сохранены как исследовательское состояние. Они не являются разрешением на продолжение runtime-эксперимента.
-
-## Безопасный следующий шаг
-
-Получить от KOO профильную техническую задачу по общей среде Сущностей.
+Получить от KOO отдельную задачу real-host preflight/deployment с подтверждёнными вводными выбранного host.
 
 ---
 entity: KOD
@@ -54,4 +102,6 @@ document_type: snapshot
 recovery_schema: v1.3
 status: current
 stage04_state: parked_unknown
+isolated_sandbox: accepted_v0.6
+production_allowed: no
 project_time: generated_without_trusted_project_time
