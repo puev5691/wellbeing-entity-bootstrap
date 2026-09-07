@@ -99,6 +99,25 @@ Recovery v1.4 различает publication, readback/verification и practical
 
 Recovery-registry обновлён точным locator/version и состояниями publication/readback/recoverability.
 
+## ARH registry persistence
+
+После принятия KAN АРХИВАРИУС обновил собственный минимальный recovery-registry и его checksum map во внешнем bootstrap repository.
+
+Immutable registry/checksum publication commit:
+
+`dd22c43a310585b7ad2bf93f10477ddc7040b941`
+
+Readback на этом commit подтверждён:
+
+- `ARH__recovery-registry__ARH.md`
+  - SHA-256: `eee92c960e9daa93e97b1cce69d1facd13b20f15ebcdd868e3e60c9efdefd453`
+  - Git blob: `3ac69637adc93b2b65d327f63c960375adcf4a4c`
+- `sha256sums.txt`
+  - SHA-256: `7cbb223bae9f5f324ba69bf9959b99f2e4c02e7a886f1b3bd4d3aae9cb022a9b`
+  - Git blob: `5e32c3babbcef0da3ac7a268fa64d9393fbfdc05`
+
+Внешние blob identities совпали с локально рассчитанными. Тем самым принятие KAN не только отражено в чате, но и записано в externally readback-verified ARH recovery-registry.
+
 ## Один безопасный следующий шаг
 
 Вернуть этот результат КООРДИНАТОРУ.
