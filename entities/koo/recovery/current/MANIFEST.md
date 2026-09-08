@@ -1,8 +1,8 @@
-# Recovery-манифест КООРДИНАТОРА
+# Recovery-манифест КООРДИНАТОРА — post-StageA authority-defect
 
 ## Назначение
 
-Current recovery KOO после активации roles v2.2 и recovery-canon v1.4 и перед передачей регулярной эксплуатации preservation/recovery АРХИВАРИУСУ.
+Current recovery package KOO после persistent Stage A запуска ОСС, выявления `evidence_scope_widening` и preservation content-gap resolution.
 
 ## Внешний locator
 
@@ -12,6 +12,8 @@ Current recovery KOO после активации roles v2.2 и recovery-canon 
     ref: main
     manifest: MANIFEST.md
     checksums: sha256sums.txt
+
+Mutable `main` не является достаточной version identity. Для recovery требуется immutable publication commit + checksum/blob verification.
 
 ## Проверяемый состав
 
@@ -23,36 +25,49 @@ Current recovery KOO после активации roles v2.2 и recovery-canon 
 - `../../developments/KOO__shared-entity-environment__KOO.md`;
 - `sha256sums.txt`.
 
-## Active Project Sources
+Composition сохранён решением KOO current-writer. `KOO_preservation-operations_ARH.md` остаётся provenance предыдущего preservation trigger и не объявляется новым current task.
 
-- roles v2.2 approved;
-- recovery-canon v1.4 approved;
-- project instructions v2.1, file canon v2.3, source-loading v2 unchanged.
+## Current critical state
 
-Точные SHA-256 перечислены в initiation/snapshot/task ARH.
+- Stage A installation/runtime mechanics: `PASS`;
+- Stage A operational acceptance: `BLOCKED`;
+- blocker: `evidence_scope_widening`;
+- first Entity: `ent:KOO`;
+- writer grants: `0`;
+- public ingress/production: prohibited;
+- corrected core v0.7 logic review: `PASS`, `148/148`;
+- deploy bundle v0.2: `BLOCKED_METADATA_CORRECTION`;
+- real-host repair: not authorized.
 
-## Критическая technical dependency
+## Integrity / readback
 
-KOD accepted sandbox v0.6:
+Externally verified recovery требует:
 
-    artifact: entities/kod/recovery/current/artifacts/KOD_entity-env-sandbox-v06_KOO.tar.gz
-    sha256: 2f5f5066ad650ef5747c58c7c4ea6ec66893128f4c3a70e8184017562858434f
-    status: accepted_for_real_host_preflight
+1. наличие всех файлов composition;
+2. SHA-256 по `sha256sums.txt`;
+3. immutable publication commit;
+4. Git blob identities значимых файлов;
+5. post-publication readback.
 
-## Текущий безопасный следующий шаг
+Fresh KOO replacement instance данным checkpoint автоматически не запускается.
 
-Передать `KOO_preservation-operations_ARH.md` текущему экземпляру АРХИВАРИУСА и получить receipt/acceptance либо проверяемый failure-mode.
+## Provenance
 
-После принятия ARH эксплуатационного контура вернуться к real-host preflight ОСС.
+KOO content-gap resolution передал current replacements registry/development-state и подтвердил неизменность composition.
 
-## Failure mode
+Joint immutable state этих двух KOO-authored replacements до ARH publication:
 
-Если ARH недоступен либо не может проверить active source versions, зафиксировать delivery/acceptance blocker. KOO не принимает на себя регулярную архивную эксплуатацию вместо ARH и не обновляет чужие self-snapshot.
+`895563409f21669cacb0d9fc9690c727c93e188b`.
+
+## Следующий безопасный шаг
+
+После verified recovery продолжать current KOO priority: получить corrected immutable deploy bundle, независимо принять или отклонить его и только после PASS выдать отдельную SIS host-repair task.
 
 ---
 entity: KOO
 artifact_role: recovery_manifest
 status: current
 recovery_canon: v1.4 approved
-project_scope: ШТАБ БЛАГОПОЛУЧИЯ
+stageA_operational_acceptance: BLOCKED
+production_allowed: no
 project_time: generated_without_trusted_project_time

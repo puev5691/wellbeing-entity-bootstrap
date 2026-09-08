@@ -1,40 +1,50 @@
-# Текущая доска КООРДИНАТОРА
+# Текущая доска КООРДИНАТОРА после Stage A запуска ОСС
 
 ## Активные приоритеты
 
 | Приоритет | Задача | Проверяемый результат |
 |---|---|---|
-| 1 | Передать АРХИВАРИУСУ эксплуатационную ответственность preservation/recovery по новой active-норме | ARH получает task, подтверждает receipt/acceptance, выполняет собственный source-change checkpoint и открывает минимальный recovery-registry cycle |
-| 2 | Real-host preflight ОСС | подтверждены host identity, OS/version, доступ, systemd/firewall/TLS policy, storage root и HTTPS endpoint |
-| 3 | Подготовить KOD deployment task после preflight | один исполнимый deployment package/task без изменения production вне подтверждённой границы |
-| 4 | Развернуть sandbox на выбранном host и независимо проверить | service/file field доступны в разрешённом контуре; deployment tests и readback подтверждены |
+| 1 | Исправить bootstrap authority scope defect ОСС | KOD возвращает новый immutable corrected core/bundle, regression tests и deterministic repair contract |
+| 2 | Независимо принять corrected revision | KOO подтверждает exact identity, full regression/adversarial tests и отсутствие semantic widening |
+| 3 | Безопасно отремонтировать deployed Stage A state | отдельная SIS task после KOO PASS; broad authority narrowed/revoked/superseded auditably, `ent:KOO` сохранена, writer grants `0` |
+| 4 | Повторно решить Stage A operational acceptance | host readback: health/integrity/authority semantics PASS; только после этого разрешается следующий onboarding step |
 
-## Завершено
+## Завершено и подтверждено
 
-- preservation/recovery governance согласован KAN и KOO;
-- ОПЕРАТОР утвердил `entity-roles-short-v2_2-approved.md` и `entity-state-preservation-and-recovery-canon-v1_4-approved.md`;
-- Project Sources UI replacement подтверждён ОПЕРАТОРОМ;
-- загруженные active files проверены по SHA-256;
-- KOO current recovery переводится на recovery schema v1.4;
-- isolated external sandbox v0.6 принята;
-- preservation checkpoint KOO + KOD перед real-host stage завершён и проверен;
-- production не изменён.
+- preservation/recovery governance v1.4 принят в эксплуатацию ARH;
+- canonical recovery repair exact core v0.6 завершён;
+- SIS fresh recovery verification: `initiation_verified`;
+- deployable Stage A bundle принят KOO;
+- target host staging: PASS;
+- ОПЕРАТОР утвердил `operator_admin` + first Entity `ent:KOO`;
+- persistent installation/bootstrap/systemd activation: mechanics PASS;
+- independent KOO host readback: service active/enabled, loopback live/ready PASS;
+- post-deployment security review обнаружил и воспроизвёл bootstrap authority widening;
+- corrective KOD task опубликована commit `73bd9e699def33b7d1d0f61b9fa22807223b104d`.
 
-## Source-change trigger
+## Blocker
 
-Изменение ролей и recovery-canon является событийным trigger для recovery-managed Сущностей. Оно не означает автоматическую перезапись всех recovery силами KOO. Эксплуатационный владелец ARH должен определить stale-state по подтверждённым данным и инициировать checkpoints у соответствующих current-writer.
+`stageA_operational_acceptance: BLOCKED`
+
+Причина: evidence `entity:ent:KOO` при first-Entity bootstrap превращается в authority scope `entity:*`, что допускает out-of-scope entity registration.
 
 ## Deferred
 
-- ChatGPT bridge — после стабильного real-host sandbox и отдельной задачи;
-- SHD recovery-cycle — отдельный цикл;
-- WEB post-init audit — `deferred_nonurgent`;
-- KON — не поднимать автоматически;
-- parked TERA/Stage 04 KOD — не активировать без новой задачи/evidence.
+- additional Entities;
+- KOO operational instance/credential onboarding;
+- writer grant/election;
+- public ingress/TLS/DNS;
+- production;
+- ChatGPT bridge;
+- continuity/memory/experience implementation.
+
+## Один следующий шаг
+
+Получить KOD corrected result и выполнить независимый KOO review. Не выдавать SIS host-repair task раньше этого PASS.
 
 ---
 entity: KOO
-artifact_role: current_priority_board
-status: current
-project_scope: ШТАБ БЛАГОПОЛУЧИЯ
+artifact_role: current_priority_board_candidate
+status: current_writer_candidate_for_ARH_acceptance
+production_allowed: no
 project_time: generated_without_trusted_project_time
