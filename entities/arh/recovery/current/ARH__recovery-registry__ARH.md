@@ -13,10 +13,10 @@
 | VOL | `puev5691/wellbeing-entity-bootstrap/entities/vol/recovery/current`; `9b631b7f45bc362771df9255560125f7fb3ff9bd` | `recovery_managed_minimal`; publication/readback independently verified by ARH | `structurally_verified_pending_fresh_initiation_test` |
 | ARH | `puev5691/wellbeing-entity-bootstrap/entities/arh/recovery/current` | `current`; registry maintenance under v1.4 | external package verified; fresh v1.4 cold-start not run |
 | RED | `puev5691/wellbeing-entity-bootstrap/entities/red/recovery/current`; observed `c6914d2257382901c9b579dd301ef382e636d4cc` | `stale_check_required` | normative freshness unverified |
-| SIS | `puev5691/wellbeing-entity-bootstrap/entities/sis/recovery/current`; observed `c6914d2257382901c9b579dd301ef382e636d4cc` | `stale_check_required` | normative freshness unverified |
+| SIS | `puev5691/wellbeing-entity-bootstrap/entities/sis/recovery/current`; `950f01dc5cdb56c3ea63ba540c4e72eda24973bb` | current package publication/readback verified by ARH | `structurally_verified_pending_fresh_initiation_test`; running instance remains `initiation_loaded_external_unverified` until recheck |
 | WEB | `puev5691/wellbeing-entity-bootstrap/entities/web/recovery/current`; observed `c6914d2257382901c9b579dd301ef382e636d4cc` | `stale_check_required` | normative freshness unverified |
 | SHT | `puev5691/wellbeing-entity-bootstrap/entities/sht/recovery/current`; observed `c6914d2257382901c9b579dd301ef382e636d4cc` | `stale_check_required` | normative freshness unverified |
-| KOD | `puev5691/wellbeing-entity-bootstrap/entities/kod/recovery/current`; observed `c6914d2257382901c9b579dd301ef382e636d4cc` | `stale_check_required`; accepted v0.6 baseline не менялся | normative freshness unverified |
+| KOD | `puev5691/wellbeing-entity-bootstrap/entities/kod/recovery/current`; canonical repair `48a8aa581147cfe1c0560e46a2edee291ed371e8` | executable recovery repaired; exact v0.6 blob `93f1208d60b058867a4fde4df61689785d216e17`; corrupt checkpoint `feed2913424d852f2d05a8125d92a3c991e3418f` superseded and not executable | artifact integrity/readback verified; fresh KOD initiation not run |
 | SHD | locator/version `unknown` | `unchanged_unknown` | `unknown` |
 | KON | locator/version `unknown` | `unchanged_unknown` | `unknown` |
 
@@ -43,7 +43,7 @@ External checksum-list содержит неизменённые пять SHA-25
 
 ## Следующий безопасный шаг
 
-Завершить VOL cycle receipt КООРДИНАТОРУ. RED/SIS/WEB/SHT/KOD автоматически не запускать без нового приоритета.
+Передать КООРДИНАТОРУ completion receipt по KOD repair и SIS publication. После решения КООРДИНАТОРА новый SIS должен повторить external recovery verification по immutable commit `950f01dc5cdb56c3ea63ba540c4e72eda24973bb`; до этого его текущий initiation status не повышается. Real-host deploy остаётся blocked pending recovery completion receipt.
 
 ---
 document_type: recovery-registry
