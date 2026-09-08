@@ -1,96 +1,206 @@
-# СИСАДМИН: snapshot текущего состояния
+# СИСАДМИН: self-snapshot перед заменой текущего экземпляра
 
-## Назначение
+## Смысл
 
-Фиксирует проверенное состояние для recovery v1.2. Это не live-мониторинг: перед любым production-действием повторить проверки.
+Этот self-snapshot создан текущим экземпляром СИСАДМИНА как authoritative current-writer только для собственного SIS current-state.
 
-## Recovery assessment
+Trigger: прямое решение ОПЕРАТОРА остановить затянувшийся текущий экземпляр, зафиксировать состояние и инициировать новый чат.
 
-Задача КООРДИНАТОРА: провести assessment SIS, найти существующие recovery/initiation/snapshot, затем мигрировать либо создать current recovery v1.2, либо вернуть blocker.
+Snapshot не утверждает состояние других Сущностей и не изменяет recovery-state проекта от имени АРХИВАРИУСА.
 
-Проверки GitHub до публикации:
+## Active Project Sources
 
-- `entities/sis` — `404 Not Found`;
-- четыре ожидаемых файла в `entities/sis/recovery/current/` — `404 Not Found`;
-- поиск `SIS__`, `sisadmin`, `entities/sis` в `puev5691/wellbeing-entity-bootstrap` — current SIS recovery не найден;
-- поиск `СИСАДМИН` нашёл KOO registry/board/snapshot, где SIS указан следующим циклом, а current recovery SIS не подтверждён.
+Текущий active reference set подтверждён через действующий ARH recovery/current-state:
 
-Вывод: конфликтующий current recovery SIS в проверенном GitHub-контуре не выявлен; создан current recovery candidate v1.2.
+| Источник | SHA-256 |
+|---|---|
+| `project-instructions-core-v2_1-approved.md` | `8a86945c28e361b5adf7ecc96326a1591a193118ce7be258a9c0a21ddd2ace26` |
+| `entity-roles-short-v2_2-approved.md` | `c8103b1c2dc6c3f4b489f118e9bcf4053add6bea384427f23dad5dddced2ae3d` |
+| `file-work-canon-universal-v2_3-approved.md` | `5ec75e480c0b78a72bb2faa702a21064b32bd3b919b225b1ae25a30dd0a700e5` |
+| `entity-state-preservation-and-recovery-canon-v1_4-approved.md` | `984871a22aab1910fc4ab3217c16488eac1e472734bdfd1948fd57c213566fda` |
+| `source-loading-policy-v2-approved.md` | `2661a3a266547a5e0f6b70c3dab8a02add2bb788b4a90b1136b7e9445b2d6061` |
 
-## Роль и режим
+Новый экземпляр обязан самостоятельно прочитать доступные active Project Sources и не считать таблицу заменой их содержимого.
 
-СИСАДМИН отвечает за серверы, сеть, шлюзы, туннели, firewall, deploy, health-check, systemd, мониторинг и проверяемые отчёты выполнения. Production без подтверждения не менять.
+## Роль и граница
 
-ОПЕРАТОР усилил режим: не выдумывать, не угождать, не делать удобные неподтверждённые выводы; работать по проверяемым результатам и вести журнал при необходимости.
+СИСАДМИН: серверы, сеть, шлюзы, туннели, firewall, deploy, health-check, systemd, мониторинг и проверяемые отчёты исполнения.
 
-## Узлы
+СИСАДМИН не меняет approved Project Sources, чужой self-state, canonical recovery registry или production policy по одной технической возможности.
 
-    RU2498454 = erefia = Эрэфия
-    RU2497199 = burzh  = Буржуиния
-    p552203   = mazhor = Мажор
+## Подтверждённый host
 
-## Проверенное по burzh
+Host для sandbox ОСС:
 
-- host: `ruvds-xnqc6`
-- IP: `185.39.19.240`
-- OS: Ubuntu 24.04.4 LTS
-- listening: `80/tcp` nginx, `2222/tcp` ssh.socket, `443/tcp` xray, `10085/tcp` xray
-- UFW active, default incoming deny, outgoing allow; разрешены `2222/tcp`, `443/tcp`, `443/udp`, `80/tcp`, `30000/tcp`, `8780/tcp`, `14443/tcp`, `39743/udp` и IPv6-аналоги
-- Windows ОПЕРАТОРА → `burzh:2222` OK, SSH banner получен
-- `burzh` → `erefia:443/2222/80` OK; `burzh` → `erefia:21` fail
+- DNS: `uk.wbnetrus.ru`;
+- IPv4: `185.39.19.240`;
+- hostname: `ruvds-xnqc6`;
+- SSH port: `2222`;
+- SSH user: `pev5691`;
+- SSH ED25519 fingerprint: `SHA256:+QiM/uh5SBrkm4KpKFR4QCnq5Tcak256OMmg8CdHf2Y`;
+- OS: Ubuntu `24.04.4 LTS`;
+- kernel: `6.17.0-1022-azure`;
+- CPU: 1 vCPU;
+- RAM: 1.8 GiB total, около 855 MiB available во время preflight;
+- swap: 1 GiB, unused при замере;
+- root filesystem: ext4 40 GiB, около 26 GiB free при замере.
 
-## Проверенное по erefia
+Ресурсы ОПЕРАТОР пока решил не увеличивать: сначала запуск и реальные измерения, затем решение по CPU/RAM.
 
-- host: `ruvds-ygo0w`
-- IP: `194.87.107.135`
-- OS: Ubuntu 24.04.4 LTS
-- listening: `2222/tcp` ssh.socket, `80/tcp` nginx, `443/tcp` xray, `10085/tcp` xray
-- Windows ОПЕРАТОРА → `erefia:21/2222/443` timeout
-- `erefia` → `burzh:2222/443` fail
-- `xray.service` active, Xray `26.6.1`
-- Xray outbound использовал `burzhuiniya-ssh-socks-out` → `127.0.0.1:1081`
-- `wb-errefiya-to-burzhuiniya-socks.service` числился active/running, но `127.0.0.1:1081` не слушал; curl к SOCKS вернул `Couldn't connect to server`
-- журнал tunnel unit показывал `ssh: connect to host 185.39.19.240 port 2222: Connection timed out`
+## Существующие сервисы
 
-## Проверенное по mazhor
+Подтверждено свежим host-local preflight:
 
-- host: `p552203.kvmvps`
-- IP: `130.49.174.162`
-- OS: Ubuntu 24.04.4 LTS
-- kernel: `6.8.0-137-generic`
-- listening: `22/tcp` ssh.socket
-- не обнаружены listening `80/tcp`, `443/tcp`, `2222/tcp`, nginx, xray
-- UFW active, default incoming deny, outgoing allow; разрешены `22/tcp`, `30000/tcp`, `8780/tcp`, `8781/tcp` и IPv6-аналоги
-- `mazhor` → `burzh:2222/443` fail
-- `mazhor` → `erefia:2222/443` OK
-- во время подтверждённого окна tcpdump на burzh попытки `mazhor → burzh:2222/443` не были видны на burzh
+- nginx: `80/tcp`, active;
+- Xray: `443/tcp`, `10085/tcp`, active;
+- SSH: `2222/tcp`;
+- TERA2: `8780/tcp`, `8781/tcp`, `30000/tcp`;
+- TERA2 unit: `/etc/systemd/system/wbn-tera2-node.service`;
+- TERA2 `ExecStart=/usr/bin/node run-node.js NOPSWD NOAUTOUPDATE`;
+- TERA2 использует системный `/usr/bin/node` v18.19.1;
+- UFW active/enabled; default INPUT DROP, OUTPUT ACCEPT, FORWARD DROP;
+- nginx site `wellbeing` обслуживает static `uk.wbnetrus.ru` на port 80;
+- port `18081` был свободен.
 
-## Недействительный тест
+Рекомендуемая будущая Stage A схема остаётся:
+`/var/lib/wb-oss-sandbox` + `127.0.0.1:18081` + system-level service + SSH tunnel, без изменения nginx/Xray/TERA2/UFW/DNS на первом этапе.
 
-Проверка `erefia → burzh` через tcpdump признана недействительной: команды были выполнены на `mazhor`, а отправка началась после завершения наблюдения. Итоговый tcpdump-факт для `erefia → burzh` не получен.
+## Remote Desktop Commander
 
-## DNS
+Для удалённого terminal access ОПЕРАТОР установил user-local:
 
-Домен проекта: `wbnetrus.ru`. Приняты нейтральные имена `burzh.wbnetrus.ru`, `erefia.wbnetrus.ru`; фактические DNS-записи не проверены.
+- nvm `v0.40.3`;
+- Node `v22.23.2`;
+- npm `10.9.8`;
+- Remote Desktop Commander `0.2.48`.
 
-## Другие завершённые направления текущего SIS-чата
+Системный Node 18 для TERA2 не заменялся.
 
-В текущем чате были созданы/разобраны пакеты: local AI healthcheck/smoke/diagnostic, VPN/Xray диагностика, Ubuntu Russian CA audit, domain OSINT и Wayback/local library для `inbelousov.ru`. Они являются evidence, но не входят в recovery current целиком.
+Device:
+`dd09a197-f716-4dd6-80bb-7f8e5d8260ff`, name `ruvds-xnqc6`.
 
-## Pending
+На момент этого snapshot device status: `offline`; auth token наблюдался как valid.
 
-- свежая проверка DNS `wbnetrus.ru` и нейтральных имён;
-- корректная проверка `erefia → burzh`;
-- решение по `mazhor` как возможной новой точке после отдельного плана;
-- восстановление/замена внутреннего SOCKS `127.0.0.1:1081` только после подтверждения задачи.
+Для повторного запуска агента на host:
 
-## Безопасный следующий шаг
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+    nvm use 22
+    npx @wonderwhy-er/desktop-commander@latest remote
 
-Новый SIS после cold-start фиксирует статус проверки и не меняет production до отдельной команды ОПЕРАТОРА или КООРДИНАТОРА.
+Секреты в recovery-пакет не включены.
+
+## Текущая профильная задача
+
+Активная задача КООРДИНАТОРА:
+`KOO__OSS-v06-exact-binary-transport__SIS.md`.
+
+Назначение: выполнить только техническую доставку exact accepted bytes ОСС v0.6 в отдельный Git repair ref, не меняя `main`, recovery registry, manifest/checksum map и не выполняя host deployment.
+
+Repository:
+`puev5691/wellbeing-entity-bootstrap`
+
+Canonical target path на repair ref:
+`entities/kod/recovery/current/artifacts/KOD_entity-env-sandbox-v06_KOO.tar.gz`
+
+Accepted exact binary:
+
+- canonical name: `KOD_entity-env-sandbox-v06_KOO.tar.gz`;
+- size: `109510` bytes;
+- SHA-256: `2f5f5066ad650ef5747c58c7c4ea6ec66893128f4c3a70e8184017562858434f`;
+- expected Git blob SHA-1: `93f1208d60b058867a4fde4df61689785d216e17`.
+
+Независимая повторная проверка текущим SIS перед snapshot:
+
+- size: PASS;
+- SHA-256: PASS;
+- `git hash-object`: PASS;
+- tar/gzip readability: PASS;
+- archive path safety: PASS;
+- symlink/hardlink: none;
+- internal `SHA256SUMS.txt`: `47 / 47 OK`.
+
+Exact binary включён в этот recovery package под canonical filename.
+
+## Git transport state
+
+GitHub connector подтвердил права repository: `push=true`, `admin=true`.
+
+Создан отдельный repair branch:
+
+`repair/oss-v06-exact-binary-20260908`
+
+На момент snapshot branch существует и указывает на commit:
+
+`ac4715118bf0ba5ed964c359117820b570d19eb1`
+
+Это тот же base commit, от которого ветка была создана.
+
+**Exact binary blob в repair branch ещё НЕ записан.**
+**Repair commit ещё НЕ создан.**
+**Post-push readback ещё НЕ выполнен.**
+**main не изменён.**
+
+Именно здесь остановилось исполнение предыдущего экземпляра.
+
+## Почему задача выглядела зависшей
+
+Нет подтверждения исчерпания токенов или поломки чата. Инструменты продолжали отвечать.
+
+Практический дефект был в исполнении: после проверки exact binary и создания repair branch последовательность `create binary blob → tree → commit → branch update → readback` не была доведена до конца. На фоне длинного контекста это стало достаточной причиной заменить экземпляр, а не продолжать накапливать неопределённость.
+
+## Закрыто / подтверждено
+
+- real-host preflight завершён;
+- дефект повреждённого recovery artifact обнаружен и передан КООРДИНАТОРУ;
+- КООРДИНАТОР передал exact accepted binary;
+- exact bytes перепроверены;
+- GitHub write capability подтверждена;
+- repair branch создан;
+- host deployment не выполнялся.
+
+## Open / pending
+
+1. Завершить exact-binary transport на существующий repair branch.
+2. Выполнить post-push readback и повторно доказать SHA-256/Git blob.
+3. Подготовить transport-result для КООРДИНАТОРА/АРХИВАРИУСА.
+4. Не merge-ить repair branch.
+5. После независимого recovery repair АРХИВАРИУСОМ может быть снят blocker real-host deploy.
+6. Только после этого возвращаться к sandbox deployment и измерению ресурсов.
+
+## Parked / not required now
+
+- увеличение CPU/RAM host: отложено до фактических измерений;
+- внешний HTTPS/reverse proxy: не нужен для Stage A;
+- production deployment: запрещён;
+- rebuild by KOD: не требуется по текущему handoff.
+
+## Writer-state
+
+`SIS_current_writer: this_snapshot_author`
+
+`ARH_preservation_process_owner: yes`
+
+`SIS_external_recovery_publication_claimed: no`
+
+`canonical_recovery_changed_by_this_snapshot: no`
+
+## Один безопасный следующий шаг
+
+Новый SIS после проверки этого package должен:
+
+1. подтвердить, что repair branch всё ещё указывает на `ac4715118bf0ba5ed964c359117820b570d19eb1` либо зафиксировать фактическое изменение;
+2. заново проверить exact binary из `artifacts/KOD_entity-env-sandbox-v06_KOO.tar.gz`;
+3. через авторизованный GitHub binary-blob transport создать blob и потребовать ровно `93f1208d60b058867a4fde4df61689785d216e17`;
+4. только при совпадении создать tree/commit на repair branch;
+5. выполнить immutable post-push readback;
+6. вернуть transport-result КООРДИНАТОРУ/АРХИВАРИУСУ.
+
+Не выполнять deploy и не менять `main`.
 
 ---
-document_type: snapshot
-entity: SIS
-status: current_candidate_published_for_verification
-recovery_canon: v1.2
+document_type: SIS-self-snapshot
+snapshot_trigger: operator_requested_instance_replacement
+snapshot_authority: SIS_current_writer_only
+production_allowed: no
 project_time: generated_without_trusted_project_time
