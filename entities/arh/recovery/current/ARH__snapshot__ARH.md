@@ -1,31 +1,18 @@
-# АРХИВАРИУС: self-snapshot current-state — recovery v1.4
+# АРХИВАРИУС: self-snapshot после OSS v0.6 recovery repair-cycle
 
 ## Краткий смысл
 
-Этот self-snapshot создан authoritative current-writer текущего экземпляра АРХИВАРИУСА после существенного изменения active roles/recovery sources.
-
-Он фиксирует собственное ARH current-state и не реконструирует состояние других Сущностей.
+Authoritative self-snapshot текущего экземпляра АРХИВАРИУСА после существенного recovery-инцидента, его устранения и восстановления проверяемого SIS recovery continuity.
 
 ## 1. Основание checkpoint
 
-Trigger:
+КООРДИНАТОР принял completion receipt `ARH__OSS-v06-recovery-repair-and-SIS-publication__KOO.md` без блокирующих замечаний и инициировал внеплановый ARH self-preservation checkpoint.
 
-- activation `entity-roles-short-v2_2-approved.md`;
-- activation `entity-state-preservation-and-recovery-canon-v1_4-approved.md`;
-- прямой preservation-operations handoff КООРДИНАТОРА `KOO_preservation-operations_ARH.md`.
+Предыдущий ARH snapshot предшествовал KOD exact-binary repair, SIS publication/readback, recovery-deadlock resolution и fresh SIS verification и поэтому стал stale.
 
-Artifact reference handoff:
+## 2. Active Project Sources
 
-- artifact_identity: `KOO_preservation-operations_ARH.md`
-- source_entity: KOO
-- locator: current conversation upload / externally also observed in `entities/koo/boards/KOO_preservation-operations_ARH.md`
-- uploaded SHA-256: `bbb773b2a19f1aa6c7808a1a76da39f9afffe576d9f57b594654a2dbfb191ae8`
-- normative_status: `active_norm_approved / ready_for_delivery`
-- purpose: передача АРХИВАРИУСУ эксплуатации preservation/recovery-контура и первого source-change cycle
-
-## 2. Проверенные active Project Sources
-
-Перед профильным исполнением SHA-256 фактически доступных Project Sources проверены и совпали:
+Перед checkpoint локально повторно проверены exact SHA-256:
 
 | Источник | SHA-256 |
 |---|---|
@@ -35,170 +22,104 @@ Artifact reference handoff:
 | `entity-state-preservation-and-recovery-canon-v1_4-approved.md` | `984871a22aab1910fc4ab3217c16488eac1e472734bdfd1948fd57c213566fda` |
 | `source-loading-policy-v2-approved.md` | `2661a3a266547a5e0f6b70c3dab8a02add2bb788b4a90b1136b7e9445b2d6061` |
 
-Source mismatch blocker: `none`.
+Mismatch: `none`.
 
-## 3. Current-writer и граница self-state
+## 3. Выполненные ARH задачи
 
-Текущий экземпляр АРХИВАРИУСА действует как authoritative current-writer **только для собственного ARH self-state** в рамках прямого handoff.
+### KOD recovery integrity repair
 
-Подтверждено:
+Подтверждён и канонизирован exact executable artifact:
 
-- current-writer не равен роли АРХИВАРИУСА как таковой;
-- process ownership не создаёт writer authority над другими Сущностями;
-- техническая возможность записи GitHub не создаёт authority на чужой snapshot;
-- чужое состояние в этом cycle не переписывалось.
+- canonical repair commit: `48a8aa581147cfe1c0560e46a2edee291ed371e8`;
+- blob: `93f1208d60b058867a4fde4df61689785d216e17`;
+- size: `109510`;
+- SHA-256: `2f5f5066ad650ef5747c58c7c4ea6ec66893128f4c3a70e8184017562858434f`;
+- tar members: `57`;
+- unsafe paths: `0`;
+- symlink/hardlink: `0`;
+- internal checksums: `47/47 OK`.
 
-## 4. Текущая роль АРХИВАРИУСА
+Повреждённый checkpoint `feed2913424d852f2d05a8125d92a3c991e3418f` superseded и не считается пригодным executable recovery.
 
-Статус:
+### SIS recovery publication
 
-`preservation_recovery_process_owner_active`
+Current SIS recovery package опубликован и readback-проверен:
 
-АРХИВАРИУС принимает эксплуатацию процесса в пределах roles v2.2 / recovery v1.4:
+- immutable publication: `950f01dc5cdb56c3ea63ba540c4e72eda24973bb`;
+- checksum entries: `8/8 OK`;
+- embedded exact binary совпадает с KOD identity выше.
 
-- отслеживает trigger-условия;
-- инициирует checkpoint;
-- принимает self-snapshot от current-writer;
-- проверяет manifest, provenance, integrity и version identity;
-- организует publication + readback;
-- ведёт минимальный registry;
-- фиксирует stale-state и известную recoverability.
+### Recovery registry
 
-Не принимает на себя:
+После repair/publication registry был обновлён commit:
+`fd7366983561a25c6be74d85f6280df915e2f244`.
 
-- авторство чужого self-state;
-- project management;
-- production/system authority;
-- назначение writer authority;
-- реконструкцию потерянного state.
+В этом checkpoint registry дополнительно приводится к подтверждённому fresh SIS status.
 
-## 5. Собственный recovery до этого checkpoint
+## 4. Последующие подтверждённые события
 
-До обновления внешний current recovery ARH находился:
+SIS authoritative fresh verification report подтвердил:
 
-`puev5691/wellbeing-entity-bootstrap/entities/arh/recovery/current`
+- verified recovery commit `950f01dc5cdb56c3ea63ba540c4e72eda24973bb`;
+- `8/8 OK`;
+- exact binary blob `93f1208d60b058867a4fde4df61689785d216e17`;
+- exact SHA-256 `2f5f5066ad650ef5747c58c7c4ea6ec66893128f4c3a70e8184017562858434f`;
+- `initiation_status: initiation_verified`;
+- deploy/production changes в ходе verification: no.
 
-Наблюдаемая до изменения версия была доступна на immutable commit:
+SIS Stage A host-local staging report подтвердил на `uk.wbnetrus.ru`:
 
-`c6914d2257382901c9b579dd301ef382e636d4cc`
+- `host_staging_status: PASS`;
+- bundle SHA-256 `e1829f0f6cc3c1be54eb40106448f872149bbbde8de7d1073ed32ff3ae9b7490`;
+- bundle Git blob `c8fb5f91f18a172dd9937e1dd4b6cf1786ed08b6`;
+- Python `3.12.3`;
+- root checksums `64/64 OK`;
+- embedded core `47/47 OK`;
+- smoke exit `0`, live/ready PASS, public listener false;
+- persistent install/production mutation: no.
 
-Она соответствовала recovery v1.2 и поэтому после source-change требовала self-checkpoint.
+Stage A staging не превращается в recovery-registry deployment log; здесь он сохранён только как существенный контекст безопасного следующего шага.
 
-## 6. Программный контур АРХИВАРИУСА
+## 5. Recovery-deadlock lesson/state
 
-Сохранённый подтверждённый статус:
+Зафиксирован operational failure mode: replacement instance нельзя запускать между self-snapshot и external publication/readback, если для продолжения profile task требуется действие этого же replacement instance.
 
-`paused_by_operator`
+Корректная граница:
+`self-snapshot → ARH acceptance → external publication → readback → replacement start → external verification → continuation`.
 
-Runtime:
+Это operational state/lesson, не новая project norm.
 
-`not_verified`
+## 6. Current writer-state
 
-Сохранённое ранее evidence о конкретной Android Git-копии не трактуется как текущая runtime-проверка.
+`ARH authoritative current-writer for own self-state; preservation/recovery process owner active`.
 
-Программные smoke-test, исправления и эксплуатация не возобновляются без нового прямого поручения ОПЕРАТОРА.
+Текущий ARH checkpoint не меняет чужой self-state и не создаёт production authority.
 
-## 7. Legacy и неизвестное
-
-- legacy локальный слой прежней среды не объявляется current;
-- provenance неизвестных старых файлов не реконструируется;
-- ПОЧТАЛЬОН: `not_found_in_checked_sources`;
-- это не доказательство глобального отсутствия компонента в проекте.
-
-## 8. Parked research
-
-Копное право:
-
-`research / parked_with_trigger`
-
-Не активировать без прикладного trigger.
-
-## 9. Первый source-change preservation cycle
-
-Выполнено текущим ARH current-writer:
-
-1. проверены exact active sources;
-2. создан новый self-snapshot под v1.4;
-3. initiation приведён к roles v2.2 / recovery v1.4;
-4. сформирован единый минимальный recovery-registry;
-5. подготовлен source-change report;
-6. сформированы manifest и SHA-256;
-7. пакет предназначен для внешней publication/readback в существующий GitHub recovery locator.
-
-Статус других Сущностей не повышается автоматически.
-
-## 10. Registry-state
-
-Current registry включён в этот recovery-пакет:
-
-`ARH__recovery-registry__ARH.md`
-
-Ключевые выводы:
-
-- KOO: собственный v1.4 cycle уже выполняется по входному KOO registry;
-- KAN: `stale_check_required`, exact current recovery locator/version в проверенном bootstrap не найден;
-- RED/SIS/WEB/SHT/KOD: external current recovery каталог наблюдается, но нормативная свежесть после source-change не подтверждена их current-writer;
-- SHD/KON: recovery остаётся unknown, автоматический запуск не выполняется.
-
-## 11. Publication / readback / recoverability ARH
-
-Финальная версия этого пакета должна считаться принятой только после:
-
-- publication во внешний locator;
-- post-publication readback;
-- совпадения внешней immutable identity с опубликованной версией;
-- фиксации результата в registry/report.
-
-В итоговом опубликованном состоянии:
-
-- publication: `completed`;
-- readback: `verified_by_git_blob_identity`;
-- package integrity: `sha256sums.txt`;
-- recoverability: `external_package_verified; fresh_cold_start_not_run_in_this_cycle`.
-
-Пробный новый cold-start не выполняется механически только из-за наличия пакета; recovery v1.4 требует его по событийно или отдельно утверждённому основанию.
-
-## 12. Checkpoints для других current-writer
-
-Требуются, но **не выполняются АРХИВАРИУСОМ за адресатов**:
-
-1. KAN — приоритетный: подтвердить/создать актуальный self-snapshot и exact external recovery locator/version;
-2. RED — подтвердить нормативную свежесть и при необходимости обновить self-snapshot;
-3. SIS — то же;
-4. WEB — то же, post-init audit остаётся отдельным deferred вопросом;
-5. SHT — подтвердить self-state с учётом roles v2.2/recovery v1.4;
-6. KOD — обновить self/recovery references по новой норме, не менять accepted v0.6 code baseline.
-
-KOO новый checkpoint не запрашивается: входной registry уже фиксирует его собственный cycle как `updating_to_v1_4`.
-
-## 13. Writer-state после checkpoint
-
-writer_state:
-
-`ARH current-writer / preservation operations active / first v1.4 source-change cycle completed subject to external readback`
+## 7. Open / parked / unknown
 
 Open:
-
-- KAN checkpoint;
-- затем последовательная stale-проверка RED/SIS/WEB/SHT/KOD;
-- реальная пробная recoverability-проверка ARH только по отдельному practically justified trigger.
+- завершить именно этот ARH external publication/readback и вернуть completion report КООРДИНАТОРУ;
+- после checkpoint принимать только новый подтверждённый preservation/recovery trigger.
 
 Parked:
+- программный контур АРХИВАРИУСА: `paused_by_operator`;
+- runtime: `not_verified`;
+- копное право: `parked_with_trigger`;
+- массовые checkpoints RED/SIS/WEB/SHT/KOD/KAN не инициировать автоматически.
 
-- программный АРХИВАРИУС;
-- копное право;
-- SHD/KON recovery campaign без отдельного приоритета.
+Unknown:
+- practical fresh cold-start нового ARH экземпляра после этого checkpoint не выполнялся и не требуется данным решением;
+- SHD/KON recovery остаётся unknown без отдельного приоритета.
 
-## 14. Следующий безопасный шаг
+## 8. Безопасный следующий шаг
 
-> Адресно запросить у current-writer KAN preservation checkpoint по source-change, не выполняя snapshot за него.
+> Опубликовать этот ARH recovery package во внешний locator, выполнить immutable readback и вернуть КООРДИНАТОРУ completion report. После закрытия checkpoint не продолжать deployment или чужие checkpoints без нового решения.
 
 ---
-
-document_type: entity-self-snapshot  
-entity: ARH  
-recovery_standard: v1.4  
-status: current_snapshot  
-writer_state: authoritative_current_writer_for_ARH_self_state  
-preservation_process_owner: active  
-project_time: generated_without_trusted_project_time  
+document_type: entity-self-snapshot
+entity: ARH
+recovery_standard: v1.4
+status: current_snapshot
+writer_state: authoritative_current_writer_for_ARH_self_state
+checkpoint_scope: post-OSS-v06-recovery-repair
+project_time: generated_without_trusted_project_time

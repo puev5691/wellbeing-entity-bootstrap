@@ -1,8 +1,8 @@
-# ARH recovery manifest v1.4
+# ARH recovery manifest v1.4 — post-OSS v0.6 checkpoint
 
 ## Назначение
 
-Manifest текущего внешнего recovery-пакета АРХИВАРИУСА после первого source-change preservation cycle по roles v2.2 / recovery v1.4.
+Manifest внешнего recovery-пакета АРХИВАРИУСА после KOD exact-binary recovery repair, SIS recovery publication/readback и последующей fresh SIS verification.
 
 ## Locator
 
@@ -13,61 +13,56 @@ Manifest текущего внешнего recovery-пакета АРХИВАР�
     manifest: ARH__recovery-manifest__ARH.md
     checksums: sha256sums.txt
 
-`main` является mutable ref и не используется как единственная version identity.
+`main` mutable; immutable publication commit фиксируется completion report после публикации.
 
-## Состав current recovery
+## Состав
 
-Обязательные файлы:
-
-1. `ARH__initiation-current__ARH.md` — роль, границы, active sources, cold-start и внешний locator.
-2. `ARH__snapshot__ARH.md` — authoritative ARH self-state текущего current-writer.
-3. `ARH__recovery-manifest__ARH.md` — этот manifest.
-4. `ARH__recovery-registry__ARH.md` — единый минимальный recovery-registry, необходимый АРХИВАРИУСУ как process owner.
-5. `ARH__source-change-cycle-report__KOO.md` — проверяемая фиксация первого эксплуатационного source-change cycle.
-6. `sha256sums.txt` — SHA-256 пяти содержательных файлов выше; собственную сумму файл не включает.
+1. `ARH__initiation-current__ARH.md`
+2. `ARH__snapshot__ARH.md`
+3. `ARH__recovery-manifest__ARH.md`
+4. `ARH__recovery-registry__ARH.md`
+5. `ARH__source-change-cycle-report__KOO.md` — сохранённый provenance предыдущего source-change cycle, не текущий checkpoint report.
+6. `sha256sums.txt` — SHA-256 пяти содержательных файлов.
 
 ## Integrity / readback
 
-До использования нового пакета как externally verified требуется:
+Recovery package считается externally published/verified только после:
+1. публикации всех шести файлов;
+2. immutable commit fixation;
+3. fresh external readback;
+4. `sha256sum -c sha256sums.txt` = `5/5 OK`;
+5. фиксации Git blob identities recovery-файлов.
 
-1. проверить наличие всех шести файлов;
-2. проверить состав по этому manifest;
-3. проверить SHA-256 пяти содержательных файлов по `sha256sums.txt` либо подтвердить их внешние immutable Git blob identities;
-4. зафиксировать результат readback.
+## Active sources
 
-## Active Project Sources
-
-Базовые управляющие Project Sources не копируются в recovery-пакет. Точные обязательные версии и SHA-256 перечислены в initiation/snapshot.
+Точные active source identities находятся в initiation/snapshot. Project Sources в пакет не копируются.
 
 ## Provenance
 
-Предыдущее поколение recovery:
+Предыдущий значимый ARH registry commit до этого checkpoint:
+`fd7366983561a25c6be74d85f6280df915e2f244`.
 
-`entities/arh/recovery/current` на Git commit `c6914d2257382901c9b579dd301ef382e636d4cc`
+KOD repair:
+`48a8aa581147cfe1c0560e46a2edee291ed371e8`.
 
-Предыдущий пакет относился к recovery v1.2 и сохраняется в Git history как provenance.
+SIS recovery publication:
+`950f01dc5cdb56c3ea63ba540c4e72eda24973bb`.
 
 ## Границы
 
-- registry не является authority на чужой current-state;
-- report не является approval чужих recovery;
-- наличие publication не равно recoverability;
-- свежий cold-start нового ARH экземпляра в этом cycle не выполняется и не заявляется.
+- чужой self-state не переписывается;
+- Stage A staging не является production/deployment authority;
+- fresh ARH cold-start этим checkpoint не требуется;
+- mass checkpoint campaign запрещена;
+- approved Project Sources не меняются.
 
 ## Следующий безопасный шаг
 
-`KAN source-change preservation checkpoint`
+Завершить external publication/readback текущего ARH package и вернуть completion report КООРДИНАТОРУ.
 
 ---
-
-package_id: ARH-recovery-current-v1.4-source-change-01  
-source_location: authoritative current-writer ARH current chat  
-generated_files: `ARH__initiation-current__ARH.md`; `ARH__snapshot__ARH.md`; `ARH__recovery-manifest__ARH.md`; `ARH__recovery-registry__ARH.md`; `ARH__source-change-cycle-report__KOO.md`; `sha256sums.txt`  
-recipients: ARH recovery; KOO report consumer  
-copied_to: external locator above after publication  
-checksum_file: `sha256sums.txt`  
-operator_action: none for package creation; next coordination action is KAN checkpoint  
-unresolved_questions: exact current recovery locator/version KAN; fresh cold-start ARH not run  
-status: current_manifest  
-recovery_standard: v1.4  
-project_time: generated_without_trusted_project_time  
+package_id: ARH-recovery-current-v1.4-post-OSS-v06
+source_location: authoritative current-writer ARH current chat
+status: current_manifest
+recovery_standard: v1.4
+project_time: generated_without_trusted_project_time
