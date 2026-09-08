@@ -37,80 +37,155 @@ Post-OSS-v0.6 checkpoint ARH завершён и принят КООРДИНАТ
 - ARH preservation state: `current_and_externally_verified`;
 - fresh ARH initiation test этим checkpoint не требовался.
 
-КООРДИНАТОР остаётся authoritative current-writer только собственного KOO self-state. АРХИВАРИУС должен принимать, проверять и публиковать этот self-state, но не переписывать его содержательно.
+КООРДИНАТОР остаётся authoritative current-writer только собственного KOO self-state. АРХИВАРИУС должен принимать, проверять и публиковать KOO-authored state, но не реконструировать его.
 
-## 4. OSS v0.6 recovery repair и Stage A
+## 4. Завершённый OSS v0.6 recovery repair
 
-Canonical repaired v0.6 executable:
+Canonical exact v0.6 executable recovery repaired:
 
+- artifact: `KOD_entity-env-sandbox-v06_KOO.tar.gz`;
+- size: `109510`;
 - SHA-256: `2f5f5066ad650ef5747c58c7c4ea6ec66893128f4c3a70e8184017562858434f`;
 - Git blob: `93f1208d60b058867a4fde4df61689785d216e17`;
-- repair commit: `48a8aa581147cfe1c0560e46a2edee291ed371e8`.
+- canonical repair commit: `48a8aa581147cfe1c0560e46a2edee291ed371e8`.
 
-SIS recovery:
+SIS current recovery publication:
 
-- immutable publication: `950f01dc5cdb56c3ea63ba540c4e72eda24973bb`;
-- fresh verification: `initiation_verified`.
+`950f01dc5cdb56c3ea63ba540c4e72eda24973bb`
 
-Deployable Stage A bundle:
+SIS fresh external recovery verification:
 
+`initiation_verified`
+
+Recovery-blocker закрыт до перехода к deployment work.
+
+## 5. Deployable Stage A bundle
+
+КОДЕР подготовил deployable bundle поверх accepted v0.6 без изменения core semantics.
+
+Accepted Stage A bundle:
+
+`KOD_OSS-v06-stageA-deploy-bundle-v01_KOO.tar.gz`
+
+Identity:
+
+- size: `245271`;
 - SHA-256: `e1829f0f6cc3c1be54eb40106448f872149bbbde8de7d1073ed32ff3ae9b7490`;
-- Git blob: `c8fb5f91f18a172dd9937e1dd4b6cf1786ed08b6`;
-- root checksums: `64/64 OK`;
-- embedded core: exact accepted v0.6.
+- Git-compatible blob: `c8fb5f91f18a172dd9937e1dd4b6cf1786ed08b6`;
+- root checksum map: `64/64 OK`;
+- embedded core checksum map: `47/47 OK`.
 
-Host-local staging на `uk.wbnetrus.ru`: `PASS`.
+KOO independently accepted bundle for target-host staging.
 
-## 5. Persistent Stage A deployment
+## 6. Target host и staging
 
-ОПЕРАТОР утвердил bootstrap principal и первую Сущность:
+Target:
 
-- principal: `operator_admin`;
-- first Entity: `ent:KOO`.
+`uk.wbnetrus.ru` / `185.39.19.240`
 
-SIS выполнил persistent install/bootstrap/systemd activation.
+Stage A listener:
 
-Подтверждённое runtime состояние:
+`127.0.0.1:18081`
 
-- immutable release: `/opt/wb-oss-sandbox/releases/sha256-e1829f0f6cc3c1be54eb40106448f872149bbbde8de7d1073ed32ff3ae9b7490`;
-- service: `wb-oss-sandbox.service`;
-- listener: `127.0.0.1:18081`;
+Host-local staging verification SIS:
+
+`PASS`
+
+Confirmed runtime:
+
+Python `3.12.3`.
+
+Smoke:
+
+- exit `0`;
 - `/health/live`: PASS;
 - `/health/ready`: PASS;
-- service enabled/active;
-- public listener: no;
+- bootstrap smoke: PASS;
+- restart persistence: PASS;
+- anonymous protected endpoint denied;
+- backup/restore: PASS;
+- SQLite integrity: `ok`;
+- public listener: false.
+
+## 7. Bootstrap authority decision ОПЕРАТОРА
+
+ОПЕРАТОР явно утвердил:
+
+- bootstrap principal: `operator_admin`;
+- first Entity: `ent:KOO`;
+- no automatic writer grant.
+
+После этого KOO выдал SIS отдельную persistent installation/bootstrap/activation task.
+
+## 8. Persistent Stage A result
+
+SIS выполнил persistent installation/bootstrap/systemd activation.
+
+Подтверждённые mechanics:
+
+- release: `/opt/wb-oss-sandbox/releases/sha256-e1829f0f6cc3c1be54eb40106448f872149bbbde8de7d1073ed32ff3ae9b7490`;
+- persistent state: `/var/lib/wb-oss-sandbox`;
+- config/evidence: `/etc/wb-oss-sandbox`;
+- backup root: `/var/backups/wb-oss-sandbox`;
+- service: `wb-oss-sandbox.service`;
+- listener: `127.0.0.1:18081`;
+- service active/enabled;
+- health live/ready PASS;
+- `operator_admin` created;
+- `ent:KOO` created;
 - writer grants: `0`;
-- production: no.
+- no nginx/Xray/TERA2/UFW/DNS/public ingress changes.
 
-Persistent mechanics сами по себе не означают operational acceptance.
+Persistent install mechanics:
 
-## 6. Critical authority defect
+`PASS`
 
-После bootstrap КООРДИНАТОР независимо проверил authority semantics и обнаружил:
+Но operational acceptance не выдан.
 
-- verified evidence scope: `entity:ent:KOO`;
-- stored bootstrap authority scope: `entity:*`;
-- affected authority ref: `auth:22fbf632-7101-4b33-8af9-ec2f9afcbfc0`;
-- defect class: `evidence_scope_widening`.
+## 9. Critical authority-scope defect
 
-В isolated reproduction exact accepted core v0.6 позволил holder `ent:KOO` зарегистрировать другую Entity, хотя evidence authorizes только `entity:ent:KOO`.
+При independent KOO readback обнаружено semantic widening:
 
-Следствие:
+Verified evidence для first Entity содержит scope:
+
+`entity:ent:KOO`
+
+Но stored bootstrap authority имеет scope:
+
+`entity:*`
+
+Affected authority:
+
+`auth:22fbf632-7101-4b33-8af9-ec2f9afcbfc0`
+
+КООРДИНАТОР отдельно воспроизвёл на exact accepted v0.6 core, что эта broad authority позволяет зарегистрировать другую Entity при evidence, разрешающем только `ent:KOO`.
+
+Defect:
+
+`evidence_scope_widening`
+
+Severity:
+
+`critical`
+
+## 10. Operational consequence
 
 `stageA_operational_acceptance: BLOCKED`
 
-До исправления:
+До repair запрещено:
 
-- не регистрировать дополнительные Entities;
-- не создавать operational instance/credential KOO;
-- не выдавать writer grants;
-- не использовать broad first-Entity authority для новых project actions;
-- не открывать public ingress;
-- production запрещён.
+- регистрировать дополнительные Entities;
+- создавать KOO operational instance/credential;
+- выдавать writer grants;
+- использовать defective broad authority для project actions;
+- открывать public ingress;
+- объявлять production.
 
-## 7. Corrective KOD task
+Текущая БД не содержит additional Entities, KOO instances или writer grants по последней подтверждённой проверке.
 
-КООРДИНАТОР выдал КОДЕРУ corrective task:
+## 11. Corrective task KOD
+
+KOO выдал КОДЕРУ:
 
 `KOO__OSS-v06-bootstrap-authority-scope-defect__KOD.md`
 
@@ -118,41 +193,57 @@ Publication commit:
 
 `73bd9e699def33b7d1d0f61b9fa22807223b104d`
 
-Требуемый результат: corrected core/revision, regression/adversarial tests и deterministic repair contract без самовольной host mutation.
+Требуется:
 
-## 8. Current writer-state
+- corrected implementation;
+- regression + adversarial tests;
+- deterministic repair contract;
+- никакой real-host mutation со стороны KOD.
 
-`KOO authoritative current-writer for own self-state; coordination active; Stage A operational acceptance blocked`.
+## 12. Interface incident / durable state lesson
 
-## 9. Open / deferred / unknown
+В ходе deployment один ответ SIS исчез из conversational UI после generation failure, хотя significant report и Git commit существовали.
 
-Open:
+Проверяемый вывод для KOO continuity:
 
-- получить corrected KOD result;
-- независимо проверить correction;
-- только после PASS выдать отдельную SIS host-repair task;
-- после repair повторно решить Stage A operational acceptance.
+- chat output не является durable project state;
+- значимые результаты должны существовать file-first / commit-first;
+- исчезновение сообщения не означает автоматически потерю artifact;
+- recovery должен опираться на exact external artifacts, а не на наличие bubble в интерфейсе.
 
-Deferred:
+Это operational lesson, а не новая Project Source norm.
+
+## 13. Writer-state
+
+`KOO authoritative current-writer / coordination active / Stage A operational acceptance blocked on authority defect`.
+
+## 14. Open
+
+1. KOD corrected result по authority scope.
+2. Independent KOO review corrected revision.
+3. Separate SIS state-repair task only after KOO PASS.
+4. Post-repair host readback.
+5. Новое решение Stage A operational acceptance.
+
+## 15. Deferred / parked
 
 - additional Entities;
-- KOO operational instance/credential onboarding;
+- KOO operational instance/credential;
 - writer grant/election;
 - public ingress/TLS/DNS;
 - production;
 - ChatGPT bridge;
-- continuity/memory/experience implementation.
+- continuity/memory/experience implementation;
+- unrelated recovery campaigns.
 
-Unknown не повышается реконструкцией.
+## 16. Следующий безопасный шаг
 
-## 10. Следующий безопасный шаг
-
-> Получить corrected KOD result и выполнить независимый KOO review. Не выдавать SIS host-repair task раньше этого PASS.
+> Получить corrected KOD result и независимо проверить его. Не выдавать SIS host-repair task до отдельного KOO PASS.
 
 ---
 entity: KOO
 artifact_role: recovery_snapshot
-status: current_snapshot_candidate_for_ARH_publication
+status: current_writer_candidate_for_ARH_acceptance
 recovery_schema: v1.4
 stageA_operational_acceptance: BLOCKED
 production_allowed: no
