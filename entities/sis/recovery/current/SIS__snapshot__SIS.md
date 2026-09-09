@@ -1,206 +1,81 @@
-# СИСАДМИН: self-snapshot перед заменой текущего экземпляра
+# СИСАДМИН — self-snapshot после первого operational-instance pilot ОСС
 
-## Смысл
+## Назначение
 
-Этот self-snapshot создан текущим экземпляром СИСАДМИНА как authoritative current-writer только для собственного SIS current-state.
+Это authoritative self-snapshot текущего SIS state после terminal PASS controlled repair ОСС v0.7 и первого operational instance `ent:KOO`. Автор snapshot: текущий authoritative current-writer SIS.
 
-Trigger: прямое решение ОПЕРАТОРА остановить затянувшийся текущий экземпляр, зафиксировать состояние и инициировать новый чат.
+## Текущее подтверждённое состояние
 
-Snapshot не утверждает состояние других Сущностей и не изменяет recovery-state проекта от имени АРХИВАРИУСА.
+- SIS initiation: `initiation_verified` до текущего checkpoint; initiation update включён в этот пакет, потому что прежний initiation materially stale относительно operational pilot.
+- Controlled repair ОСС v0.7: terminal `PASS`.
+- Current release: `/opt/wb-oss-sandbox/releases/sha256-29d07687ad65bc2b366bd98bdd4bcd3f2a4670c87c05330819a31a2981d79c3a`.
+- `wb-oss-sandbox.service`: `active`, `enabled`.
+- Listener: только `127.0.0.1:18081`.
+- Daemon count: `1`.
+- `/health/ready`: `live=true`, `ready=true`, `schema_version=2`, `schema_ok=true`, `file_field_ok=true`, `disk_ok=true`.
+- Production/public ingress в рамках этих работ не включались.
 
-## Active Project Sources
+## Operational instance KOO
 
-Текущий active reference set подтверждён через действующий ARH recovery/current-state:
+- Entity: `ent:KOO`.
+- Instance: `inst:9a07e3fb-c997-4a34-9cad-f2590f624b06`.
+- Lifecycle: `active`.
+- Entity count после pilot: `1`.
+- Instance count после pilot: `1`.
+- Writer grants: `0`.
+- Additional entities: `0`.
 
-| Источник | SHA-256 |
-|---|---|
-| `project-instructions-core-v2_1-approved.md` | `8a86945c28e361b5adf7ecc96326a1591a193118ce7be258a9c0a21ddd2ace26` |
-| `entity-roles-short-v2_2-approved.md` | `c8103b1c2dc6c3f4b489f118e9bcf4053add6bea384427f23dad5dddced2ae3d` |
-| `file-work-canon-universal-v2_3-approved.md` | `5ec75e480c0b78a72bb2faa702a21064b32bd3b919b225b1ae25a30dd0a700e5` |
-| `entity-state-preservation-and-recovery-canon-v1_4-approved.md` | `984871a22aab1910fc4ab3217c16488eac1e472734bdfd1948fd57c213566fda` |
-| `source-loading-policy-v2-approved.md` | `2661a3a266547a5e0f6b70c3dab8a02add2bb788b4a90b1136b7e9445b2d6061` |
+Exact authority refs pilot:
 
-Новый экземпляр обязан самостоятельно прочитать доступные active Project Sources и не считать таблицу заменой их содержимого.
+- `instance.register`: `auth:b58c2050-edf8-4362-b82d-5de105410e4e`.
+- `initiation.recovery_basis`: `auth:d3121cba-348a-4d5a-9ecf-742ae9aaae3a`.
+- `instance.activate`: `auth:60f39a1b-a9a1-4635-9867-bac9f96e6460`.
 
-## Роль и граница
+Repaired bootstrap authority, сохранённая из terminal repair state:
 
-СИСАДМИН: серверы, сеть, шлюзы, туннели, firewall, deploy, health-check, systemd, мониторинг и проверяемые отчёты исполнения.
+- `auth:22fbf632-7101-4b33-8af9-ec2f9afcbfc0`.
+- scope после repair: `entity:ent:KOO`.
+- audit transition repair: `tr:a816aa9d-ede1-4c99-85f4-967f85fdd087`.
 
-СИСАДМИН не меняет approved Project Sources, чужой self-state, canonical recovery registry или production policy по одной технической возможности.
+## Credential boundary
 
-## Подтверждённый host
+- Credential ID: `cred:3965c40b-2aa6-4d44-867f-5ad5491fb294`.
+- Locator: `/home/pev5691/.config/wb-oss/koo-pilot.json`.
+- Owner: `pev5691` (UID/GID `1000:1000`, подтверждено host readback).
+- Mode: `0600`.
+- Current file size: `137` bytes.
+- Raw token, secret material и содержимое credential file в recovery package не включены.
+- Recovery boundary: наличие locator не заменяет secret recovery; при утрате credential требуется отдельная разрешённая процедура, а не реконструкция token из snapshot.
 
-Host для sandbox ОСС:
+## Readback / audit evidence
 
-- DNS: `uk.wbnetrus.ru`;
-- IPv4: `185.39.19.240`;
-- hostname: `ruvds-xnqc6`;
-- SSH port: `2222`;
-- SSH user: `pev5691`;
-- SSH ED25519 fingerprint: `SHA256:+QiM/uh5SBrkm4KpKFR4QCnq5Tcak256OMmg8CdHf2Y`;
-- OS: Ubuntu `24.04.4 LTS`;
-- kernel: `6.17.0-1022-azure`;
-- CPU: 1 vCPU;
-- RAM: 1.8 GiB total, около 855 MiB available во время preflight;
-- swap: 1 GiB, unused при замере;
-- root filesystem: ext4 40 GiB, около 26 GiB free при замере.
+После pilot SIS независимо подтвердил operational HTTP read-path с credential без вывода token:
 
-Ресурсы ОПЕРАТОР пока решил не увеличивать: сначала запуск и реальные измерения, затем решение по CPU/RAM.
+- `GET /api/v1/state?entity_id=ent:KOO` → HTTP `200`;
+- state содержит `ent:KOO` и active instance `inst:9a07e3fb-c997-4a34-9cad-f2590f624b06`;
+- writer grants → `[]`;
+- `GET /api/v1/audit?limit=20` → HTTP `200`;
+- audit содержит события `instance.register` и `instance.activate`.
 
-## Существующие сервисы
+КООРДИНАТОР затем принял SIS receipt и независимо подтвердил runtime/release/listener/credential-file boundary. `KOO_instance_operational_acceptance: ACCEPTED`; внутреннее использование Stage A разрешено только в принятой границе.
 
-Подтверждено свежим host-local preflight:
+## Backup / recoverability
 
-- nginx: `80/tcp`, active;
-- Xray: `443/tcp`, `10085/tcp`, active;
-- SSH: `2222/tcp`;
-- TERA2: `8780/tcp`, `8781/tcp`, `30000/tcp`;
-- TERA2 unit: `/etc/systemd/system/wbn-tera2-node.service`;
-- TERA2 `ExecStart=/usr/bin/node run-node.js NOPSWD NOAUTOUPDATE`;
-- TERA2 использует системный `/usr/bin/node` v18.19.1;
-- UFW active/enabled; default INPUT DROP, OUTPUT ACCEPT, FORWARD DROP;
-- nginx site `wellbeing` обслуживает static `uk.wbnetrus.ru` на port 80;
-- port `18081` был свободен.
+До controlled repair v0.7 был создан и проверен safety backup:
+`/var/backups/wb-oss-sandbox/pre-repair-29d07687ad65-29882b76-6f67-4770-8c41-70378e81ae47`.
+Его manifest сообщал DB SHA-256 `c9792cf8a16b8b8bacc11b329917db10a8f89104bfbdfa47270793a00670d744`, schema version 2, SQLite integrity `ok`.
 
-Рекомендуемая будущая Stage A схема остаётся:
-`/var/lib/wb-oss-sandbox` + `127.0.0.1:18081` + system-level service + SSH tunnel, без изменения nginx/Xray/TERA2/UFW/DNS на первом этапе.
+Этот backup предшествует operational-instance pilot и **не является текущим terminal operational snapshot**. Новый backup runtime/state ради preservation checkpoint не создавался, поскольку checkpoint не даёт authority менять runtime только ради сохранения.
 
-## Remote Desktop Commander
+## Open / parked / unknown
 
-Для удалённого terminal access ОПЕРАТОР установил user-local:
+- Open: безопасный client helper, читающий credential-file внутри host без переноса secret в argv/чат.
+- Parked: первый реальный межсущностный workflow на существующей работе `КООПЕРАЦИЯ` до завершения helper/checkpoint boundary.
+- Unknown: внешний immutable locator именно этого нового post-operational recovery package до публикации АРХИВАРИУСОМ.
+- Unknown: completion receipt внешней publication/readback этого пакета до действий АРХИВАРИУСА.
 
-- nvm `v0.40.3`;
-- Node `v22.23.2`;
-- npm `10.9.8`;
-- Remote Desktop Commander `0.2.48`.
+## Writer-state и безопасный следующий шаг
 
-Системный Node 18 для TERA2 не заменялся.
+`current_writer_state: SIS authoritative current-writer active`.
 
-Device:
-`dd09a197-f716-4dd6-80bb-7f8e5d8260ff`, name `ruvds-xnqc6`.
-
-На момент этого snapshot device status: `offline`; auth token наблюдался как valid.
-
-Для повторного запуска агента на host:
-
-    export NVM_DIR="$HOME/.nvm"
-    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-    nvm use 22
-    npx @wonderwhy-er/desktop-commander@latest remote
-
-Секреты в recovery-пакет не включены.
-
-## Текущая профильная задача
-
-Активная задача КООРДИНАТОРА:
-`KOO__OSS-v06-exact-binary-transport__SIS.md`.
-
-Назначение: выполнить только техническую доставку exact accepted bytes ОСС v0.6 в отдельный Git repair ref, не меняя `main`, recovery registry, manifest/checksum map и не выполняя host deployment.
-
-Repository:
-`puev5691/wellbeing-entity-bootstrap`
-
-Canonical target path на repair ref:
-`entities/kod/recovery/current/artifacts/KOD_entity-env-sandbox-v06_KOO.tar.gz`
-
-Accepted exact binary:
-
-- canonical name: `KOD_entity-env-sandbox-v06_KOO.tar.gz`;
-- size: `109510` bytes;
-- SHA-256: `2f5f5066ad650ef5747c58c7c4ea6ec66893128f4c3a70e8184017562858434f`;
-- expected Git blob SHA-1: `93f1208d60b058867a4fde4df61689785d216e17`.
-
-Независимая повторная проверка текущим SIS перед snapshot:
-
-- size: PASS;
-- SHA-256: PASS;
-- `git hash-object`: PASS;
-- tar/gzip readability: PASS;
-- archive path safety: PASS;
-- symlink/hardlink: none;
-- internal `SHA256SUMS.txt`: `47 / 47 OK`.
-
-Exact binary включён в этот recovery package под canonical filename.
-
-## Git transport state
-
-GitHub connector подтвердил права repository: `push=true`, `admin=true`.
-
-Создан отдельный repair branch:
-
-`repair/oss-v06-exact-binary-20260908`
-
-На момент snapshot branch существует и указывает на commit:
-
-`ac4715118bf0ba5ed964c359117820b570d19eb1`
-
-Это тот же base commit, от которого ветка была создана.
-
-**Exact binary blob в repair branch ещё НЕ записан.**
-**Repair commit ещё НЕ создан.**
-**Post-push readback ещё НЕ выполнен.**
-**main не изменён.**
-
-Именно здесь остановилось исполнение предыдущего экземпляра.
-
-## Почему задача выглядела зависшей
-
-Нет подтверждения исчерпания токенов или поломки чата. Инструменты продолжали отвечать.
-
-Практический дефект был в исполнении: после проверки exact binary и создания repair branch последовательность `create binary blob → tree → commit → branch update → readback` не была доведена до конца. На фоне длинного контекста это стало достаточной причиной заменить экземпляр, а не продолжать накапливать неопределённость.
-
-## Закрыто / подтверждено
-
-- real-host preflight завершён;
-- дефект повреждённого recovery artifact обнаружен и передан КООРДИНАТОРУ;
-- КООРДИНАТОР передал exact accepted binary;
-- exact bytes перепроверены;
-- GitHub write capability подтверждена;
-- repair branch создан;
-- host deployment не выполнялся.
-
-## Open / pending
-
-1. Завершить exact-binary transport на существующий repair branch.
-2. Выполнить post-push readback и повторно доказать SHA-256/Git blob.
-3. Подготовить transport-result для КООРДИНАТОРА/АРХИВАРИУСА.
-4. Не merge-ить repair branch.
-5. После независимого recovery repair АРХИВАРИУСОМ может быть снят blocker real-host deploy.
-6. Только после этого возвращаться к sandbox deployment и измерению ресурсов.
-
-## Parked / not required now
-
-- увеличение CPU/RAM host: отложено до фактических измерений;
-- внешний HTTPS/reverse proxy: не нужен для Stage A;
-- production deployment: запрещён;
-- rebuild by KOD: не требуется по текущему handoff.
-
-## Writer-state
-
-`SIS_current_writer: this_snapshot_author`
-
-`ARH_preservation_process_owner: yes`
-
-`SIS_external_recovery_publication_claimed: no`
-
-`canonical_recovery_changed_by_this_snapshot: no`
-
-## Один безопасный следующий шаг
-
-Новый SIS после проверки этого package должен:
-
-1. подтвердить, что repair branch всё ещё указывает на `ac4715118bf0ba5ed964c359117820b570d19eb1` либо зафиксировать фактическое изменение;
-2. заново проверить exact binary из `artifacts/KOD_entity-env-sandbox-v06_KOO.tar.gz`;
-3. через авторизованный GitHub binary-blob transport создать blob и потребовать ровно `93f1208d60b058867a4fde4df61689785d216e17`;
-4. только при совпадении создать tree/commit на repair branch;
-5. выполнить immutable post-push readback;
-6. вернуть transport-result КООРДИНАТОРУ/АРХИВАРИУСУ.
-
-Не выполнять deploy и не менять `main`.
-
----
-document_type: SIS-self-snapshot
-snapshot_trigger: operator_requested_instance_replacement
-snapshot_authority: SIS_current_writer_only
-production_allowed: no
-project_time: generated_without_trusted_project_time
+Один безопасный следующий шаг: передать этот self-preservation package АРХИВАРИУСУ для composition/provenance/integrity check, external publication и immutable readback. Новую runtime-задачу до этого checkpoint не запускать.

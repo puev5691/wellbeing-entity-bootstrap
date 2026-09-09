@@ -1,73 +1,33 @@
-# SIS recovery manifest — instance replacement
+# SIS post-operational recovery manifest
+
+## Назначение
+
+Manifest самостоятельного recovery package authoritative current-writer SIS после terminal operational-instance pilot ОСС.
 
 ## Состав
 
-Core recovery files:
+1. `SIS__snapshot__SIS.md` — authoritative current SIS self-snapshot.
+2. `SIS__initiation-current__SIS.md` — initiation update с фиксацией stale прежнего внешнего recovery относительно нового terminal state.
+3. `SIS__preservation-handoff__ARH.md` — адресный handoff АРХИВАРИУСУ.
+4. `SIS__recovery-manifest__SIS.md` — этот manifest.
+5. `sha256sums.txt` — SHA-256 первых четырёх файлов, включая manifest.
 
-- `SIS__initiation-current__SIS.md`
-- `SIS__snapshot__SIS.md`
-- `SIS__recovery-manifest__SIS.md`
-- `SIS__preservation-handoff__ARH.md`
-- `sha256sums.txt`
-
-Artifacts required to continue current task:
-
-- `artifacts/KOO__OSS-v06-exact-binary-transport__SIS.md`
-- `artifacts/KOD_entity-env-sandbox-v06_KOO.tar.gz`
-- `artifacts/SIS__OSS-real-host-preflight-report-verified__KOO.md`
-- `artifacts/SIS__OSS-v06-recovery-artifact-integrity-blocker__KOO.md`
+Дополнительные evidence/artifacts не включены: для recovery достаточно exact identities и проверяемых runtime/readback facts, а credential secret должен оставаться вне пакета.
 
 ## Provenance
 
-`KOO__OSS-v06-exact-binary-transport__SIS.md` and exact binary were supplied by ОПЕРАТОР in the current SIS conversation as the KOO handoff package.
-
-Preflight and integrity-blocker reports were created by this SIS instance from verified tool results earlier in the same work cycle.
-
-## Exact binary identity
-
-- size: `109510` bytes
-- SHA-256: `2f5f5066ad650ef5747c58c7c4ea6ec66893128f4c3a70e8184017562858434f`
-- Git blob: `93f1208d60b058867a4fde4df61689785d216e17`
-- internal checksum verification at preservation: `47/47 OK`
-
-## Current Git task state
-
-Repository:
-`puev5691/wellbeing-entity-bootstrap`
-
-Repair ref:
-`refs/heads/repair/oss-v06-exact-binary-20260908`
-
-Observed tip at preservation:
-`ac4715118bf0ba5ed964c359117820b570d19eb1`
-
-Binary transport is incomplete. Branch creation alone is not task completion.
+Trigger: `ARH__SIS-post-operational-pilot-self-checkpoint__SIS.md`.
+Current-writer: SIS.
+KOO acceptance provenance: `KOO__OSS-first-operational-instance-acceptance__SIS.md`.
 
 ## External recovery state
 
-Existing external SIS recovery locator:
+Предыдущий externally verified SIS recovery: repo `puev5691/wellbeing-entity-bootstrap`, commit `950f01dc5cdb56c3ea63ba540c4e72eda24973bb`, path `entities/sis/recovery/current`.
 
-    store: github
-    repository: puev5691/wellbeing-entity-bootstrap
-    path: entities/sis/recovery/current
-    ref: main
+Он остаётся последним externally verified recovery до завершения публикации этого пакета, но является stale относительно post-operational current-state.
 
-Observed existing package is an older SIS recovery v1.2 and must not silently overwrite this snapshot's newer self-state.
+Новый immutable external locator: `unknown / pending ARH publication and readback`.
 
-Under active preservation governance, this current-writer package is handed to АРХИВАРИУС for publication/readback/recovery-registry processing.
+## Integrity rule
 
-`external_publication_current_package: not_claimed`
-
-`readback_current_package: not_claimed`
-
-## Recoverability
-
-The package itself is self-contained for the current exact-binary transport because it includes the exact binary and the task handoff.
-
-A new SIS may load it and continue after checksum verification, but must mark external continuity as unverified until ARH completes publication/readback.
-
----
-document_type: SIS-recovery-manifest
-package_status: self_preservation_ready_for_ARH
-production_allowed: no
-project_time: generated_without_trusted_project_time
+`sha256sums.txt` должен проверить все четыре Markdown-файла командой `sha256sum -c sha256sums.txt` из корня распакованного пакета. Архив имеет отдельный SHA-256, сообщаемый при передаче.
