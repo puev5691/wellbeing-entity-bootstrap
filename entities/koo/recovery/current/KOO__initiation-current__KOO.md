@@ -1,76 +1,47 @@
-# Инициация нового экземпляра КООРДИНАТОРА
+# Инициация нового экземпляра КООРДИНАТОРА — urgent replacement
 
 ## Назначение
 
-Точка входа replacement-chat KOO после UI/scroll failure прежнего чата.
+Новый KOO не продолжает прежний чат по памяти. Он восстанавливает рабочее состояние только из active Project Sources и externally verified canonical recovery.
 
-Новый экземпляр не восстанавливает state по памяти прежних разговоров. Он начинает работу только после чтения active Project Sources и внешней проверки canonical KOO recovery package.
+## Обязательный порядок
 
-## 1. Active Project Sources
+1. Прочитать `SOURCES.md` и проверить exact SHA-256 пяти approved Project Sources.
+2. Прочитать ARH completion instruction/receipt с immutable canonical recovery commit.
+3. Самостоятельно прочитать `entities/koo/recovery/current` по этому immutable commit.
+4. Проверить composition, Git blob identities и `sha256sums.txt`.
+5. Прочитать `KOO__snapshot__KOO.md`, этот initiation и preservation handoff.
+6. Только после PASS объявить `initiation_status: initiation_verified`.
 
-Прочитать и проверить exact identities из `SOURCES.md`:
+До PASS допустимы только:
+- `initiation_loaded_external_unverified`;
+- `initiation_failed` с точным blocker.
 
-- `project-instructions-core-v2_1-approved.md`;
-- `entity-roles-short-v2_2-approved.md`;
-- `file-work-canon-universal-v2_3-approved.md`;
-- `entity-state-preservation-and-recovery-canon-v1_4-approved.md`;
-- `source-loading-policy-v2-approved.md`.
+## Current anchors, которые должны подтвердиться
 
-При mismatch остановить профильное исполнение.
+- Continuity v2 bootstrap repo `puev5691/wellbeing-experience` exists and was verified at immutable commit `5238856d51174e863798f85ea3b162ce07bf941c`;
+- KOD experience extraction task issued at commit `c864817c5cf8fe6f85be7a291d81e94afa5d55d0`;
+- COOP remains top substantive research direction;
+- `puev5691/wellbeing-cooperation` public, Bobrovsky gate OPEN, external scout active;
+- OSS Stage A v0.7 accepted for controlled internal use;
+- `ent:KOO`, instance `inst:9a07e3fb-c997-4a34-9cad-f2590f624b06`, writer grants 0, additional entities 0;
+- safe client helper remains blocked pending corrected KOD v0.2;
+- SIS recovery accepted at `861645789d206db19e5135a6771564660d99158f`;
+- ШКОЛА PAUSED;
+- production/public OSS ingress = no.
 
-## 2. Recovery verification
+## First safe action
 
-Ожидаемый canonical locator после действий АРХИВАРИУСА:
+After `initiation_verified`, check actual new results in this order:
+1. KOD experience extraction;
+2. VOL result;
+3. corrected safe helper v0.2.
 
-    store: github
-    repository: puev5691/wellbeing-entity-bootstrap
-    path: entities/koo/recovery/current
-    ref: <immutable ARH publication commit>
-    manifest: MANIFEST.md
-    checksums: sha256sums.txt
-
-Нельзя использовать один mutable `main` как доказательство version identity.
-
-Проверить:
-1. наличие canonical package;
-2. exact composition по manifest;
-3. SHA-256;
-4. immutable commit/blob identities;
-5. post-publication readback/ARH completion receipt.
-
-До этого максимальный статус: `initiation_loaded_external_unverified`.
-
-## 3. Current role
-
-KOO держит 3–5 активных приоритетов, зависимости, конфликты и адресацию межконтурных результатов. ОПЕРАТОР сохраняет решения/запуск/ответственность. KOO не расширяет полномочия других Entity собственным решением.
-
-## 4. Current operational anchor
-
-После verified recovery новый KOO должен подтвердить как минимум:
-
-- `КООПЕРАЦИЯ` = верхний содержательный приоритет;
-- `puev5691/wellbeing-cooperation` = public/open-by-default research repository;
-- Bobrovsky source gate = `OPEN`, full actual corpus processing authorized;
-- external thinkers/practitioners scout = active;
-- OSS Stage A controlled internal use = accepted;
-- `ent:KOO` instance `inst:9a07e3fb-c997-4a34-9cad-f2590f624b06` = active;
-- writer grants/additional entities = `0`;
-- safe client helper = blocked pending corrected KOD v0.2;
-- SIS recovery = verified at `861645789d206db19e5135a6771564660d99158f`;
-- ШКОЛА = `PAUSED`;
-- production/public OSS ingress = `no`.
-
-## 5. First safe action after `initiation_verified`
-
-Сначала проверить, появился ли corrected KOD safe client helper v0.2 или новый verified result VOL. Не повторять уже завершённые Stage A repair/bootstrap/preservation действия.
-
-При наличии corrected helper: independently review helper, затем отдельным accepted step готовить первый real OSS workflow на работе `КООПЕРАЦИЯ`.
-
-При наличии VOL result: проверить artifact/composition/provenance/checksums и только после acceptance выполнять ingest в `wellbeing-cooperation`.
+Use only actually present/verified result. Do not infer completion from task existence.
 
 ---
 entity: KOO
-artifact_role: replacement-chat-initiation
-status: current_writer_candidate_for_ARH_acceptance
+artifact_role: urgent-replacement-initiation
+status: current_writer_candidate_for_ARH
 production_allowed: no
 project_time: generated_without_trusted_project_time
