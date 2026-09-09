@@ -1,47 +1,26 @@
-# KOO replacement-chat recovery candidate manifest
+# KOO urgent replacement recovery candidate manifest
 
-## Назначение
+## Composition
 
-Самостоятельный recovery candidate authoritative current-writer KOO перед заменой текущего чата из-за UI/scroll failure.
+- `KOO__initiation-current__KOO.md`
+- `KOO__snapshot__KOO.md`
+- `KOO__preservation-handoff__ARH.md`
+- `SOURCES.md`
+- `MANIFEST.md`
+- `sha256sums.txt`
 
-## Состав
+## Recovery rule
 
-1. `KOO__initiation-current__KOO.md`
-2. `KOO__snapshot__KOO.md`
-3. `SOURCES.md`
-4. `KOO__preservation-handoff__ARH.md`
-5. `MANIFEST.md`
-6. `sha256sums.txt`
+This directory is a current-writer candidate only until ARH validates and publishes it to canonical `entities/koo/recovery/current` with an immutable commit and readback receipt.
 
-`sha256sums.txt` проверяет первые пять файлов, включая manifest.
-
-## Candidate external staging
-
-Candidate может быть опубликован в staging locator для адресной проверки ARH, но он не становится canonical KOO recovery до ARH acceptance/publication/readback.
-
-Ожидаемый canonical locator после ARH:
-
-    store: github
-    repository: puev5691/wellbeing-entity-bootstrap
-    path: entities/koo/recovery/current
-    ref: <immutable ARH publication commit>
-    manifest: MANIFEST.md
-    checksums: sha256sums.txt
-
-## Previous current locator state
-
-Нынешний `entities/koo/recovery/current` на `main` содержательно stale: snapshot/initiation описывают Stage A authority-defect и operational acceptance `BLOCKED`.
+The canonical recovery object is the Git directory tree + immutable commit + blobs + SHA-256 map. Any archive is optional transport convenience only.
 
 ## Secret boundary
 
-Secrets отсутствуют. OSS credential сохраняется только как metadata ID/locator/mode без token/content.
-
-## Safe next step
-
-ARH integrity review → canonical publication → immutable readback → completion receipt → new KOO chat external verification → `initiation_verified`.
+No raw credential/token/secret material is intentionally included.
 
 ---
 entity: KOO
-artifact_role: recovery_manifest_candidate
-status: pending_ARH_acceptance
+artifact_role: recovery-manifest
+status: candidate_for_ARH
 project_time: generated_without_trusted_project_time
