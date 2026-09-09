@@ -1,49 +1,36 @@
 # КООРДИНАТОР → АРХИВАРИУС
-## Self-preservation перед replacement-chat KOO
+## Срочный preservation/recovery handoff перед replacement-chat
 
 ## Trigger
 
-ОПЕРАТОР сообщил, что текущий чат KOO перестал нормально открывать ленту выше примерно третьего диалога, и запросил провести инициацию нового экземпляра.
+ОПЕРАТОР: `Срочная инициация!`
 
-## Требуемое действие
+Текущий чат требуется заменить без потери последних verified transitions.
 
-Принять current-writer recovery candidate KOO и выполнить действующий preservation/recovery process:
+## Что должен сделать ARH
 
-1. проверить composition/provenance/integrity;
-2. не переписывать KOO self-state от имени ARH;
-3. опубликовать accepted package в canonical `entities/koo/recovery/current`;
-4. зафиксировать immutable publication commit и Git blob identities;
-5. выполнить post-publication readback;
-6. вернуть completion receipt KOO/ОПЕРАТОРУ для запуска нового чата.
+1. Принять этот current-writer package.
+2. Проверить physical/composition/manifest/checksums/provenance/secret boundary.
+3. Не переписывать KOO self-state от своего имени.
+4. Опубликовать exact files в canonical `entities/koo/recovery/current`.
+5. Зафиксировать immutable publication commit.
+6. Выполнить immutable readback composition/blobs/checksums.
+7. Создать отдельный completion receipt.
+8. Создать адресный replacement-chat initiation-completion instruction новому KOO с exact commit/blobs/checksums.
 
-## Существенное изменение относительно старого KOO recovery
+ARH не объявляет `initiation_verified` за новый KOO.
 
-Старый current locator содержательно stale и всё ещё фиксирует OSS authority defect / `Stage A operational acceptance: BLOCKED`.
+## Boundary
 
-Новый candidate включает последующие подтверждённые состояния:
-- OSS v0.7 operational instance KOO accepted;
-- SIS post-operational preservation externally verified;
-- safe client helper v0.1 review с отдельным blocker;
-- `КООПЕРАЦИЯ` как top priority;
-- public `wellbeing-cooperation` repository;
-- Bobrovsky source gate OPEN;
-- external COOP scout active;
-- ШКОЛА PAUSED.
-
-## Secret boundary
-
-Recovery package не содержит raw OSS credential/token, passwords, private keys или иные secrets.
-
-## Return
-
-Completion receipt должен дать canonical locator, immutable commit, composition, checksum result, blob identities и readback status.
-
-До receipt новый KOO может загрузить candidate только со статусом `initiation_loaded_external_unverified`; `initiation_verified` запрещено заявлять.
+- no Project Source changes;
+- no OSS/runtime mutation;
+- no production/public ingress changes;
+- no rewriting of historical evidence;
+- candidate Continuity v2 remains candidate.
 
 ---
 from_entity: KOO
 to_entity: ARH
-document_type: replacement-chat-self-preservation-handoff
+document_type: urgent-replacement-preservation-handoff
 status: ready_for_address_delivery
-production_allowed: no
 project_time: generated_without_trusted_project_time
