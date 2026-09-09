@@ -1,119 +1,94 @@
-# КООРДИНАТОР: self-snapshot перед заменой чата из-за UI/scroll failure
+# КООРДИНАТОР — urgent current snapshot
 
-## Назначение
+## Смысл
 
-Snapshot текущего authoritative current-writer KOO перед переходом в новый чат. Trigger: ОПЕРАТОР сообщил, что текущая лента перестала открываться выше примерно третьего диалога и запросил провести инициацию нового экземпляра.
+Текущий экземпляр KOO уходит на срочную replacement-chat и фиксирует только подтверждённый current-state, materially изменившийся после предыдущего canonical recovery.
 
-Этот snapshot заменяет содержательно устаревшее KOO recovery-state, в котором Stage A ОСС ещё был `BLOCKED` из-за authority defect.
+## Current operational anchors
 
-## Роль и граница
+### Continuity v2 / Experience Layer
 
-КООРДИНАТОР держит приоритеты, зависимости, конфликты и межконтурную маршрутизацию. Он не подменяет КОДЕРА, СИСАДМИНА, АРХИВАРИУСА, КАНЦЕЛЯРА, ШТАБИСТА или ОПЕРАТОРА.
+Отдельный public repo существует и bootstrap проверен:
 
-KOO является authoritative current-writer только собственного self-state. Canonical recovery publication/readback выполняет АРХИВАРИУС.
+- repository: `puev5691/wellbeing-experience`;
+- immutable bootstrap commit: `5238856d51174e863798f85ea3b162ce07bf941c`;
+- Git tree: `73a24d60ab86c39599a4f1f10b911ab844e508c1`;
+- fresh external clone/readback: PASS;
+- `SHA256SUMS.txt`: `12/12 OK`;
+- `MANIFEST.md` SHA-256: `0e7b2da2d7479244d8c999401b9181815203f829b0c8c0084587aa22250e5534`;
+- `SHA256SUMS.txt` SHA-256: `c389245a2fb6b5b5a1af61f3d129df157854f97071b84b503ee65647861afcaf`.
 
-## Current priority
+Model: `PENSIONERS + HOSPITAL + LIVE EXPERIENCE DELTAS` → extraction → cards → dedupe/contradictions → lessons/runbooks → anti-regression → role-specific experience-current → behavioral cold-start test.
 
-Главный содержательный приоритет: `КООПЕРАЦИЯ` как исследовательское поле и доказательная база проекта `БЛАГОПОЛУЧИЕ`.
+Technology status: working candidate, not active Project Source.
 
-Параллельный технический приоритет: довести принятый ОСС Stage A до первого настоящего межсущностного workflow без расширения authority и без production/public ingress.
+KOD experience extraction task is issued:
+- `entities/koo/boards/KOO__KOD-experience-extraction__KOD.md`;
+- task publication commit: `c864817c5cf8fe6f85be7a291d81e94afa5d55d0`.
 
-ШКОЛА остаётся на паузе до отдельного restart trigger ОПЕРАТОРА/КООРДИНАТОРА.
+SIS extraction pilot exists and is the first control sample: 13 episodes, 15 traps, 11 reusable procedures, 5 unknown.
 
-## ОСС: подтверждённое current-state
+### КООПЕРАЦИЯ
 
-- accepted release: `/opt/wb-oss-sandbox/releases/sha256-29d07687ad65bc2b366bd98bdd4bcd3f2a4670c87c05330819a31a2981d79c3a`;
-- Stage A controlled internal use: `ACCEPTED`;
+- remains top substantive research direction;
+- public repo: `puev5691/wellbeing-cooperation`;
+- Bobrovsky source gate: `OPEN`;
+- full actually available Bobrovsky-related intake processing: authorized;
+- external thinkers/practitioners research: active;
+- direct unreviewed ingest to main: no.
+
+### OSS
+
+- Stage A v0.7: accepted for controlled internal use;
 - Entity: `ent:KOO`;
 - operational instance: `inst:9a07e3fb-c997-4a34-9cad-f2590f624b06`;
-- lifecycle: `active`;
 - writer grants: `0`;
 - additional entities: `0`;
-- production/public ingress: `no`;
-- credential ID: `cred:3965c40b-2aa6-4d44-867f-5ad5491fb294`;
-- credential locator: `/home/pev5691/.config/wb-oss/koo-pilot.json`, mode `0600`;
-- secret/token в recovery не включается.
+- public ingress: no;
+- production: no.
 
-KOO operational acceptance опубликован в `entities/koo/boards/KOO__OSS-first-operational-instance-acceptance__SIS.md`.
+Safe client helper v0.1 remains blocked by KOO review because arbitrary `--url` plus raw HTTP error-body output can reflect token to stderr. Corrected v0.2 is required before use with operational credential.
 
-SIS post-operational preservation закрыт и externally verified:
-`entities/sis/recovery/current@861645789d206db19e5135a6771564660d99158f`.
+### SIS preservation
 
-## ОСС: открытый blocker
+SIS post-operational preservation accepted.
+Canonical SIS recovery immutable commit:
+`861645789d206db19e5135a6771564660d99158f`.
 
-Safe client helper v0.1 прошёл общий fit review, но operational acceptance заблокирован edge-case утечки synthetic token через отражённое `HTTPError` body.
-
-До исправления helper не размещать на real host и не использовать с operational credential.
-
-Ожидается KOD v0.2: loopback-only target, безопасный локально сформированный HTTP error output, negative reflected-token test, повтор regression tests. Новый core/release не нужен.
-
-## КООПЕРАЦИЯ: current-state
-
-Публичный repository создан и инициализирован:
-`puev5691/wellbeing-cooperation`.
-
-Политика: `open_by_default` с отдельным rights gate для внешних full-texts; для собственно материалов А. В. Бобровского ОПЕРАТОР разрешил открытую публикацию после provenance/attribution/variant review.
-
-Bobrovsky source gate: `OPEN`.
-Authoritative intake rule: обрабатывать весь фактически доступный корпус, не привязываясь к числу 34; регистрировать все file identities, content duplicates не считать отдельными logical works, variants сохранять отдельно.
-
-Ожидаемый крупный result:
-`VOL__BOBROVSKY-corpus-v0_1__KOO.tar.gz`.
-
-Параллельно VOL получил P0 external scout: мыслители, практики, институты, механизмы, primary sources, criticism/failure modes и cases по кооперации, совладению, самоуправлению, коллективной субъектности и экономической демократии. Target result:
-`VOL__COOP-external-scout-v0_1__KOO.tar.gz`.
-
-Meeting-critical source-side evidence matrix также остаётся активной задачей VOL до подтверждённого результата.
-
-RED final speech остаётся зависимой от evidence population/KOO gate.
-
-## ШКОЛА
+### ШКОЛА
 
 `school_governance_cycle: PAUSED`.
+No restart trigger has been issued in this state.
 
-До restart trigger не продолжать clean successor review, не утверждать новые school sources, не запускать pilot и не создавать новые school Entity/authority ради этого цикла.
+## Current priorities
 
-## Stale external KOO recovery
+1. Complete urgent replacement-chat KOO initiation safely.
+2. Receive and verify KOD experience extraction; use it with SIS extraction to stabilize universal Continuity v2 extraction protocol.
+3. Begin first small historical intake wave from PENSIONERS/HOSPITAL only after provenance/privacy/secret boundary check.
+4. Continue COOP evidence/corpus work in parallel.
+5. Safe OSS helper v0.2 remains a technical blocker before first real OSS workflow.
 
-Текущий GitHub locator `entities/koo/recovery/current` подтверждён как содержательно stale: опубликованный там snapshot и initiation всё ещё описывают authority defect и `Stage A operational acceptance: BLOCKED`.
+## Important lessons carried as working continuity constraints
 
-Поэтому новый чат не должен считать этот старый current locator достаточным для восстановления нынешнего KOO state.
+- snapshot/recovery-state is not experience;
+- raw chat archive is historical evidence, not current truth;
+- experience transfer is proven by changed behavior, not by ability to paraphrase a lesson;
+- canonical text recovery should use immutable Git tree/files/blobs/checksums; tar.gz is optional transport, not canonical recovery identity;
+- publication, delivery, receipt, acceptance and initiation verification remain different states;
+- new instance must perform its own external verification before `initiation_verified`.
 
-Этот пакет является current-writer candidate для ARH verification/publication, а не canonical recovery до completion receipt АРХИВАРИУСА.
+## Safe next action
 
-## Open / parked / unknown
+New KOO must first verify this candidate after ARH canonical publication, then check for:
+1. KOD experience extraction result;
+2. new VOL result;
+3. corrected KOD safe client helper v0.2.
 
-Open:
-- ARH принять и canonically опубликовать этот KOO recovery candidate;
-- KOD вернуть исправленный safe client helper v0.2;
-- KOO независимо принять helper и выполнить первый реальный OSS workflow;
-- принять/проверить Bobrovsky full corpus result;
-- принять/проверить external scout result;
-- принять meeting-critical evidence matrix и после evidence gate разблокировать RED content population.
-
-Parked:
-- ШКОЛА governance cycle;
-- production/public OSS ingress;
-- дополнительные OSS Entities/instances/writer grants до отдельного принятого onboarding path.
-
-Unknown until verified result:
-- final logical-work count корпуса Бобровского после dedupe/variant normalization;
-- результат external scout;
-- исправленный helper identity/tests;
-- first real inter-Entity OSS workflow result.
-
-## Writer-state и следующий безопасный шаг
-
-`current_writer_state: KOO authoritative current-writer preparing replacement-chat recovery`.
-
-Один безопасный следующий шаг:
-
-> Передать этот recovery candidate АРХИВАРИУСУ, получить immutable canonical publication/readback receipt, затем инициировать новый чат KOO только по подтверждённому locator/version.
+Do not repeat already completed OSS v0.7 repair/bootstrap/SIS preservation actions.
 
 ---
 entity: KOO
-artifact_role: entity-self-snapshot
-status: current_writer_candidate_for_ARH_acceptance
-trigger: chat_ui_scroll_failure_and_operator_requested_reinitiation
+artifact_role: urgent-replacement-snapshot
+status: current_writer_candidate_for_ARH
 production_allowed: no
 project_time: generated_without_trusted_project_time
