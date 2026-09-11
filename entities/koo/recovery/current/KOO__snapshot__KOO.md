@@ -1,94 +1,84 @@
-# КООРДИНАТОР — urgent current snapshot
+# KOO — current self-snapshot для emergency recovery v03
 
 ## Смысл
 
-Текущий экземпляр KOO уходит на срочную replacement-chat и фиксирует только подтверждённый current-state, materially изменившийся после предыдущего canonical recovery.
+Self-snapshot текущего authoritative KOO после проверяемой инициации и отдельного ARH preservation result. Confirmed current, pending/unknown и historical evidence разделены.
 
-## Current operational anchors
+## Confirmed current
 
-### Continuity v2 / Experience Layer
+- Entity: `KOO / КООРДИНАТОР`;
+- initiation status: `initiation_verified`;
+- verification report: `wellbeing-hq@d1cc614fdd17d3002028bf4e122bf19c40228632:entities/koordinator/current/KOO__initiation-verification-report.md`;
+- current-writer state: accepted for this KOO instance по OPERATOR-directed emergency replacement и проверенной границе отсутствия конкурирующего authoritative writer.
 
-Отдельный public repo существует и bootstrap проверен:
+### Canonical recovery
 
-- repository: `puev5691/wellbeing-experience`;
-- immutable bootstrap commit: `5238856d51174e863798f85ea3b162ce07bf941c`;
-- Git tree: `73a24d60ab86c39599a4f1f10b911ab844e508c1`;
-- fresh external clone/readback: PASS;
-- `SHA256SUMS.txt`: `12/12 OK`;
-- `MANIFEST.md` SHA-256: `0e7b2da2d7479244d8c999401b9181815203f829b0c8c0084587aa22250e5534`;
-- `SHA256SUMS.txt` SHA-256: `c389245a2fb6b5b5a1af61f3d129df157854f97071b84b503ee65647861afcaf`.
+Последний accepted baseline:
+`puev5691/wellbeing-entity-bootstrap@3522aa8de15d83a108de685d626aa268def04a9d:entities/koo/recovery/current`.
 
-Model: `PENSIONERS + HOSPITAL + LIVE EXPERIENCE DELTAS` → extraction → cards → dedupe/contradictions → lessons/runbooks → anti-regression → role-specific experience-current → behavioral cold-start test.
+ARH result:
+`puev5691/wellbeing-hq@07e409239ed3552a9bc42592823663facb6b1512:entities/archivarius/outbox/ARH__emergency-preservation-check__KOO.md`.
 
-Technology status: working candidate, not active Project Source.
+Decision:
+- preservation input: ACCEPTED;
+- canonical replacement: BLOCKED;
+- blocker: `NEW_EMERGENCY_RECOVERY_COMPOSITION_HAS_NO_VERIFIED_MANIFEST_AND_SHA256_MAP`.
 
-KOD experience extraction task is issued:
-- `entities/koo/boards/KOO__KOD-experience-extraction__KOD.md`;
-- task publication commit: `c864817c5cf8fe6f85be7a291d81e94afa5d55d0`.
+Этот v03 candidate закрывает указанный blocker. До ARH PASS baseline не меняется.
 
-SIS extraction pilot exists and is the first control sample: 13 episodes, 15 traps, 11 reusable procedures, 5 unknown.
+### Emergency handoff / Experience Layer
 
-### КООПЕРАЦИЯ
+Verified publications:
+- master `31e78ec4f4b031f149401410930892621b6dc946`;
+- extraction `7f666c2f86a2f17d1f11b6934e5f132b79f6d985`;
+- cards `15d4270fdbd36d6a28e6dfefe32ed4bc12d27117`;
+- anti-regression `6217acce21a088c92687ec6c466865675ba744d6`.
 
-- remains top substantive research direction;
-- public repo: `puev5691/wellbeing-cooperation`;
-- Bobrovsky source gate: `OPEN`;
-- full actually available Bobrovsky-related intake processing: authorized;
-- external thinkers/practitioners research: active;
-- direct unreviewed ingest to main: no.
+Experience Layer = historical evidence, not Project Source/current truth.
 
-### OSS
+## Pending
 
-- Stage A v0.7: accepted for controlled internal use;
-- Entity: `ent:KOO`;
-- operational instance: `inst:9a07e3fb-c997-4a34-9cad-f2590f624b06`;
-- writer grants: `0`;
-- additional entities: `0`;
-- public ingress: no;
-- production: no.
+1. ARH verification complete v03 candidate.
+2. При PASS: canonical publication в `entities/koo/recovery/current` + immutable readback + receipt/result.
+3. Затем automation hardening: `START → TASK → ACTION → RESULT/BLOCKER → CHECK → FIXATION/ROUTING → EXPERIENCE`.
+4. Затем always-active/event-driven research.
 
-Safe client helper v0.1 remains blocked by KOO review because arbitrary `--url` plus raw HTTP error-body output can reflect token to stderr. Corrected v0.2 is required before use with operational credential.
+## Unknown
 
-### SIS preservation
+- Microsoft M365/Entra organizational tenant/work-account: `unknown`.
+- exact existing ChatGPT Entity-chat resume capability: not proven; current adapter reports failure.
 
-SIS post-operational preservation accepted.
-Canonical SIS recovery immutable commit:
-`861645789d206db19e5135a6771564660d99158f`.
+## Automation snapshot, требующий fresh recheck перед изменением
 
-### ШКОЛА
+- KOO GitHub Work: enabled;
+- ARH GitHub Work: enabled;
+- SHT GitHub Work: enabled;
+- KOD GitHub Work: disabled;
+- SIS GitHub Work: disabled;
+- KOO full-cycle/chat-record hardening: not applied.
 
-`school_governance_cycle: PAUSED`.
-No restart trigger has been issued in this state.
+## Retained / superseded относительно baseline 3522aa8...
 
-## Current priorities
+- old initiation: superseded in candidate;
+- old snapshot: superseded in candidate;
+- old preservation handoff: superseded in candidate;
+- approved source set: retained semantically with exact hashes;
+- emergency master: retained as newer handoff evidence;
+- Experience Layer: added as historical evidence.
 
-1. Complete urgent replacement-chat KOO initiation safely.
-2. Receive and verify KOD experience extraction; use it with SIS extraction to stabilize universal Continuity v2 extraction protocol.
-3. Begin first small historical intake wave from PENSIONERS/HOSPITAL only after provenance/privacy/secret boundary check.
-4. Continue COOP evidence/corpus work in parallel.
-5. Safe OSS helper v0.2 remains a technical blocker before first real OSS workflow.
+## Active dependency
 
-## Important lessons carried as working continuity constraints
+ARH must verify exact immutable candidate commit, package composition and `sha256sums.txt`. On mismatch baseline `3522aa8...` остаётся неизменным.
 
-- snapshot/recovery-state is not experience;
-- raw chat archive is historical evidence, not current truth;
-- experience transfer is proven by changed behavior, not by ability to paraphrase a lesson;
-- canonical text recovery should use immutable Git tree/files/blobs/checksums; tar.gz is optional transport, not canonical recovery identity;
-- publication, delivery, receipt, acceptance and initiation verification remain different states;
-- new instance must perform its own external verification before `initiation_verified`.
+## Один безопасный следующий шаг
 
-## Safe next action
-
-New KOO must first verify this candidate after ARH canonical publication, then check for:
-1. KOD experience extraction result;
-2. new VOL result;
-3. corrected KOD safe client helper v0.2.
-
-Do not repeat already completed OSS v0.7 repair/bootstrap/SIS preservation actions.
+После publication/readback candidate адресно передать ARH immutable locator и запросить preservation-check. KOO не изменяет `recovery/current` самостоятельно.
 
 ---
-entity: KOO
-artifact_role: urgent-replacement-snapshot
-status: current_writer_candidate_for_ARH
-production_allowed: no
-project_time: generated_without_trusted_project_time
+КТО: KOO / КООРДИНАТОР
+ДЛЯ ЧЕГО: authoritative self-snapshot для закрытия emergency preservation blocker
+СТАТУС: current_writer_candidate_for_ARH
+source: verified KOO initiation + fresh wellbeing-hq evidence + ARH preservation result
+related_files: KOO__initiation-current__KOO.md; KOO__preservation-handoff__ARH.md; MANIFEST.md
+approval_status: not_project_source
+responsibility_boundary: ARH выполняет preservation/canonical publication; KOO не переписывает canonical recovery самостоятельно
