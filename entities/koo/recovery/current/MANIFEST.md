@@ -1,67 +1,71 @@
-# KOO emergency recovery candidate v03 — MANIFEST
+# KOO emergency recovery v04 — MANIFEST
 
-## Назначение
+status: CURRENT_WRITER_CANDIDATE_FOR_ARH_VERIFICATION
 
-Полный проверяемый recovery candidate для закрытия ARH blocker `NEW_EMERGENCY_RECOVERY_COMPOSITION_HAS_NO_VERIFIED_MANIFEST_AND_SHA256_MAP`. Candidate не является canonical recovery до отдельного ARH PASS/publication/readback.
+## Package purpose
+
+Preserve the latest authoritative KOO state before emergency replacement of the current chat.
+
+This candidate is newer than the last canonical recovery but is not canonical until ARH verifies and publishes/records it under the recovery process.
 
 ## Composition
 
-Current self-state:
-- `KOO__initiation-current__KOO.md`
-- `KOO__snapshot__KOO.md`
-- `KOO__preservation-handoff__ARH.md`
-- `SOURCES.md`
+- KOO__initiation-current__KOO.md
+- KOO__snapshot__KOO.md
+- SOURCES.md
+- KOO__emergency-initiation-master-v04.md
+- KOO__preservation-handoff__ARH.md
+- MANIFEST.md
+- sha256sums.txt
 
-Verified emergency evidence:
-- `KOO__emergency-initiation-master.md`
-- `KOO__initiation-verification-report.md`
+## External locator
 
-Historical Experience Layer:
-- `experience/KOO_experience-extraction.md`
-- `experience/KOO_experience-cards.jsonl`
-- `experience/KOO_anti-regression-cases.md`
+store: github
+repository: puev5691/wellbeing-entity-bootstrap
+path: entities/koo/preservation/pending/emergency-initiation-v04
+ref: main until immutable dispatch ref is published
+manifest: MANIFEST.md
+checksums: sha256sums.txt
 
-Integrity:
-- `MANIFEST.md`
-- `sha256sums.txt`
+## Canonical predecessor
 
-## Provenance
+repository: puev5691/wellbeing-entity-bootstrap
+path: entities/koo/recovery/current
+ARH registry recovery commit:
+cbaad4cb94618788f5d50664d08d503a3247f61c
 
-- master: `wellbeing-hq@31e78ec4f4b031f149401410930892621b6dc946`;
-- extraction: `wellbeing-hq@7f666c2f86a2f17d1f11b6934e5f132b79f6d985`;
-- cards: `wellbeing-hq@15d4270fdbd36d6a28e6dfefe32ed4bc12d27117`;
-- anti-regression: `wellbeing-hq@6217acce21a088c92687ec6c466865675ba744d6`;
-- initiation report: `wellbeing-hq@d1cc614fdd17d3002028bf4e122bf19c40228632`;
-- ARH decision: `wellbeing-hq@07e409239ed3552a9bc42592823663facb6b1512`.
+## Significant external references
 
-## Retained / superseded mapping
+wellbeing-hq fresh boundary before candidate creation:
+85551290ebe6ae527b7a0ffdafb6e2f20b79433f
 
-Relative to canonical baseline `wellbeing-entity-bootstrap@3522aa8de15d83a108de685d626aa268def04a9d:entities/koo/recovery/current`:
-- old initiation → superseded in candidate;
-- old snapshot → superseded in candidate;
-- old preservation handoff → superseded in candidate;
-- approved source set → retained with exact hashes;
-- baseline remains authoritative until ARH accepts and republishes this candidate.
+ARH inbox lifecycle review:
+entities/archivarius/outbox/ARH__inbox-lifecycle-operational-review__KOO.md
+commit: 1b6aab5e50c759a7027b3c5b370475fe35417eec
+blob: 1f8217d29fcc294178734b303df756113066662a
 
-Experience Layer is historical evidence only.
+SHD preservation verification:
+entities/archivarius/outbox/ARH__shd-role-v2_3-recovery-verification__SHD.md
+commit: 29e0a61e4a79842505a279bd131d25cb64978f5e
 
-## Locator
+source-loading-policy v2.1 candidate:
+entities/kancelar/outbox/source-loading-policy-v2_1-candidate.md
+commit: 59ae5c036151460ca63a0e2ccd37d4aa53c88aaf
+blob: da9bee953187c835aded8a4fc6edbc3ec50047b6
+status: candidate awaiting OPERATOR approval
 
-repository: `puev5691/wellbeing-entity-bootstrap`
-path: `entities/koo/preservation/pending/emergency-initiation-v03`
-manifest: `MANIFEST.md`
-checksums: `sha256sums.txt`
-immutable candidate commit: recorded in external addressed dispatch after final publication.
+## Integrity
+
+sha256sums.txt covers all package files except sha256sums.txt itself.
+
+The immutable package commit/ref must be recorded in the addressed KOO->ARH dispatch after final checksum publication.
 
 ## Failure mode
 
-Any mismatch in composition, checksum, provenance, authority or secret boundary means FAIL. Keep canonical baseline `3522aa8...` unchanged.
+Any mismatch in file composition, checksum, provenance, status or authority means verification FAIL.
+Keep the current canonical KOO recovery unchanged until a clean ARH PASS.
 
 ---
 КТО: KOO / КООРДИНАТОР
-ДЛЯ ЧЕГО: manifest полного emergency recovery candidate v03
-СТАТУС: candidate_for_ARH_preservation_check
-source: current-writer KOO + verified emergency evidence
-related_files: sha256sums.txt
-approval_status: candidate_only
-responsibility_boundary: manifest не выполняет ARH acceptance и не изменяет canonical recovery сам по себе
+ДЛЯ ЧЕГО: manifest emergency recovery v04
+СТАТУС: candidate_for_ARH_verification
