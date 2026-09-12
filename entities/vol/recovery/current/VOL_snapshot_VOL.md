@@ -1,101 +1,129 @@
-# ВОЛОНТЁР --- self-snapshot
+# ВОЛОНТЁР — self-snapshot
 
-## Смысл
+## Назначение
 
-Snapshot фиксирует current self-state ВОЛОНТЁРА после присвоения
-identity и роли.
+Этот self-snapshot фиксирует authoritative current-state VOL перед аварийной заменой текущего чата по прямому решению ОПЕРАТОРА.
 
-## Identity и writer-state
+## Identity и границы
 
--   имя: **ВОЛОНТЁР**;
--   код: `VOL`;
--   entity_id: `ent:VOL`;
--   instance_id: `unknown_until_actual_registration`;
--   current-writer: текущий VOL экземпляр, только для собственного
-    self-state;
--   recovery: `persistent_utility_entity / recovery_managed_minimal`;
--   recovery standard: v1.4.
+- entity: `ВОЛОНТЁР / VOL / ent:VOL`;
+- recovery: `persistent_utility_entity / recovery_managed_minimal`;
+- current-writer до handoff: текущий экземпляр VOL;
+- новый экземпляр обязан пройти внешнюю recovery-проверку;
+- роль и полномочия не расширяются фактом failover.
 
 ## Подтверждённая роль
 
-ВОЛОНТЁР --- универсальная приёмно-поисковая Сущность для задач, которым
-ещё не определён очевидный профильный адресат.
+ВОЛОНТЁР принимает неясные входы, выполняет поиск и первичную проверку, завершает низкорисковые справочные задачи либо готовит точный профильный handoff. Не утверждает нормы и приоритеты проекта, не подменяет профильные Сущности и не выполняет production/system действия без отдельного authority.
 
-Рабочая формула: **неясный вход → поиск и первичная проверка → либо
-законченная справка, либо точный профильный handoff.**
+## Активный исследовательский контур
 
-ВОЛОНТЁР принимает небольшие задачи без ясного владельца; выполняет
-первичный поиск, сбор источников, справочную работу и разведочный
-анализ; выясняет недостающие данные и профильного адресата;
-самостоятельно завершает низкорисковые поисково-справочные задачи;
-готовит candidate-материал или handoff при обнаружении профильного
-владельца; передаёт КООРДИНАТОРУ неоднозначность маршрута, приоритета
-или ответственности.
+Главная линия: `КООПЕРАЦИЯ`.
 
-ВОЛОНТЁР не устанавливает общепроектные приоритеты, не утверждает нормы
-или `approved`, не подменяет профильные Сущности, не выполняет
-production/system действия из одной технической возможности, не
-превращает предварительный материал в доказанный факт и не продолжает
-parked-тему без нового явного trigger.
+Фокус после прямой коррекции ОПЕРАТОРА:
 
-## Выполненная работа текущего экземпляра
+- философские основания кооперации;
+- коллективная субъектность;
+- самоорганизация;
+- политэкономия совладения;
+- исторические и современные модели собственности, участия, общего капитала, природной ренты и федерации;
+- практическая применимость к проекту.
 
-1.  Проанализирован черновик общей доктрины проекта и предложена
-    редакционная версия.
-2.  Выполнен разбор свежего кейса DeepMind о многоагентной среде.
-3.  Создан `VOL__deepmind-agent-society-publication-note__KOO.md`.
-4.  После указания ОПЕРАТОРА тема DeepMind остановлена.
-5.  Подготовлен provisional preservation-пакет с identity `CURRENT`.
-6.  КООРДИНАТОР проверил 4 из 4 SHA-256 содержательных
-    provisional-файлов и принял пакет как provenance.
-7.  По решению ОПЕРАТОРА/КООРДИНАТОРА присвоены identity `VOL`,
-    `ent:VOL` и постоянная универсальная приёмно-поисковая роль.
-8.  Подготовлен этот final preservation/recovery set.
+Инженерная формализация не отменена, но является производной. Ранее начатая ветка operational metrics / event-contract поставлена на паузу как основная линия.
 
-## Current / candidate / parked / historical
+## Подтверждённые результаты текущей линии
 
-### Current
+Ключевые candidate-артефакты находятся в `puev5691/wellbeing-hq`:
 
-Identity и роль VOL; current-writer scope; recovery standard v1.4;
-intended external locator.
+- `entities/volonter/current/coop-meeting/concepts/VOL__COOP-political-economy-of-coownership-v0_1.md` — commit `adecaa98a4ca70dc074036565655688854c2c7ee`;
+- `entities/volonter/current/coop-meeting/analysis/VOL__COOP-coownership-classics-comparison-v0_1.md` — commit `fb42825adec9c765411f0e5abcf6fa5195b37322`;
+- `entities/volonter/current/coop-meeting/analysis/VOL__COOP-coownership-problem-matrix-v0_1.md` — commit `b652ab0b04a2440686eaeb3795cafabaad4aedad`;
+- `entities/volonter/current/coop-meeting/analysis/VOL__COOP-coownership-historical-analogs-v0_1.md` — commit `24651e9e370de1dba19e67270799548c2de4b490`;
+- `entities/volonter/current/coop-meeting/analysis/VOL__COOP-coownership-rights-capital-architecture-v0_1.md` — commit `27ed17aee87980ad8c2a835f9f75eb67667bd7ad`;
+- `entities/volonter/current/coop-meeting/analysis/VOL__COOP-socialized-capital-models-v0_1.md` — commit `3dfc3bf5233e61900d752cd02eeee0370a9ed1cf`;
+- `entities/volonter/current/coop-meeting/analysis/VOL__COOP-rights-typology-v0_1.md` — commit `fedd481c481aec20afee7d9d3489c60bf0f99db5`;
+- `entities/volonter/current/coop-meeting/analysis/VOL__COOP-rights-conflict-matrix-v0_1.md` — commit `1ab73fde43eb53491329a5afd48a7d5356215fec`;
+- `entities/volonter/current/coop-meeting/analysis/VOL__COOP-coownership-constitution-v0_1.md` — commit `55be36e9432b4b5c13102c7172079171e958b452`, blob `ffa5179fafb5594fc0f37ea0489c7722740a3b57`.
 
-### Candidate / parked
+Все перечисленные результаты являются candidate/research материалами, а не approved-нормой проекта.
 
-`VOL__deepmind-agent-society-publication-note__KOO.md`:
-`candidate / parked`; не развивать без нового trigger.
+## Последняя исследовательская позиция
 
-### Рабочий материал
+Рабочая реконструкция различает четыре основания права:
 
-Авторская версия общей доктрины: рабочий редакционный материал; не
-approved source.
+1. личное право, возникающее из труда или определяемого вклада;
+2. членское право, возникающее из участия в организации;
+3. общественное право, относящееся к неделимому капиталу продолжающегося коллектива;
+4. общенародное природное право, возникающее из принадлежности к более широкому сообществу, а не из труда на конкретном объекте.
 
-### Historical provenance
+Сильный промежуточный вывод: эти основания нельзя честно свести к одному паю, балансу или универсальному токену.
 
-Все прежние `CURRENT__*` provisional-файлы:
-`historical_provenance / superseded_by_identity_assignment`. Не
-использовать как current и не переписывать задним числом.
+Кандидатная «конституция совладения» строится вокруг разграничения прав, делегирования, полицентрического управления, защиты неделимого капитала, выхода, природной ренты и запрета на автоматическое отождествление капитала с политическим голосом.
 
-## Open / unknown
+## Новая вводная ОПЕРАТОРА о программном ядре
 
--   `instance_id`: `unknown_until_actual_registration`;
--   external publication/readback final recovery: `pending ARH process`;
--   фактический immutable external version identity: пока отсутствует;
--   receipt/acceptance final-набора КООРДИНАТОРОМ: pending после
-    адресной передачи.
+ОПЕРАТОР связал исследование с будущей программой, ядро которой должно использовать результаты этой линии в системе учёта проекта на базе блокчейна WBN/WBNP (TERA), при этом монетарную политику ещё предстоит разработать и затем внедрить.
+
+Рабочая архитектурная граница, зафиксированная в последнем candidate-материале:
+
+`конституция прав → проверяемые события → учёт состояний → разрешённые переходы → экономические расчёты → блокчейн-фиксация`.
+
+Не использовать обратную логику, где блокчейн или токен сам определяет легитимность прав.
+
+Кандидат для будущего ядра: центральным объектом учёта должно быть не только `address → balance`, а как минимум связь `subject → object → right → basis → decision → state transition`, с отдельным учётом provenance.
+
+Это **исследовательская гипотеза**, не утверждённая архитектура и не задача КОДЕРУ.
+
+## Прерванная задача
+
+Следующий проход был прямо принят ОПЕРАТОРОМ: стресс-тест кандидатной «конституции совладения» на конфликтных случаях и проверка перехода от политэкономической модели к системе учёта WBN/WBNP без преждевременной монетизации всех прав.
+
+Намеченные стресс-кейсы включают как минимум:
+
+- вход нового участника;
+- выход старого;
+- спор о личной доле и неделимом резерве;
+- конфликт локального Союза и федерации;
+- попытку текущего большинства разделить общественный капитал;
+- спор трудового коллектива и общества за природную ренту;
+- внешний капитал в обмен на контроль;
+- делегирование полномочий управляющему аппарату и риск превращения управления в фактическую собственность;
+- права будущих поколений;
+- случай, когда блокчейн безупречно фиксирует формально корректное, но содержательно дурное решение.
+
+## Experience, который нельзя потерять
+
+- Не доказывать историческое влияние сходством механизмов.
+- Различать formal right и exercised right; membership и фактический bundle of rights; local survival и system resilience.
+- Один термин «собственность» слишком груб: проверять объект, основание, набор прав, пределы, управление, выход и ответственность.
+- `доля в капитале ≠ контроль ≠ членское политическое право`.
+- `общественное право ≠ ничейное право ≠ право администрации`.
+- `свобода выхода ≠ мгновенная ликвидация личной доли`.
+- Трудовой доход, доход на производственный капитал и природная рента имеют разные основания.
+- Федерация лучше описывается как распределение функций и прав по уровням, а не лестница собственников.
+- Блокчейн подтверждает запись и последовательность, но не создаёт легитимность права.
+- Не превращать исследование в преждевременное проектирование токеномики.
+
+Расширенная фиксация опыта находится в `VOL_experience-resume_VOL.md`.
+
+## Parked / closed / pending
+
+- DeepMind: `parked_by_operator`.
+- General doctrine authorial version: working, not approved.
+- Experience Layer review: KOO decision `ACCEPTED_BOUNDED_CANDIDATE_WITH_NORMALIZATION_DEBT`; waiting-for-KOO state закрыт, нормализация только новой версией при отдельной задаче.
+- External preservation-check АРХИВАРИУСА для этого emergency package: `pending/not claimed`.
 
 ## Следующий безопасный шаг
 
-Передать final-набор КООРДИНАТОРУ для содержательной проверки. External
-publication/readback не объявлять выполненными. После решения
-КООРДИНАТОРА действовать по полученному маршруту.
+После `initiation_verified` прочитать exact-version `VOL__COOP-coownership-constitution-v0_1.md` по commit `55be36e9432b4b5c13102c7172079171e958b452` и выполнить стресс-тест. Не переходить к коду и монетарной политике до отдельной исследовательской фиксации требований.
 
-------------------------------------------------------------------------
+---
 
-document_type: self-snapshot\
-entity_name: ВОЛОНТЁР\
-entity_code: VOL\
-entity_id: ent:VOL\
-status: current_review_pending\
-decision_artifact_sha256:
-0f3a8432191e30e6464765d05f91af72b9998e28d3b87315241ec145cb9ebeac\
-project_time: generated_without_trusted_project_time
+document_type: self-snapshot
+entity_name: ВОЛОНТЁР
+entity_code: VOL
+entity_id: ent:VOL
+status: current_emergency_handoff_ready
+project_time: omitted_trusted_project_time_not_used
+КТО: VOL / ВОЛОНТЁР
+ДЛЯ ЧЕГО: сохранить authoritative self-state перед аварийной заменой текущего чата
