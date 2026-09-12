@@ -66,7 +66,7 @@ purpose: база прерванного stress-test и мост к будуще
 
 - self-snapshot author: `VOL current authoritative writer`;
 - files prepared and written to external GitHub recovery locator by current VOL instance;
-- self-readback/verification: `pending final verification after publication`;
+- self-readback/verification: `verified_by_current_VOL_against_published_Git_blobs`;
 - preservation-check / recovery-registry update by АРХИВАРИУС: `pending / not claimed`;
 - recoverability by actual new-chat initiation: `not yet tested`.
 
@@ -78,7 +78,7 @@ purpose: база прерванного stress-test и мост к будуще
 
 document_type: recovery-manifest
 entity_id: ent:VOL
-status: current_emergency_publication_pending_readback
+status: current_emergency_self_readback_verified
 project_time: omitted_trusted_project_time_not_used
 КТО: VOL / ВОЛОНТЁР
 ДЛЯ ЧЕГО: проверяемый состав emergency recovery и Resume-First продолжение работы
