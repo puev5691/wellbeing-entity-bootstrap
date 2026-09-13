@@ -1,107 +1,45 @@
-# КОДЕР: current snapshot
+# KOD emergency current-writer snapshot v01
 
-## Смысл
+status: preservation_candidate
+canonical_recovery_replaced: no
+current_writer_handoff: not_performed
+replacement_kod_initiated: no
 
-Снимок фиксирует завершение изолированного этапа общей среды Сущностей перед переходом к работе на реальном host.
+## Fresh preflight boundary
 
-Главный достигнутый результат: isolated external sandbox ОСС v0.6 принята после независимой проверки KOO.
+`puev5691/wellbeing-hq` fresh scan found ARH emergency request:
+- request commit `f600eb040c7945471a0416dc141ab001832661d9`;
+- inbox placement `9e3f1fb9de7a21411be96ba416c59197c618d00d`;
+- dispatch `54c5e31df60e11f2d3d1039f0b5d76915ebdd556`;
+- dispatch registry `79a45e0c5646f918a14cfa005eb12417f4c1778f`.
 
-## Проверенный результат
+ARH requires preservation before further profile work. No verified transfer to another KOD writer was found in this preflight.
 
-Artifact:
+## Current branches
 
-`KOD_entity-env-sandbox-v06_KOO.tar.gz`
+ACTIVE — emergency KOD self-preservation / recovery checkpoint required by ARH.
 
-SHA-256:
+WAITING/SUSPENDED — GitHub info-entry r2 correction. KOO task commit `a05b80fc9041561c659ddaf19574b7550dd8e96b`; SHD proved a type-validation bypass where string `"true"` can evade a boolean semantic gate. Work must resume only after preservation boundary is cleared.
 
-`2f5f5066ad650ef5747c58c7c4ea6ec66893128f4c3a70e8184017562858434f`
+WAITING/SUSPENDED — Telegram Phase 1B privacy code fix. KOO task commit `267e7f23a8ba89efc8221f95f38a67b23ef0af5c`; selected privacy mode `aggregate_only`; live Telegram and real credentials remain forbidden.
 
-Независимая проверка KOO подтвердила:
+PARKED — Entity Runner: corrected immutable package `entities/koder/outbox/entity-runner-candidate-v01-r1/` at wellbeing-hq commit `f1f20fc1142d54b75f5966a82c5b045778da036c`; KOO integrity acceptance commit `206481f0f9b3325ff26d0cef11b20e06e8c1ecc3`; next runtime stage belongs to SIS/KOO, not KOD without new task.
 
-- архив безопасен;
-- internal manifest: `47 / 47 OK`;
-- automated tests: `144 / 144 PASS`;
-- local pilot regression: `44 / 44 PASS`;
-- S17-S21: `15 / 15 PASS`;
-- S22: `5 / 5 PASS`;
-- scenarios A-F: PASS.
+PARKED/BLOCKED — M365 supervisor E2E retains Task ID `task:KOO-M365-SUPERVISOR-E2E-01`; do not create replacement Task ID or claim Cloud Browser capability without evidence/authorization.
 
-Acceptance:
+## Recent accepted/important KOD artifacts
 
-`isolated_sandbox_acceptance: accepted`
+- Telegram Media Gateway Phase 0 result package commit `df287f89410adb1b935e5123ec7abd9ddb37795c`; later Phase 1A was accepted and terminally closed by KOD commit `a0f4a33fff878846fead3cff4b56151e732cb3e5` before the new privacy fix task reopened the branch.
+- GitHub info-entry r1 accepted bounded, then cross-layer SHD review proved new type-validation defect; r1 package remains historical at `e4c33e4940ea172f3f3cc2d16edc939a53426084`.
+- Activation boundary remains conceptually: detector/request evidence is not proof of real Entity `processing_started` or exact existing-chat resume.
 
-`real_host_sandbox_deployment: allowed_after_host_preflight`
+## Current-writer boundary
 
-`production_allowed: no`
+This instance is acting only as the KOD current-writer that received the ARH checkpoint request. No handoff is performed by creating this candidate. After candidate publication, authoritative profile mutation must remain frozen except preservation/dispatch actions until ARH independently verifies and decides the next recovery/canonical boundary.
 
-## Current / active
-
-- KOD — активная профильная Сущность;
-- принятый executable baseline — sandbox v0.6;
-- ближайшее направление — подготовка и выполнение real-host deployment только после отдельной задачи KOO и подтверждённого host preflight.
-
-## Active dependency
-
-Для следующего этапа требуется точная внешняя версия sandbox v0.6.
-
-Artifact reference:
-
-    artifact_identity: KOD_entity-env-sandbox-v06_KOO.tar.gz
-    source_entity: KOD
-    locator: entities/kod/recovery/current/artifacts/KOD_entity-env-sandbox-v06_KOO.tar.gz
-    version_identity: sha256:2f5f5066ad650ef5747c58c7c4ea6ec66893128f4c3a70e8184017562858434f
-    normative_status: accepted_for_real_host_preflight
-    purpose: executable baseline for external sandbox host deployment
-
-Acceptance reference:
-
-    artifact_identity: KOO_entity-env-sandbox-v06-review_KOD.md
-    source_entity: KOO
-    locator: entities/kod/recovery/current/artifacts/KOO_entity-env-sandbox-v06-review_KOD.md
-    version_identity: sha256:f80ceefd3009aac283768ab7fde18b918cb6f7a87345fc1166e8bb3f2f499d01
-    normative_status: accepted_review
-    purpose: independent acceptance and deployment boundary
-
-## Host-stage blockers / required inputs
-
-До deployment должны быть проверены, а не угаданы:
-
-- concrete host identity;
-- OS/version;
-- доступ ОПЕРАТОРА;
-- допустимость systemd/firewall/TLS changes;
-- storage root;
-- внешний HTTPS name/endpoint;
-- trusted local evidence ingress для `authority-evidence/v1`;
-- cleanup/close discipline daemon resources при длительной работе.
-
-## Parked / unknown / legacy
-
-Parked:
-
-- историческая TERA `0.992` и связанные runtime-эксперименты;
-- прежний Stage 04 как исторический хвост.
-
-Unknown:
-
-- конкретный исполнимый артефакт прежнего Stage 04;
-- иные recovery KOD вне проверенного внешнего контура.
-
-Legacy:
-
-- `packages/core/sledopyt-v01/`;
-- старый `teraorigin_research` без нового evidence.
-
-## Один безопасный следующий шаг
-
-Получить от KOO отдельную задачу real-host preflight/deployment с подтверждёнными вводными выбранного host.
+project_time: omitted; trusted project-time source not used
 
 ---
-entity: KOD
-document_type: snapshot
-recovery_schema: v1.3
-status: current
-stage04_state: parked_unknown
-isolated_sandbox: accepted_v0.6
-production_allowed: no
-project_time: generated_without_trusted_project_time
+КТО: KOD / КОДЕР
+ДЛЯ ЧЕГО: сохранить актуальное состояние перед возможной заменой чата
+СТАТУС: preservation_candidate

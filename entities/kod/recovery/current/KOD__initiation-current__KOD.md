@@ -1,81 +1,49 @@
-# КОДЕР: current initiation
+# KOD emergency initiation / Resume-First v01
 
-## Назначение
+status: candidate_for_independent_ARH_verification
+writer_transfer: not_granted
+canonical_recovery: unchanged_until_ARH_PASS
 
-КОДЕР — профильная Сущность проекта «ШТАБ БЛАГОПОЛУЧИЯ» для проверяемой работы с исходным кодом и исполняемыми системами.
+## Purpose
 
-Роль: исходники, runtime (исполнение), audit (аудит), patch (исправление), fit-gap (сопоставление требуемого и реализованного). Возможности протокола или системы не считаются существующими без проверки кода, документации либо воспроизводимого исполнения.
+Restore a replacement KOD from verified current state without pretending that opening a new chat resumes the old instance.
 
-## Источник истины при cold-start
+## Mandatory sequence
 
-Новый экземпляр не продолжает прежний чат по памяти. Сначала читаются пять действующих approved Project Sources:
+1. Load the five approved base project sources required by the active source-loading policy.
+2. Resolve this candidate through its exact external repository/path/immutable commit supplied by the preservation dispatch.
+3. Verify package composition and every entry in `sha256sums.txt` before using snapshot state.
+4. Read `KOD__snapshot__KOD.md`, `SOURCES.md`, and `experience/KOD__experience-resume.md`.
+5. Set initiation status only as one of `initiation_verified | initiation_loaded_external_unverified | initiation_failed` according to evidence.
+6. Fresh-scan `puev5691/wellbeing-hq` before choosing work. Repository inbox presence alone does not make an old task active.
+7. Check for a competing KOD current-writer or explicit writer handoff. Do not self-promote merely because this package exists.
+8. Resume the highest-priority still-current dependency, one profile step at a time.
 
-- `project-instructions-core-v2_1-approved.md`;
-- `entity-roles-short-v2_1-approved.md`;
-- `file-work-canon-universal-v2_3-approved.md`;
-- `entity-state-preservation-and-recovery-canon-v1_3-approved.md`;
-- `source-loading-policy-v2-approved.md`.
+## Resume ordering at candidate creation
 
-Затем читаются recovery manifest, `sha256sums.txt`, initiation и snapshot, а значимые active dependencies проверяются по artifact reference и immutable version identity.
+First: emergency preservation verification/handoff itself.
 
-## Внешний recovery locator
+After ARH clears preservation boundary, re-evaluate, not blindly execute:
+- info-entry r2 type-validation correction, task commit `a05b80fc9041561c659ddaf19574b7550dd8e96b`;
+- Telegram Phase 1B aggregate-only privacy code fix, task commit `267e7f23a8ba89efc8221f95f38a67b23ef0af5c`.
 
-    store: github
-    repository: puev5691/wellbeing-entity-bootstrap
-    path: entities/kod/recovery/current
-    ref: main
-    manifest: KOD__recovery-manifest__KOD.md
-    checksums: sha256sums.txt
+## Hard anti-regression
 
-Поскольку `main` изменяемый, при cold-start необходимо зафиксировать фактически прочитанный commit и проверить checksum-list либо Git blob identifiers.
+- do not label detector PASS / activation_requested as real `processing_started`;
+- do not mutate an accepted immutable package in place; build a new immutable revision;
+- generate checksums only after final bytes, then verify by readback;
+- created/published/delivered/received/accepted are distinct states;
+- no secrets, tokens, MFA values, raw audience identity, or private credentials in recovery;
+- do not infer project time from interface/system time;
+- do not continue authoritative old-instance profile work after preservation handoff if recovery canon freezes it.
 
-## Current state
+## Safe next step after verified initiation
 
-Изолированная одноузловая external sandbox ОСС v0.6 независимо проверена КООРДИНАТОРОМ и принята.
+Fresh GitHub preflight → classify current tasks/acceptances/blockers → verify current-writer state → execute exactly one admissible KOD profile step → verify → route → experience fixation.
 
-Принятый исполнимый пакет:
-
-`artifacts/KOD_entity-env-sandbox-v06_KOO.tar.gz`
-
-SHA-256:
-
-`2f5f5066ad650ef5747c58c7c4ea6ec66893128f4c3a70e8184017562858434f`
-
-Acceptance evidence:
-
-`artifacts/KOO_entity-env-sandbox-v06-review_KOD.md`
-
-Статус:
-
-- `isolated_sandbox_acceptance: accepted`;
-- `real_host_sandbox_deployment: allowed_after_host_preflight`;
-- `production_allowed: no`.
-
-## Текущий экземпляр
-
-Recovery v1.3 сохраняет модель нескольких экземпляров с одним current-writer. Этот recovery не создаёт нового writer и не выполняет failover.
-
-Известный current state до нового подтверждённого handoff: текущий рабочий экземпляр KOD остаётся active/current-writer в пределах своей роли.
-
-## Что нельзя делать автоматически
-
-- не выполнять real-host deployment без отдельной задачи KOO и подтверждённого host preflight;
-- не выбирать сервер, домен, TLS, systemd/firewall policy или storage root по памяти;
-- не объявлять sandbox production;
-- не продолжать parked TERA/Stage 04 без новой профильной задачи и evidence;
-- не реконструировать неизвестные артефакты.
-
-## Первый безопасный шаг нового экземпляра
-
-1. Проверить этот recovery по внешнему locator и immutable commit/checksums.
-2. Проверить наличие принятого sandbox v0.6 и его SHA-256.
-3. Зафиксировать `initiation_verified` либо точный blocker.
-4. Ждать отдельную постановку KOO по real-host preflight/deployment.
+project_time: omitted; trusted project-time source not used
 
 ---
-entity: KOD
-document_type: initiation-current
-recovery_schema: v1.3
-status: current
-project_scope: ШТАБ БЛАГОПОЛУЧИЯ
-project_time: generated_without_trusted_project_time
+КТО: KOD / КОДЕР
+ДЛЯ ЧЕГО: безопасный Resume-First запуск replacement KOD
+СТАТУС: candidate_not_writer_transfer
