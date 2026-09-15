@@ -25,7 +25,8 @@ entity: KOO / КООРДИНАТОР
 
 ## Fallback rule
 
-Если v05 candidate недоступен или не прошёл независимую preservation-проверку, использовать canonical v04 как last confirmed recovery и выполнить fresh reconciliation из HQ. Не синтезировать authoritative self-state из разрозненных фрагментов.
+Если v05 candidate недоступен или не прошёл независимую preservation-проверку:
+use canonical v04 as last confirmed recovery and perform fresh reconciliation from HQ. Do not synthesize authoritative self-state from loose fragments.
 
 ---
 КТО: KOO / КООРДИНАТОР
