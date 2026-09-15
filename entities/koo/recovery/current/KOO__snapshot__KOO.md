@@ -1,177 +1,126 @@
-# KOO self-snapshot — emergency recovery v04
+# KOO self-snapshot — emergency recovery v05
 
 status: CURRENT_WRITER_EMERGENCY_SNAPSHOT_CANDIDATE
 entity: KOO / КООРДИНАТОР
 project_time: omitted; trusted project-time source not used
 
-## Recovery baseline
+## Authority / writer basis
+
+Current KOO instance was established by:
+`entities/koordinator/current/KOO__initiation-v04-result.md`
+status: `initiation_verified`
+current-writer accepted within existing KOO role.
 
 Last externally verified canonical KOO recovery:
-repository: puev5691/wellbeing-entity-bootstrap
-path: entities/koo/recovery/current
-recovery commit recorded by ARH registry: cbaad4cb94618788f5d50664d08d503a3247f61c
+repository: `puev5691/wellbeing-entity-bootstrap`
+path: `entities/koo/recovery/current`
+canonical commit: `6f857ba10e9976a9ca1c2c88df0c8b8a7995b74a`
 
-This v04 snapshot is newer current-writer state and does not replace canonical recovery until ARH preservation verification/publication/readback.
+This v05 package is a newer self-snapshot candidate authored by the current KOO writer. It does not replace canonical recovery until ARH preservation verification/publication/readback.
 
 ## Fresh project boundary
 
-wellbeing-hq latest verified HEAD before v04 package creation:
-85551290ebe6ae527b7a0ffdafb6e2f20b79433f
+Fresh `wellbeing-hq` HEAD before v05 package creation:
+`457865df475b5296c5ce087eb69c9e06826936ba`
 
-Latest relevant ARH result:
-entities/archivarius/outbox/ARH__inbox-lifecycle-operational-review__KOO.md
-commit: 1b6aab5e50c759a7027b3c5b370475fe35417eec
-result: PASS_WITH_PRESERVATION_CONSTRAINTS
+Stable queue pointer:
+`entities/koordinator/current/KOO__work-queue-current.md`
 
-## Confirmed current decisions
+Current operator queue:
+`entities/koordinator/current/KOO__work-queue-v09-ru.md`
+commit: `c86522cd14b96b14ee36a7222cb9d8f803d105db`
 
-### Delivery / source policy
+Current wake card:
+`entities/koordinator/current/KOO__operator-wake-card-v04-ru.md`
+commit: `40cb60f5f6b4dcf4ced9ff7bcde313beb24f7de4`
 
-OPERATOR chose Variant 1:
-verified locator-based delivery is a valid terminal addressed-delivery mode when artifact/recipient/dispatch/locator/version/receipt/failure-mode requirements are met.
+## Current project decisions and queue
 
-KAN source-loading-policy v2.1 candidate is ready but awaits explicit OPERATOR approval:
-commit 59ae5c036151460ca63a0e2ccd37d4aa53c88aaf
-blob da9bee953187c835aded8a4fc6edbc3ec50047b6
+1. WEB Static Preview v0.3 E1 narrow recheck: PASS accepted by KOO.
+   KOO acceptance commit: `c172818c015782a9232e65828428abb5491e1e7b`.
 
-### Telegram media contour
+2. Recovery-canon wake/initiation/resume candidate r0.4:
+   ARH verdict `PASS_RECOVERY_COMPATIBLE_READY_FOR_OPERATOR_GATE`.
+   KOO acceptance commit: `026771a37ff19deb7c98ac795698dfbe0adca05c`.
+   OPERATOR gate:
+   `entities/koordinator/outbox/KOO__entity-recovery-canon-v1_5-operator-gate__OPERATOR.md`
+   commit `17190f729eef6537f0404af387253c9c11eb3a21`.
+   Candidate is NOT approved/effective until explicit OPERATOR decision.
 
-Experimental channel:
-https://t.me/wbnp_pev5691_15042026
+3. SHD TERA2 main/root genesis research accepted:
+   KOO acceptance commit `1f250e2bcb4c06aa18bc439c76f57d1ad5473ef5`.
+   Next root-profile candidate requires KOD and is queued behind Telegram threading fix.
 
-Verified public facts:
-- PUBLIC_VERIFIED
-- title: Медиа Благополучие
+4. SHT recovery-record lifecycle convention accepted:
+   KOO acceptance commit `18b016761637b139e51ceb81d76e7e3540d9e4e3`.
 
-Phase 0 behavior: PASS_BOUNDED.
-Phase 1A: ACCEPTED_BOUNDED_PHASE1A_NONPRODUCTION.
-KAN privacy gate: PASS_BOUNDED_WITH_PRE_LIVE_PRIVACY_FIXES.
-KOO selected privacy mode: aggregate_only.
+5. VOL prospective P5 measurement protocol accepted:
+   KOO acceptance commit `4449c48755a866c5448d70853bfa075ce646b840`.
 
-Live Phase 1B send remains NOT AUTHORIZED.
+6. SIS Telegram Phase1B blocker accepted:
+   `BLOCKED_PHASE1B_RUNTIME_THREADING_DEFECT`.
+   KOO acceptance commit `772daf0c8a05c51d17fa74bdc766c3ba92658038`.
+   Required next owner: KOD. Do not replay sudo or unchanged host gate.
 
-Addressed open dependencies:
-- KOD: entities/koder/inbox/KOO__telegram-phase1b-privacy-code-fix__KOD.md
-- SIS: entities/sisadmin/inbox/KOO__telegram-phase1b-runtime-privacy-readiness__SIS.md
+7. KOD replacement instance:
+   initiation result is `initiation_verified`, but old verified KOD current-writer is not retired.
+   OPERATOR writer-decision gate:
+   `entities/koordinator/outbox/KOO__KOD-replacement-writer-decision-gate__OPERATOR.md`
+   commit `a0c8f70cbe3edd9031ee4881d189639f5a166d98`.
+   No KOD profile task should start before writer boundary is resolved.
 
-Pre-live requirements:
-- replace stale fail_closed_pending_KAN receipt semantics;
-- no persistent raw Telegram update-body logging;
-- exact sandbox DB path and cleanup action;
-- later verify numeric chat id, discussion mapping, publisher bot/admin rights and webhook readiness.
+8. Prepared KOD serialized successors:
+   a) Telegram Phase1B threading fix:
+      `entities/koordinator/outbox/KOO__telegram-phase1b-threading-fix-r01__KOD.md`
+      commit `5553e1857936755ee4cc511eb5d5f1d8a0b4c092`.
+   b) TERA2 root-profile candidate:
+      `entities/koordinator/outbox/KOO__tera2-root-profile-candidate-r01__KOD.md`
+      commit `9c6972681ae8b058cbe99c5ae4a3674a5cd1d3eb`.
 
-### GitHub information-entry pilot
+9. ARH and WEB showed depth/latency symptoms but remained functional.
+   Prepared preservation tasks:
+   - ARH: `KOO__ARH-pre-replacement-self-preservation-r01__ARH.md`, task commit `65eb351c2b428e4ec3ee38bbfd5e0a1644b421dc`.
+   - WEB: `KOO__WEB-continuity-preservation-candidate-r01__WEB.md`, task commit `4ee6182f069e023ac2a33ffbb9db2348730d99ec`.
 
-Bounded pilot r1 had prior bounded acceptance.
-SHD cross-layer review found:
-DEFECT_FOUND__TYPE_VALIDATION_GAP_CAN_OPEN_SECRET_DEPENDENCY_BYPASS
+10. Work-mode transition research:
+   - VOL pilot observation task commit `88021fe9f2baa6beabf5d93a530629816c2b6b2e`.
+   - SHT staged Chat→Work process task commit `df3cdcd429f8673a12ede9eceb8b0cb47a54fa15`.
 
-Exact KOD correction task:
-entities/koder/inbox/KOO__github-info-entry-pilot-r1-defect__KOD.md
+## Automation state
 
-Public-ready promotion remains blocked until strict type-validation r2 is reviewed and SHD re-verifies cross-layer behavior.
+Tool-verified immediately before v05 preservation:
+- `Новости и сигналы`: enabled.
+- ARH GitHub Work: disabled.
+- KOO GitHub Work: disabled.
+- KOD GitHub Work: disabled.
+- SIS GitHub Work: disabled.
+- SHT GitHub Work: disabled.
+- KAN GitHub Watch: disabled.
+- legacy one-shot reminders: disabled.
 
-### Inbox lifecycle
+Do not re-enable old Entity GitHub-work automations merely to resume profile execution.
 
-SHT design:
-ACCEPTED_BOUNDED_DESIGN.
+## Emergency handoff rule
 
-ARH preservation/operational review:
-PASS_WITH_PRESERVATION_CONSTRAINTS.
+After v05 preservation publication, this old KOO instance should not perform normal authoritative profile/current-state mutation except preservation/dispatch needed to complete this handoff.
 
-ARH permits next bounded KOO-only pilot:
-- entities/koordinator/current/inbox-lifecycle.jsonl
-- entities/koordinator/current/active-queue.json
+A replacement KOO must:
+1. verify canonical recovery v04 at exact immutable commit;
+2. inspect this v05 self-snapshot candidate and ARH verification state;
+3. do fresh `wellbeing-hq` preflight;
+4. if v05 has been ARH-verified/published as canonical, verify locator/composition/integrity and prefer it;
+5. otherwise treat v04 as last externally verified recovery and v05 only as fresher candidate evidence;
+6. check competing-writer/handoff state;
+7. obtain/confirm explicit OPERATOR emergency replacement authority;
+8. only then establish replacement current-writer with immutable fixation/readback.
 
-Constraints:
-raw inbox append-only; no delete/move/rename; active queue is materialized view only; KOO owns its queue; ARH preserves provenance and checkpoints but does not mutate KOO queue.
+## First safe action of replacement KOO
 
-KOO-only pilot files have NOT yet been created by this snapshot.
+Recovery/initiation only. Do not continue queue work until `initiation_verified` and writer boundary are fixed.
 
-### COOP research conveyor
-
-SHT v0.1 process model accepted:
-ACCEPTED_BOUNDED_PROCESS_BASELINE.
-
-No OSS implementation authorized.
-No next file-first E2E research pilot has been opened yet.
-
-### SHD staff/recovery
-
-Operational role integration: PASS.
-Project Source role v2.3 migration: PASS for current project source layer.
-SHD current-writer recovery checkpoint verified by ARH:
-PUBLISHED_CURRENT_PRESERVATION_VERIFIED__PRACTICAL_INITIATION_TEST_NOT_PERFORMED
-
-External SHD package:
-puev5691/wellbeing-entity-bootstrap/packages/shd-role-v2_3-current-recovery/
-ref: ce9891f63b6123600623e01b8da84131f239c5c7
-
-ARH checksum verification: 4/4 PASS.
-
-Not proven:
-- practical cold-start of a new SHD instance;
-- exact historical ChatGPT Entity-chat resume.
-
-### Activation continuity
-
-Exact existing ChatGPT Entity start/resume remains unsupported/unproven.
-
-Accepted boundary:
-GitHub event -> detector/worker/local handler state is not proof of exact ChatGPT Entity profile processing.
-
-SIS real-activation branch closed at:
-BLOCKED_REAL_ENTITY_ACTIVATION_BOUNDARY.
-
-Do not relabel local processing_started markers as exact Entity processing.
-
-## Current automation evidence
-
-Tool-verified during v04 preservation pass:
-
-- KOO GitHub Work: enabled
-- ARH GitHub Work: enabled
-- KOD GitHub Work: disabled
-- SHT GitHub Work: disabled
-- SIS GitHub Work: disabled
-- KAN GitHub Watch: disabled
-
-Therefore newly addressed KOD/SIS/SHT/KAN tasks must not be assumed automatically processed.
-
-## Current immediate KOO dependencies
-
-1. ARH inbox-lifecycle review result exists and needs KOO receipt/decision before KOO-only queue pilot.
-2. source-loading-policy v2.1 exact candidate awaits OPERATOR approval.
-3. KOD Telegram privacy code fix awaits processing.
-4. SIS Telegram runtime/privacy readiness awaits processing.
-5. KOD information-entry type-validation r2 awaits processing.
-6. sender-registry service-tail repair exists for SHT; non-blocking.
-7. emergency recovery v04 preservation itself becomes the top priority until ARH verifies it.
-
-## Experience / anti-regression references
-
-Keep using the externally preserved KOO Experience Layer as historical/training evidence only:
-- experience/KOO_experience-extraction.md
-- experience/KOO_experience-cards.jsonl
-- experience/KOO_anti-regression-cases.md
-
-Important reusable lessons:
-- fresh GitHub preflight before current-state claims;
-- immutable code/tests > PASS prose;
-- receipt != acceptance;
-- Entity ID / Task ID / Instance ID are distinct;
-- automation prompt text != applied automation;
-- click != external resource creation;
-- preserve state before chat degradation;
-- if data + authority + capability suffice: execute -> verify -> short fixation.
-
-## One safe next step after verified initiation
-
-Fresh GitHub preflight, then process the exact ARH inbox-lifecycle result if it is still the highest-priority unresolved KOO-owned action.
-
-Do not create KOO active-queue pilot before recovery initiation is verified and current-writer transfer is clear.
+After verified replacement, fresh-preflight the current queue pointer and recompute priorities rather than replaying v09 blindly.
 
 ---
 КТО: KOO / КООРДИНАТОР
-ДЛЯ ЧЕГО: authoritative current-writer self-snapshot before emergency handoff
-СТАТУС: current_writer_emergency_snapshot_candidate
+ДЛЯ ЧЕГО: authoritative self-snapshot before emergency replacement of degraded KOO chat
+СТАТУС: current_writer_emergency_snapshot_candidate_v05
