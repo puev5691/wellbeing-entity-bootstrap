@@ -1,0 +1,3 @@
+fc4ad3a81396a1735619cd918c2ffda5c4e53d7c3fc5d1df3a0d30fb92fc1758  KOD__evidence-tail-v06.md
+067884a3609992b968f90425af765f755e65b16874fb06279d44531300bc786d  KOD__replacement-initiation-v06.md
+76d8f263b67a5ea93ecbf438d3969b9162745c6cd5cfc7810ac58d7f54b5239f  KOD__self-snapshot-v06.md
