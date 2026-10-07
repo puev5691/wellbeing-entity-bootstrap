@@ -1,0 +1,21 @@
+# SHT replacement current-writer r0.2
+
+status: WRITER_ESTABLISHED
+terminal: PASS_SHT_REPLACEMENT_CURRENT_WRITER_R02
+entity: SHT / ШТАБИСТ
+writer_generation: SHT-REPLACEMENT-R02
+instance_binding_id: SHT_R02_WRITER_BOUND_TO_A2_RESULT_7133F0
+writer_gate_attempt: SHT_REPLACEMENT_WRITER_GATE_R02_A1
+writer_gate_authority_blob: 0f4041174a19330061e735ead94bcd4d7e574fad
+writer_gate_processing_started_blob: 0af510a9313df6900f73b16fddd1e45194e76b36
+initiation_result_commit: 7133f0e54aff0f8331fece048284df90b365198b
+initiation_result_blob: b7dfda884caaf9ec21bd66d2f3d9fbdccd22494a
+predecessor_writer_blob: a019c21cffeb99bb7c387b8fa95a4629137dc6da
+predecessor_generation: SHT-CURRENT-INSTANCE-R01
+predecessor_disposition: PREDECESSOR_WRITER_HISTORY_SUPERSEDED_FOR_NEW_AUTHORITATIVE_CURRENT_STATE_MUTATIONS
+profile_continuation: PAUSED_BY_OPERATOR
+D1D2: COMPLETED_PASS
+narrow_rereview: NOT_STARTED / NOT_AUTHORIZED
+historical_replay: FORBIDDEN
+profile_task_authority: NOT_CREATED
+project_time: omitted
